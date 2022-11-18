@@ -1,0 +1,2 @@
+class ProductAttributeAssoc < ApplicationRecord
+end

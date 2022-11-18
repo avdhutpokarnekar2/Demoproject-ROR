@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  conf_key: 
+  conf_value: 
+  =: MyString
+  created_by: 
+  =: MyString
+  created_date: 
+  modify_by: 
+  modify_date: 
+
+two:
+  id: 1
+  conf_key: 
+  conf_value: 
+  =: MyString
+  created_by: 
+  =: MyString
+  created_date: 
+  modify_by: 
+  modify_date: 
