@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'e6548bde22dd5c5052be5268aa95d9d7f2e5210b1864cdb450ec7f66f29fe87bb04e9f9cb81f30c56f6920a564dcec01bb3f1b788468640cc41e41bebfaa70d1'
+  # config.secret_key = '2b3942051b762a6c7ccdf6352211cb7204dcb6faaf9791ca1dcc87da821de9f8fee3acd7aa0cdcefceb1ed8cb13949484a7b253a63f93b72eda2c54fad3c2415'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '2760bf7a8990860672a44ca21626fd22841ab69934b1e92132e324eeafae1705f9d789740b3c26aa96ff3c2abf7eef1c85c2e78a581e738d9e0b01c162c6160e'
+  # config.pepper = 'ed46e33a8498916bc072818427639060a7bbf2f1b9e16b22e3885648220f2c56ff93c8dfb8de5154d5a8b6375dae896c6fae2fca13b77cb78dca5bb76a32fc16'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -271,7 +271,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+    # config.omniauth :google_oauth2, '104427578402-pacer8iokq4f62qhkvmpsb6p6j03q3ka.apps.googleusercontent.com
+    # ','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', scope: 'user,public_repo'
+    # # 104427578402-pacer8iokq4f62qhkvmpsb6p6j03q3ka.apps.googleusercontent.com
+  # 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
+  config.omniauth :google_oauth2, '104427578402-pacer8iokq4f62qhkvmpsb6p6j03q3ka.apps.googleusercontent.com', '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'
+  config.omniauth :github, 'ca0cf81883d481f15069', '9324001b8839091f88d1006b2aaee3e3237bf0fe', :scope => 'user:email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -308,6 +313,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
-
 end
