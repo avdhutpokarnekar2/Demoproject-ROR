@@ -1,0 +1,9 @@
+<% @wishlists.each do |wishlist| %>
+  <% product = wishlist.product %>
+   <%= image_tag(product.product_images.first.image ) %>
+     <h3><%= product.price %></h3>   
+  <h4><%= product.name %></h4>
+
+  <h4><%= product.id %></h4>
+  <br><hr><br>
+<% end %>

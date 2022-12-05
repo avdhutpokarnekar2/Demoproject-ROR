@@ -172,26 +172,30 @@
 					<% @cart.each do |product| %>
 					<tbody>
 						<tr>
-							<td class="cart_product">
-								<h1><%= product.name %>	
-                    <% end %>
+							
+							<td>
+								 <%= image_tag(product.product_images.first.image ) %><br>
+								 <h3><%= product.name %></h3>   
 							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+							<td class="cart_product">
+								
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p><%= product.price %></p>
+								
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
+								<%= button_to '+', add_quantity_path(product), method: :post, remote: true, class: 'btn primary' %>
+									
+									<input class="cart_quantity_input" type="text" name="quantity" value="<%= product.quantity %>" autocomplete="off" size="2">
+									<%= button_to '-', dec_quantity_path(product), method: :post, remote: true, class: 'btn primary' %>
+									</div>
 							</td>
+							
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p><%= (product.quantity)*(product.price) %></p>
+								<% end %>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -200,6 +204,7 @@
 
 						
 					</tbody>
+					
 				</table>
 			</div>
 		</div>
