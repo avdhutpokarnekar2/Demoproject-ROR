@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'users/sign_in'  
   get 'shop/cart'
   get 'products/wishlist'
+  get 'shop/checkout'
+
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
@@ -23,5 +25,8 @@ Rails.application.routes.draw do
   post 'products/add_to_wishlist/:id', to: "products#add_to_wishlist", as: "add_to_wishlist"
   delete "products/remove_from_wishlist/:id", to: "products#remove_from_wishlist", as: "remove_from_wishlist"
 
+
+  post 'shop/cart'
+  post 'shop/create'
 
 end

@@ -9,6 +9,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
            :omniauthable,:omniauth_providers=>[:google_oauth2,:github]
 
+
+  has_many :coupons_useds
+  has_many :coupons, through: :coupons_useds
+  
+
     def self.from_omniauth(response)
       User.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |u|
         u.email = response[:info][:email]

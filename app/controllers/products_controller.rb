@@ -18,8 +18,9 @@ class ProductsController < ApplicationController
     @item.save   
   end
 
+
   def wishlist
-    @wishlists =UserWishList.all
+    @wishlists = UserWishList.all
   end
   
   def add_to_wishlist
@@ -37,4 +38,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
+
+
 end
