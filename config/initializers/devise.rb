@@ -278,6 +278,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, '104427578402-pacer8iokq4f62qhkvmpsb6p6j03q3ka.apps.googleusercontent.com', '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'
   config.omniauth :github, 'ca0cf81883d481f15069', '9324001b8839091f88d1006b2aaee3e3237bf0fe', :scope => 'user:email'
 
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -313,4 +314,7 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+  # config.stripe.secret_key = Rails.application.credentials.stripe[:development][:secret_key]
+  # config.stripe.publishable_key = Rails.application.credentials.stripe[:development][:publishable_key]
+
 end

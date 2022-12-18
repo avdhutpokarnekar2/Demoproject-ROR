@@ -195,31 +195,28 @@
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
-						<div class="bill-to">
-							<p>Bill To</p>
-							<div class="form-one">
-							<%#= form_with(model: @shipping) do |form| %>
-							<%= form_with model: @useraddress, url: shop_create_path, method: :post, local: true do |form| %>
-							<div class="field">
-    						<%= form.label :first_Name %>
-							<%= form.text_field :fname %>
-							<%= form.label :Last_Name %>
-							<%= form.text_field :lname %>
-							<%= form.label :Address %>
-							<%= form.text_field :Address %>
-							<%= form.label :email %>
-							<%= form.email_field :email %>
-							<%= form.label :Pin_code %>
-							<%= form.number_field :pin_code %>
-  							<%= form.select :Country, options_for_select( [['INDIA','INDIA'],['BRAZIL','BRAZIL'],['RASSIA','RASSIA'],['AMERICA','AMERICA']])%>
-  							<%= form.select :State, options_for_select( [['MAHARASHTRA','MAHARASHTRA'],['GOA','GOA'],['DELHI','DELHI'],['PANJAB','PANJAB']])%>
-  							<%= form.label :mobile_no %>
-  							<%= form.number_field :mobile_no %>
-  							<%= form.label :Alternate_mobile_no%>
-  							<%= form.number_field :Alternate_mobile_no %>
-  							
-  							<div class="actions">
-    						<%= form.submit %>
+					<div class="bill-to">
+						<p>Bill To</p>
+					<div class="form-one">
+						<%= form_with model: @useraddress, url: shop_create_path,method: :post, remote: true do |form| %>
+					<div class="field">
+    				
+						<%= form.label :Address %>
+						<%= form.text_field :Address %>
+						
+						<%= form.label :pin_code %>
+						<%= form.text_field :pin_code %>
+						<span>Country:
+  					<%= form.select :Country, options_for_select( [['Select','INDIA'],['BRAZIL','BRAZIL'],['RASSIA','RASSIA'],['AMERICA','AMERICA']])%><span>
+  					<br><span>State:
+  					<%= form.select :State, options_for_select( [['Select','MAHARASHTRA'],['GOA','GOA'],['DELHI','DELHI'],['PANJAB','PUNJAB']])%> <span>
+  					<%= form.label :mobile_no %>
+  					<%= form.telephone_field :mobile_no %>
+  					<%= form.label :Alternate_mobile_no %>
+  					<%= form.telephone_field :Alternate_mobile_no %>
+  						<div class="actions">
+  							<br>
+    						<%= form.submit "submit" %>
   							</div>
 							<% end %>
 
@@ -227,9 +224,13 @@
 						</div>
 						</div>
 					</div>
+
+
+
 					<div class="col-sm-4"> 
-							<label><input type="checkbox"> Shipping to bill address</label>
-						</div>	
+				
+							<h1>Adress</h1>
+						
 					</div>					
 				</div>
 			</div>
@@ -243,11 +244,11 @@
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td>$59</td>
+										<td>$<%= @value %></td>
 									</tr>
 									<tr>
 										<td>Exo Tax</td>
-										<td>$2</td>
+										<td>-</td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
@@ -255,7 +256,7 @@
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>$61</span></td>
+										<td><span><%= @value %></span></td>
 									</tr>
 								</table>
 							</td>
@@ -265,15 +266,15 @@
 			</div>
 			<div class="payment-options">
 					<span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
+					<label><input type="checkbox"> Stripe</label>
+					<%= form_tag checkout_show_path do %>
+					<%= button_to "buy now",checkout_show_path %>
+					<% end %>
 					</span>
 					<span>
 						<label><input type="checkbox"> Check Payment</label>
 					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
-				</div>
+			</div>
 		</div>
 	</section> <!--/#cart_item
 	
@@ -284,7 +285,7 @@
 
 
 
-	<footer id="footer"><!--Footer-->
+	<footer id="footer">Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">

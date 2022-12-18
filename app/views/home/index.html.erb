@@ -1,7 +1,6 @@
-<br><br><br><br><% if user_signed_in? %>
+<% if user_signed_in? %>
   <%= link_to('Edit registration', edit_user_registration_path) %>
   <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-
   <% if can? :manage, :dashboard %>
 	  <%= link_to('Admin Panel', rails_admin.dashboard_path) %>
   <% end %>

@@ -142,13 +142,6 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-
-
-
-
-
-
-
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -181,7 +174,7 @@
 								<td class="cart_price"><p><%= product.price %></p></td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
-										<%= button_to '+', add_quantity_path(product), method: :post, remote: true, class: 'btn primary' %>	
+										<%= button_to '+', add_quantity_path(product), method: :post, remote: true,class: 'btn primary' %>	
 										<input class="cart_quantity_input" type="text" name="quantity" value="<%= product.quantity %>" autocomplete="off" size="2">
 										<%= button_to '-', dec_quantity_path(product), method: :post, remote: true, class: 'btn primary' %>
 									</div>
@@ -241,12 +234,11 @@
 						<ul>
 							<li> Cart Total Price <span>  <%= @value.inspect %> </span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span><% @total_value.inspect %></span></li>
+							<li>Total <span> <%= @value %></span></li>
 							
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
-							<li><%= link_to "Checkout", shop_checkout_path %><i class="fa fa-lock"></i></li>
+							<span class="btn btn-default check_out" href=""><%= link_to "Checkout", shop_checkout_path %> </span>
 							
 					</div>
 				</div>

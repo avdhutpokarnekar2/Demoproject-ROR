@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_07_153907) do
+ActiveRecord::Schema.define(version: 2022_12_16_111759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,17 @@ ActiveRecord::Schema.define(version: 2022_12_07_153907) do
     t.index ["user_id"], name: "index_coupons_useds_on_user_id"
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "quantity"
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "product_id", null: false
+    t.bigint "user_order_id", null: false
+    t.index ["product_id"], name: "index_order_details_on_product_id"
+    t.index ["user_order_id"], name: "index_order_details_on_user_order_id"
+  end
+
   create_table "product_attribute_assocs", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -175,15 +186,17 @@ ActiveRecord::Schema.define(version: 2022_12_07_153907) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "Address", limit: 200
     t.integer "pin_code"
-    t.integer "mobile_no"
+    t.string "mobile_no"
     t.string "Country"
     t.string "State"
-    t.integer "Alternate_mobile_no"
+    t.string "Alternate_mobile_no"
   end
 
   create_table "user_orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "awb_no", limit: 100
+    t.string "transaction_id", limit: 100
   end
 
   create_table "user_wish_lists", force: :cascade do |t|
@@ -214,6 +227,8 @@ ActiveRecord::Schema.define(version: 2022_12_07_153907) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "coupons_useds", "coupons"
   add_foreign_key "coupons_useds", "users"
+  add_foreign_key "order_details", "products"
+  add_foreign_key "order_details", "user_orders"
   add_foreign_key "product_attribute_assocs", "products"
   add_foreign_key "product_attribute_values", "product_attributes", column: "product_attributes_id"
   add_foreign_key "product_categories", "categories"

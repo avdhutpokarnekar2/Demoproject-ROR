@@ -1,22 +1,25 @@
 class ShopController < ApplicationController
 	skip_before_action :authenticate_user!
 	before_action :set_product, only: %i[ show edit update destroy ]
-
+	
 	def e404
-
 	end
 	
 	def blog_single
-	
 	end
 	
 	def blog
-	
 	end
 	
 	def checkout
+		@product_price_lists = [] 
+		@cart.each do |product| 
+		tp = (product.quantity)*(product.price)
+		@product_price_lists << tp 
+		end
+		@total_price = @product_price_lists.inject {|sum,price| sum + price}
+		@value =	@total_price.to_i
 		@useraddress = UserAddress.new
-	
 	end
 
   def create
@@ -31,7 +34,6 @@ class ShopController < ApplicationController
   end
 	
 	def contact_us
-	
 	end
 	
 	def index
@@ -39,7 +41,7 @@ class ShopController < ApplicationController
 	 	@category = Category.all
 	 	@products = Product.all
 	 	@prod_images = ProductImage.all
-	 	@useraddress = UserAddress.all
+	 	@address = UserAddress.all
 	end
 
 	def cart
@@ -47,9 +49,10 @@ class ShopController < ApplicationController
 		@cart.each do |product| 
 		tp = (product.quantity)*(product.price)
 		@product_price_lists << tp 
-	end
+		end
 		@total_price = @product_price_lists.inject {|sum,price| sum + price}
 		@value =	@total_price.to_i
+		
     @user = current_user
     @used_coupon = params[:code]
     coopan = Coupon.find_by(code: @used_coupon)
@@ -67,7 +70,7 @@ class ShopController < ApplicationController
         end
       else
         puts "invalid"
-       end
+      end
       if use == 1
        coup.save
       else
@@ -75,18 +78,20 @@ class ShopController < ApplicationController
     	end           
   		end
 	end
-	def login
 	
+	def login
 	end
 	
 	def product_details
-
-	end
+    @category = Category.find(params[:id])
+    @products = @category.products
+  end
 	
 	def shopee
-	
 	end
 
+	def account
+	end
 
 	def add_to_cart
     id = params[:id].to_i
@@ -101,7 +106,7 @@ class ShopController < ApplicationController
   end
 
   private
-  	def user_address_params
+  	def user_address_params   #used in User_address
   		params.require(:user_address).permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
 		end
 end

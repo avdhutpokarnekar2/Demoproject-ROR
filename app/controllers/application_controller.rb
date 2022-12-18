@@ -3,10 +3,9 @@ class ApplicationController < ActionController::Base
 	 before_action :initialize_session
      before_action :load_cart
  
+	private
 
- 	 private
-
-  	def initialize_session
+  	def initialize_session #initialize session
     	session[:cart] ||= [] # empty cart = empty array
   	end
 
@@ -14,9 +13,9 @@ class ApplicationController < ActionController::Base
     	@cart = Product.find(session[:cart]) rescue nil
   	end
 	
-	 def current_ability
+	def current_ability
 	   @current_ability ||= Ability.new(current_user)
-	 end
+	end
 end
 
  

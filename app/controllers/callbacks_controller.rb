@@ -1,15 +1,14 @@
 class CallbacksController < ApplicationController 
-	def google_oauth2
-	 	 @user = User.from_omniauth(request.env["omniauth.auth"])
+	def google_oauth2  #use of omniauth
+		@user = User.from_omniauth(request.env["omniauth.auth"])
 	 	if user.present?
-	 		# @user = User.from_omniauth(request.env["omniauth.auth"])
 	 		redirect_to user_path(@user)
 	 	else
 	 		redirect_to '/user/sign_in'
 	 	end
 	end
 
-	 def github
+	def github
     	@user = User.from_omniauth(request.env["omniauth.auth"])
     	sign_in_and_redirect @user
   	end
@@ -17,6 +16,4 @@ class CallbacksController < ApplicationController
 	def failure
     	redirect_to root_path
   	end
-
-
 end
