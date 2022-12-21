@@ -1,3 +1,4 @@
 class UserWishList < ApplicationRecord
-	belongs_to :product
+	has_many :products
+	belongs_to :users
 end

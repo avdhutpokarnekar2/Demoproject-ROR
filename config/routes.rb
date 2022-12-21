@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'users/sign_in'  
   get 'shop/cart'
   get 'shop/checkout'
-  get 'shop/success'
+  get 'shop/success', to: 'shop#success', as: "shop_success"
   get 'shop/account'
   get 'checkout/show'
   get 'products/wishlist'
@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   post 'shop/cart'
   post 'shop/create'
 
-  # get 'shop/product_details'
   get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

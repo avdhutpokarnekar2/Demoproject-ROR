@@ -1,7 +1,7 @@
 class ShopController < ApplicationController
 	skip_before_action :authenticate_user!
 	before_action :set_product, only: %i[ show edit update destroy ]
-	
+	require 'stripe'
 	def e404
 	end
 	
@@ -12,14 +12,13 @@ class ShopController < ApplicationController
 	end
 	
 	def checkout
-		@product_price_lists = [] 
+		product_price_lists = [] 
 		@cart.each do |product| 
-		tp = (product.quantity)*(product.price)
-		@product_price_lists << tp 
+			total = (product.quantity)*(product.price)
+		  product_price_lists << total 
 		end
-		@total_price = @product_price_lists.inject {|sum,price| sum + price}
-		@value =	@total_price.to_i
-		@useraddress = UserAddress.new
+		total_price = product_price_lists.inject {|sum,price| sum + price}
+		@value = total_price.to_i
 	end
 
   def create
@@ -45,13 +44,13 @@ class ShopController < ApplicationController
 	end
 
 	def cart
-		@product_price_lists = [] 
+		product_price_lists = [] 
 		@cart.each do |product| 
-		tp = (product.quantity)*(product.price)
-		@product_price_lists << tp 
+			total = (product.quantity)*(product.price)
+			@product_price_lists << total 
 		end
-		@total_price = @product_price_lists.inject {|sum,price| sum + price}
-		@value =	@total_price.to_i
+		total_price = product_price_lists.inject {|sum,price| sum + price}
+		@value = total_price.to_i
 		
     @user = current_user
     @used_coupon = params[:code]
@@ -105,9 +104,15 @@ class ShopController < ApplicationController
     redirect_to root_path
   end
 
+  def success
+    Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'
+		var = Stripe::Checkout::Session.retrieve(
+    id: params[:session_id])
+    # puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#{var[:payment_intent]}"
+  end
+
   private
   	def user_address_params   #used in User_address
   		params.require(:user_address).permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
 		end
 end
-

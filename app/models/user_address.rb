@@ -1,3 +1,3 @@
 class UserAddress < ApplicationRecord
-	# belongs_to :user_orders
+	belongs_to :user_orders
 end

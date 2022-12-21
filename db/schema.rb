@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_16_111759) do
+ActiveRecord::Schema.define(version: 2022_12_21_053548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,15 @@ ActiveRecord::Schema.define(version: 2022_12_16_111759) do
     t.bigint "user_order_id", null: false
     t.index ["product_id"], name: "index_order_details_on_product_id"
     t.index ["user_order_id"], name: "index_order_details_on_user_order_id"
+  end
+
+  create_table "payment_responses", force: :cascade do |t|
+    t.string "transation_id"
+    t.decimal "amount"
+    t.string "user_id"
+    t.text "pay_response"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "product_attribute_assocs", force: :cascade do |t|
@@ -203,7 +212,9 @@ ActiveRecord::Schema.define(version: 2022_12_16_111759) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
     t.index ["product_id"], name: "index_user_wish_lists_on_product_id"
+    t.index ["user_id"], name: "index_user_wish_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -235,4 +246,5 @@ ActiveRecord::Schema.define(version: 2022_12_16_111759) do
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
   add_foreign_key "user_wish_lists", "products"
+  add_foreign_key "user_wish_lists", "users"
 end
