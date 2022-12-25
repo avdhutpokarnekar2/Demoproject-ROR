@@ -1,6 +1,6 @@
 class UserOrder < ApplicationRecord
 	# has_many :user_addresses
-	belongs_to :user
+	# belongs_to :user
 	has_many :order_details, :dependent => :destroy 
 	has_many :products, :through => :order_detail, :dependent => :destroy
   	attr_accessor :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv

@@ -116,13 +116,24 @@
       </div>
     </div><!--/header-bottom-->
   </header><!--/header-->
+  <div>
+			
+ <%= form_with model: @user, url: profile_update_path,method: :post, local: true do |form| %>
+    <% if user_signed_in? %>
+    <% user = current_user %>
+		<%= form.text_field :first_name, required: true, class: 'form-control', value:user.first_name %>
+    <%= form.text_field :last_name, required: true, class: 'form-control', value:user.last_name %>
+    <%= form.text_field :mobile_no, required: true, class: 'form-control', value:user.mobile_no %>
+    <%= form.text_field :email, required: true, class: 'form-control', value:user.email %>
+	<% end %>
+	<div class="actions">
+    <%= form.submit %>
+  </div>
+	<%end%>
+</div><br>
 
-
-
-
-
-
-<footer id="footer"><!--Footer-->
+<div><button><%= link_to "Change password", edit_user_registration_path %></button></div>
+	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">

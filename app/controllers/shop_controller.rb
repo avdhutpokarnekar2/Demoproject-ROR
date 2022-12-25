@@ -1,7 +1,9 @@
 class ShopController < ApplicationController
 	skip_before_action :authenticate_user!
-	before_action :set_product, only: %i[ show edit update destroy ]
+	before_action :set_product, only: %i[show edit update destroy]
+	
 	require 'stripe'
+
 	def e404
 	end
 	
@@ -19,16 +21,19 @@ class ShopController < ApplicationController
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
+		# @address = UserAddress.last
+		@address = UserAddress.last
+		puts"@@@@@@@@@@@@@@@@@@@@@@@@@@#{@address.Address}@@@@@@@@"
 	end
 
   def create
-		@useraddress = UserAddress.new(user_address_params) 
+  	@useraddress = UserAddress.new(address_params)
     if @useraddress.save
       flash[:success] = "New to-do item successfully added!"
       redirect_to shop_checkout_url
     else
       flash.now[:error] = "To-do item creation failed"
-      render :new
+       render:new
     end
   end
 	
@@ -40,8 +45,15 @@ class ShopController < ApplicationController
 	 	@category = Category.all
 	 	@products = Product.all
 	 	@prod_images = ProductImage.all
-	 	@address = UserAddress.all
+	 	@useraddress = UserAddress.all
+	 	@user = User.all
 	end
+
+	
+
+  def show
+  end
+
 
 	def cart
 		product_price_lists = [] 
@@ -106,13 +118,18 @@ class ShopController < ApplicationController
 
   def success
     Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'
-		var = Stripe::Checkout::Session.retrieve(
+		response = Stripe::Checkout::Session.retrieve(
     id: params[:session_id])
-    # puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#{var[:payment_intent]}"
+ 		@pay_id=response[:payment_intent]
+ 		pay_amount=response[:amount_total]
+ 		amount=pay_amount/100
+ 		@total=pay_amount/100
+ 		@pay_response = PaymentResponse.create(transation_id: response[:payment_intent], amount: amount)
   end
 
-  private
-  	def user_address_params   #used in User_address
-  		params.require(:user_address).permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
+  private	
+  def address_params
+  		params.permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
 		end
+
 end

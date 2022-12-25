@@ -4,8 +4,9 @@ class User < ApplicationRecord
            :omniauthable,:omniauth_providers=>[:google_oauth2,:github]
   has_many :coupons_useds
   has_many :coupons, through: :coupons_useds
-  has_many :user_orders
-  has_one :user_wish_lists
+  # has_many :user_orders
+  # has_many :user_addresses
+  # has_many :user_wish_lists
   before_validation :create_on_stripe, on: :create
   def self.from_omniauth(response)
     User.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |u|

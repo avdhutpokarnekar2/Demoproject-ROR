@@ -57,26 +57,26 @@ end
 
 
 
- # def new
- #    if user_signed_in?
- #    @user = User.find(current_user.id)
- #    if @user.user_wishlist.present?
- #      # if current_user.user_wishlist.product_id!= nil
- #      product_id= @user.user_wishlist.product_id
- #      if params[:id].to_i.in? current_user.user_wishlist.product_id
- #        redirect_to root_path, notice: "already in wishlist"
- #      else
- #        @user_wishlist=@user.user_wishlist.update(product_id:product_id.append(params[:id]))
- #        redirect_to root_path, notice: "item added to wishlist"
- #      end
- #      # end
- #       # redirect_to root_path
- #    else
- #      @user = User.find(current_user.id)
- #      UserWishlist.create(user_id: @user.id, product_id: params[:id])
- #    end
- #  end
- #  end
+# def new
+#    if user_signed_in?
+#    @user = User.find(current_user.id)
+#    if @user.user_wishlist.present?
+#      # if current_user.user_wishlist.product_id!= nil
+#      product_id= @user.user_wishlist.product_id
+#      if params[:id].to_i.in? current_user.user_wishlist.product_id
+#        redirect_to root_path, notice: "already in wishlist"
+#      else
+#        @user_wishlist=@user.user_wishlist.update(product_id:product_id.append(params[:id]))
+#        redirect_to root_path, notice: "item added to wishlist"
+#      end
+#      # end
+#       # redirect_to root_path
+#    else
+#      @user = User.find(current_user.id)
+#      UserWishlist.create(user_id: @user.id, product_id: params[:id])
+#    end
+#  end
+#  end
 
   def create
   end

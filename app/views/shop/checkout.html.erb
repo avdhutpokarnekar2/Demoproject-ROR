@@ -156,60 +156,55 @@
 				</ol>
 			</div><!--/breadcrums-->
 
-			<div class="step-one">
-				<h2 class="heading">Step1</h2>
-			</div>
-			<div class="checkout-options">
-				<h3>New User</h3>
-				<p>Checkout options</p>
-				<ul class="nav">
-					<li>
-						<label><input type="checkbox"> Register Account</label>
-					</li>
-					<li>
-						<label><input type="checkbox"> Guest Checkout</label>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-times"></i>Cancel</a>
-					</li>
-				</ul>
-			</div><!--/checkout-options-->
+			
+		
 
 			<div class="register-req">
 				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
 			</div><!--/register-req-->
 
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="shopper-info">
-							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
-							</form>
-							<a class="btn btn-primary" href="">Get Quotes</a>
-							<a class="btn btn-primary" href="">Continue</a>
+
+			<div><h3>Address:-<%= @address.Address %></div>
+			<div><h3>Pin-Code:-<%= @address.pin_code %></div>
+			<div><h3>Country:-<%= @address.Country %></div>
+			<div><h3>State:-<%= @address.State %></div>
+			<div><h3>Mobile-no.:-<%= @address.mobile_no %></div>
+			<div><h3>Alternate mobile no.:-<%= @address.Alternate_mobile_no %></div>
+
+
+
+<div>
+
+			<div><input type="submit" name="change" value="Change Address" onclick="document.getElementById('my_id').style.display = 'block' ;"></div>
+			<div id="my_id", style="display: none">
+				<%= form_with model: @useraddress, url: shop_create_path, method: :post, local: true do |form| %>
+							<div class="field">
+    						<%= form.label :first_Name %>
+							<%= form.text_field :fname %>
+							<%= form.label :Last_Name %>
+							<%= form.text_field :lname %>
+							<%= form.label :Address %>
+							<%= form.text_field :Address %>
+							<%= form.label :email %>
+							<%= form.email_field :email %>
+							<%= form.label :Pin_code %>
+							<%= form.number_field :pin_code %>
+  							<%= form.select :Country, options_for_select( [['INDIA','INDIA'],['BRAZIL','BRAZIL'],['RASSIA','RASSIA'],['AMERICA','AMERICA']])%>
+  							<%= form.select :State, options_for_select( [['MAHARASHTRA','MAHARASHTRA'],['GOA','GOA'],['DELHI','DELHI'],['PANJAB','PANJAB']])%>
+  							<%= form.label :mobile_no %>
+  							<%= form.number_field :mobile_no %>
+  							<%= form.label :Alternate_mobile_no%>
+  							<%= form.number_field :Alternate_mobile_no %>
+  							<div class="actions">
+    						<%= form.submit %>
+  							</div>
+							<% end %>
 						</div>
-					</div>
 
-					<div class="show_form">
-
-					</div>
-					<div >
-						<button onclick="toggle_form"> </button>
-					</div>
-					<div class="col-sm-4"> 
-				
-							<h1>Adress</h1>
-						
-					</div>					
-				</div>
-			</div>
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
+		</div>
+		</div>
+			
+		<h2>Review & Payment</h2>
 			</div>
 				<tbody>
 						<tr>
@@ -237,16 +232,18 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</div><br><br>
 		<div class="payment-options">
 		<span><%= form_tag checkout_show_path do %>
 			<%= button_to "Stripe",checkout_show_path %>
-			<% end %></span>
-		<span><label><input type="checkbox"> Check Payment</label></span>
+			<% end %></span><br>
+			<%= button_to "COD",checkout_cod_path ,method: :get %>
+		
 		</div>
-		</div>
-	</section> <!--/#cart_item
-	<footer id="footer">Footer-->
+
+		
+	</section> 
+	<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -402,7 +399,7 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Avdhut</a></span></p>
 				</div>
 			</div>
 		</div>
