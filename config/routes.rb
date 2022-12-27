@@ -9,13 +9,14 @@ Rails.application.routes.draw do
   get 'shop/e404'
   get 'shop/shopee'
   get 'shop/blog'
-  get 'shop/contact_us'
   get 'users/sign_in'  
   get 'shop/cart'
   get 'shop/checkout'
   get 'shop/success', to: 'shop#success', as: "shop_success"
   get 'products/success', to: 'products#success', as: "checkout_success"
   post 'profile/update', to:'profile#update', as: 'profile_update'
+  get 'shop/contact'
+  post 'shop/contact_us'
   get 'shop/account'
   get 'checkout/show'
   get 'products/wishlist'

@@ -114,7 +114,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html">Home</a></li>
+								<li><%= link_to "Home", root_path %></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
@@ -153,13 +153,25 @@
 					<div id="gmap" class="contact-map">
 					</div>
 				</div>			 		
-			</div>    	
-    		<div class="row">  	
-	    		<div class="col-sm-8">
-	    			<div class="contact-form">
-	    				<h2 class="title text-center">Get In Touch</h2>
-	    				<div class="status alert alert-success" style="display: none"></div>
-				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+			</div>  
+			<div>  	
+	    	<h2 class="title text-center">Get In Touch</h2>
+	    	<%= form_with model: @contact_us, url: shop_contact_us_path,method: :post, local: true do |form| %>
+					<div class="field">
+    			<%= form.label :name %>
+					<%= form.text_field :name %>
+					<%= form.label :email %>
+					<%= form.email_field :email %>
+					<%= form.label :contact_no %>
+					<%= form.text_field :contact_no %>
+					<%= form.label :message %>
+					<%= form.text_field :message %>
+					<div class="actions">
+    			<%= form.submit %>
+  				</div>
+				<% end %>
+				  </div> 
+				   	<!-- <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            <div class="form-group col-md-6">
 				                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
 				            </div>
@@ -175,9 +187,7 @@
 				            <div class="form-group col-md-12">
 				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
 				            </div>
-				        </form>
-	    			</div>
-	    		</div>
+				        </form> -->
 	    		<div class="col-sm-4">
 	    			<div class="contact-info">
 	    				<h2 class="title text-center">Contact Info</h2>

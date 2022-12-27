@@ -112,7 +112,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
+								<li><%= link_to "Home", root_path %></li>
 								<li class="dropdown"><%= link_to "shop", shop_shopee_path %><i class="fa fa-angle-down"></i>
                  <ul role="menu" class="sub-menu">
                   <li><a href="shop.html">Products</a></li>
@@ -129,7 +129,7 @@
                  </ul>
                 </li>
                 <li><%= link_to "404", shop_e404_path %></li> 
-								<li><%= link_to "contact", shop_contact_us_path %></li>
+								<li><%= link_to " my contact", shop_contact_path %></li>
 							</ul>
 						</div>
 					</div>
@@ -203,13 +203,6 @@
 								<%# <a href=""><%= subcat.subcat_name %></a>
 								<% end %>
 								<% end %>
-
-
-
-
-
-
-
 									</a>
 									</h4>
 								</div>
@@ -278,12 +271,13 @@
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
 										<%#= button_to "Add to Wishlist", add_to_wishlist_path(prod) %>
-										<% if @wishlist_product_name.present? && @wishlist_product_name.include?(prod) %>
+										<% if @wishlist_product.present? && @wishlist_product.include?(prod) %>
 										<%= button_to "Remove from Wishlist", remove_from_wishlist_path(prod.id), method: 	:delete %>	
+
 										<% else %>
 										<%= button_to "Add to Wishlist", add_to_wishlist_path(prod) %>
 										
-          						
+          						>
           					<% end %>
 									</ul>
 								<%end %>

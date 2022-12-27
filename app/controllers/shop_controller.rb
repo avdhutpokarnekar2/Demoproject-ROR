@@ -23,30 +23,48 @@ class ShopController < ApplicationController
 		@value = total_price.to_i
 		# @address = UserAddress.last
 		@address = UserAddress.last
-		puts"@@@@@@@@@@@@@@@@@@@@@@@@@@#{@address.Address}@@@@@@@@"
 	end
 
   def create
   	@useraddress = UserAddress.new(address_params)
     if @useraddress.save
-      flash[:success] = "New to-do item successfully added!"
+      flash[:success] = "New adress successfully added!"
       redirect_to shop_checkout_url
     else
-      flash.now[:error] = "To-do item creation failed"
+      flash.now[:error] = "adress creation failed"
        render:new
     end
   end
 	
-	def contact_us
+	def contact
+		# @contact=ContactU.new(contact_params)
+		# if @contact.save
+		# 	flash[:success] = "New adress successfully added!"
+    #   redirect_to root_path
+    #   else
+    #   flash.now[:error] = "adress creation failed"
+    #    render:new
+    # end
 	end
 	
+	def contact_us
+			@contact=ContactU.new(contact_params)
+		if @contact.save
+			flash[:success] = "New adress successfully added!"
+      redirect_to shop_contact_path
+      else
+      flash.now[:error] = "adress creation failed"
+       render:new
+    end
+	end
 	def index
 	 	@banners = BannerManagement.all
-	 	@category = Category.all
+	 	@category = Category.where(parent_id: nil)
 	 	@products = Product.all
 	 	@prod_images = ProductImage.all
 	 	@useraddress = UserAddress.all
 	 	@user = User.all
+	 	@contact_us = ContactU.all
 	end
 
 	
@@ -120,6 +138,7 @@ class ShopController < ApplicationController
     Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'
 		response = Stripe::Checkout::Session.retrieve(
     id: params[:session_id])
+
  		@pay_id=response[:payment_intent]
  		pay_amount=response[:amount_total]
  		amount=pay_amount/100
@@ -130,6 +149,10 @@ class ShopController < ApplicationController
   private	
   def address_params
   		params.permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
-		end
+	end
+
+	def contact_params
+		params.permit(:name,:email,:contact_no,:message)
+	end
 
 end

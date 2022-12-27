@@ -112,22 +112,22 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html">Home</a></li>
+								<li><%= link_to "Home", root_path %></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="shop.html">Products</a></li>
 										<li><a href="product-details.html" class="active">Product Details</a></li> 
 										<li><a href="checkout.html">Checkout</a></li> 
 										<li><a href="cart.html">Cart</a></li> 
 										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
+                  </ul>
+                </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
+                  </ul>
+                </li> 
 								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
@@ -292,8 +292,8 @@
 						<div class="col-sm-5">
 							<% @products.each do|product|%>
 							<div class="view-product">
-								<%= image_tag product.image  %>
-								<!-- <img src="images/pro1.jpg" alt="" /> -->
+								<%#= image_tag product.image 	%>
+								<!-- <img src="images/pro1.jpg" alt="" />  -->
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">

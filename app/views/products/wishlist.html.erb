@@ -137,14 +137,14 @@
           </thead>
           <tbody>
             <% @wishlists.each do |wishlist| %>
-           <% product = wishlist.product %>
+              <% prod = wishlist.product %>
               <tr>
                 <td>
-                  <%= image_tag(product.product_images.first.image ) %><br> 
+                  <%= image_tag(prod.product_images.first.image ) %><br> 
                 </td>
-                <td>  <h3 ><%= product.name %></h3>  </td>
+                <td><h3 ><%= prod.name %></h3></td>
       
-                <td class="cart_price"><p><%= product.price %></p></td>
+                <td class="cart_price"><p><%= prod.price %></p></td>
               </tr>
             <% end %>
           </tbody>
