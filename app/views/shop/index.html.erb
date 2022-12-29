@@ -86,7 +86,6 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><%= link_to "Account", shop_account_path %><i class="fa fa-lock"></i></li>
-								<!-- <li><a href="#"><i class="fa fa-user"></i> Account</a></li> -->
 								<li><%= link_to "Wishlist", products_wishlist_path %><i class="fa fa-lock"></i></li>
 								<li><%= link_to "Checkout", shop_checkout_path %><i class="fa fa-lock"></i></li>
 								<li><%= link_to "cart", shop_cart_path %><i class="fa fa-lock"></i></li>
@@ -195,7 +194,7 @@
 									<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
 										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
 										
-								<% @category.each do |category| %>
+								<%= @category.each do |category| %>
 								<h2><%= category.name %></h2>
 								<% subcatagories = category.subcategories%>
 								<% subcatagories.each do |subcat| %>
@@ -272,12 +271,10 @@
 									<ul class="nav nav-pills nav-justified">
 										<%#= button_to "Add to Wishlist", add_to_wishlist_path(prod) %>
 										<% if @wishlist_product.present? && @wishlist_product.include?(prod) %>
-										<%= button_to "Remove from Wishlist", remove_from_wishlist_path(prod.id), method: 	:delete %>	
 
 										<% else %>
 										<%= button_to "Add to Wishlist", add_to_wishlist_path(prod) %>
 										
-          						>
           					<% end %>
 									</ul>
 								<%end %>

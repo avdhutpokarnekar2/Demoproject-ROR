@@ -1,11 +1,17 @@
 class UserOrder < ApplicationRecord
-	# has_many :user_addresses
-	# belongs_to :user
+	belongs_to :user
+	has_many :user_addresses, :dependent =>:destroy
 	has_many :order_details, :dependent => :destroy 
-	has_many :products, :through => :order_detail, :dependent => :destroy
+	has_many :products, :through => :order_details, :dependent => :destroy
   	attr_accessor :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv
-	has_one :Payment
+	# has_many :payments
 	enum payment_method: %i[credit_card]
+	# enum :status [:ordered, :shipped, :delivered]
+	 enum status: {
+    ordered: 0,
+    shipped: 1,
+    delivered: 2
+}
 	
 	def create_payment
 	    params = {

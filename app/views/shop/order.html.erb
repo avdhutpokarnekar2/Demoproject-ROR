@@ -1,0 +1,11 @@
+<div>
+<h1>Order details</h1>
+<% @orders.each do |order| %>
+   order_id:-<%= order.id %><br>
+   	<% order.products.each do |product| %>
+   		name:<%= product.name %><br>
+   		price:<%= product.price %><br>
+   		quantity:<%= product.quantity %><br><br>
+   	<% end %><br><br>	
+<% end %>
+</div>

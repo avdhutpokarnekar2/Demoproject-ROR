@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   get 'users/sign_in'  
   get 'shop/cart'
   get 'shop/checkout'
+  get 'shop/order', to: 'shop#order',as: "shop_order"
   get 'shop/success', to: 'shop#success', as: "shop_success"
   get 'products/success', to: 'products#success', as: "checkout_success"
+  get 'shop/track', to: 'shop#track', as: "shop_track"
   post 'profile/update', to:'profile#update', as: 'profile_update'
   get 'shop/contact'
   post 'shop/contact_us'
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   post 'shop/create'
   get 'checkout/cod', to: "checkout#cod" 
   get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   post "shop/add_to_cart/:id", to: "shop#add_to_cart", as: "add_to_cart"

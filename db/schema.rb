@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_24_064350) do
+ActiveRecord::Schema.define(version: 2022_12_27_125648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2022_12_24_064350) do
     t.string "email"
     t.string "contact_no"
     t.text "message"
+    t.text "note_admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -208,6 +209,8 @@ ActiveRecord::Schema.define(version: 2022_12_24_064350) do
     t.string "Country"
     t.string "State"
     t.string "Alternate_mobile_no"
+    t.bigint "user_order_id"
+    t.index ["user_order_id"], name: "index_user_addresses_on_user_order_id"
   end
 
   create_table "user_orders", force: :cascade do |t|
@@ -215,6 +218,8 @@ ActiveRecord::Schema.define(version: 2022_12_24_064350) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "awb_no", limit: 100
     t.string "transaction_id", limit: 100
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_user_orders_on_user_id"
   end
 
   create_table "user_wish_lists", force: :cascade do |t|
@@ -257,6 +262,8 @@ ActiveRecord::Schema.define(version: 2022_12_24_064350) do
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
+  add_foreign_key "user_addresses", "user_orders"
+  add_foreign_key "user_orders", "users"
   add_foreign_key "user_wish_lists", "products"
   add_foreign_key "user_wish_lists", "users"
 end

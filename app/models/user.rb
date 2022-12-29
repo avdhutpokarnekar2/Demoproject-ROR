@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :omniauthable,:omniauth_providers=>[:google_oauth2,:github]
   has_many :coupons_useds
   has_many :coupons, through: :coupons_useds
-  # has_many :user_orders
+  has_many :user_orders, :dependent =>:destroy
   has_one :user_wish_list
   has_many :products, through: :user_wish_list
   before_validation :create_on_stripe, on: :create

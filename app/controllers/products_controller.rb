@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
   def add_to_wishlist  
     user_id =  current_user.id
     product = Product.find(params[:id])
-    prod = product.to_i
     if product.user_wish_lists.present?
       redirect_to root_path, notice: "already in wishlist"
     else
@@ -39,11 +38,16 @@ class ProductsController < ApplicationController
   end
   end
 
-  def remove_from_wishlist   #product remove from wishlist
-    product = Product.find(params[:id])
-    if product.destroy
-      redirect_to root_path
-    end
+ def remove_from_wishlist
+  user_id =  current_user.id
+  product_id = params[:id]
+  product = Product.find(params[:id])
+  @user_wishlist = UserWishList.find_by(product_id: product.id)
+  if @user_wishlist.destroy
+    redirect_to root_path, notice: "item successfully removed from wishlist"
+  else
+    redirect_to root_path, notice: "failed to remove from wishilst"
+  end
   end
 
   def create

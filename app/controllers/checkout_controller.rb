@@ -27,6 +27,8 @@ class CheckoutController < ApplicationController
   end
 
   def amount
+    # order = current_user.orders.build
+    # order.order_details.create(product_id: id)
     product_price_lists = [] 
     @cart.each do |product| 
       total_value = (product.quantity)*(product.price)
@@ -38,6 +40,7 @@ class CheckoutController < ApplicationController
 
   def cod
     amount
+    @user_order = UserOrder.last
   end
 
 end 

@@ -149,11 +149,19 @@
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
+					<h2 class="title text-center">Contact <strong>Us</strong></h2>  
+					<ul>
+					<li>Name:<%= @cont.name %></li>
+					<li>Email:<%= @cont.email %></li>
+					<li>Contact_no:<%= @cont.contact_no %></li>
+					<li>Message:<%= @cont.message %></li>
+					<li>Admin_note:<%= @cont.note_admin %>  </li>
+				</ul>
 					<div id="gmap" class="contact-map">
 					</div>
 				</div>			 		
 			</div>  
+
 			<div>  	
 	    	<h2 class="title text-center">Get In Touch</h2>
 	    	<%= form_with model: @contact_us, url: shop_contact_us_path,method: :post, local: true do |form| %>
@@ -171,6 +179,7 @@
   				</div>
 				<% end %>
 				  </div> 
+
 				   	<!-- <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            <div class="form-group col-md-6">
 				                <input type="text" name="name" class="form-control" required="required" placeholder="Name">

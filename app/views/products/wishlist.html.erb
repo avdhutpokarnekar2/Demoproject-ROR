@@ -139,12 +139,10 @@
             <% @wishlists.each do |wishlist| %>
               <% prod = wishlist.product %>
               <tr>
-                <td>
-                  <%= image_tag(prod.product_images.first.image ) %><br> 
-                </td>
+                <td><%= image_tag(prod.product_images.first.image ) %><br> </td>
                 <td><h3 ><%= prod.name %></h3></td>
-      
                 <td class="cart_price"><p><%= prod.price %></p></td>
+                <td><%= button_to "X", remove_from_wishlist_path(prod), method: :delete %></td>
               </tr>
             <% end %>
           </tbody>

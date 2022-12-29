@@ -7,23 +7,44 @@ class ShopController < ApplicationController
 	def e404
 	end
 	
+	def track
+		@orders = UserOrder.all
+
+		order_id = params[:order_id]
+		track = UserOrder.find_by(order_id: order_id)
+		if track == order_id
+			@vall = 
+
+
+
+	end
 	def blog_single
 	end
 	
 	def blog
 	end
+	def order
+		@orders = UserOrder.all
+	end
 	
 	def checkout
-		product_price_lists = [] 
-		@cart.each do |product| 
-			total = (product.quantity)*(product.price)
-		  product_price_lists << total 
+		product_price_lists = [] 	
+		products = Product.where(id: @cart.map(&:id))
+		order = UserOrder.create(user_id: current_user.id)
+		if order.save
+			products.each do |product|
+				order.order_details.create(product_id: product.id)
+				total = (product.quantity)*(product.price)
+		  	product_price_lists << total
+		  	order_details << amount=total
+			end
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
-		# @address = UserAddress.last
 		@address = UserAddress.last
+
 	end
+
 
   def create
   	@useraddress = UserAddress.new(address_params)
@@ -37,14 +58,7 @@ class ShopController < ApplicationController
   end
 	
 	def contact
-		# @contact=ContactU.new(contact_params)
-		# if @contact.save
-		# 	flash[:success] = "New adress successfully added!"
-    #   redirect_to root_path
-    #   else
-    #   flash.now[:error] = "adress creation failed"
-    #    render:new
-    # end
+			@cont = ContactU.last
 	end
 	
 	def contact_us
@@ -64,7 +78,9 @@ class ShopController < ApplicationController
 	 	@prod_images = ProductImage.all
 	 	@useraddress = UserAddress.all
 	 	@user = User.all
-	 	@contact_us = ContactU.all
+	 	@cont = ContactU.last
+
+	 	
 	end
 
 	
@@ -77,7 +93,7 @@ class ShopController < ApplicationController
 		product_price_lists = [] 
 		@cart.each do |product| 
 			total = (product.quantity)*(product.price)
-			@product_price_lists << total 
+			product_price_lists << total 
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
@@ -144,11 +160,12 @@ class ShopController < ApplicationController
  		amount=pay_amount/100
  		@total=pay_amount/100
  		@pay_response = PaymentResponse.create(transation_id: response[:payment_intent], amount: amount)
+  	@user_order = UserOrder.last
   end
 
   private	
   def address_params
-  		params.permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
+  	params.permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no )
 	end
 
 	def contact_params

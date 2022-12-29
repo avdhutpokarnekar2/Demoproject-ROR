@@ -1,0 +1,24 @@
+<div class="chose_area">
+	<ul class="user_option">
+	<li >
+		<%= form_with model: @orders, url: shop_track_path,  local: true,data: { turbo: false } do |form| %></li>
+	<li>
+	<div class="mb-3">
+	<%= form.label :order_id %>
+	<%= form.text_field :user_order_id %>
+	</div>
+	<div class="mb-3">
+	<%= form.label :email %>
+	<%= form.text_field :email %>
+	</div>
+	</li>
+	<li>
+	<div class="mb-3">
+	<%= form.submit "Apply", class: "btn btn-primary" %>
+	</div>
+	</li>
+	</ul>
+	<% end %>
+	</li>
+	</ul>
+</div>
