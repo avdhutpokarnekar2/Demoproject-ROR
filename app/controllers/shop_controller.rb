@@ -8,16 +8,13 @@ class ShopController < ApplicationController
 	end
 	
 	def track
-		@orders = UserOrder.all
-
-		order_id = params[:order_id]
-		track = UserOrder.find_by(order_id: order_id)
-		if track == order_id
-			@vall = 
-
-
-
+		@user_order = current_user.user_orders.find_by(id: params[:user_order_id])
+		unless @user_order.present?
+			 @error = "User order not found"
+		end
 	end
+
+
 	def blog_single
 	end
 	
@@ -36,13 +33,11 @@ class ShopController < ApplicationController
 				order.order_details.create(product_id: product.id)
 				total = (product.quantity)*(product.price)
 		  	product_price_lists << total
-		  	order_details << amount=total
 			end
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
 		@address = UserAddress.last
-
 	end
 
 

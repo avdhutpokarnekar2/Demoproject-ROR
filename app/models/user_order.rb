@@ -7,7 +7,7 @@ class UserOrder < ApplicationRecord
 	# has_many :payments
 	enum payment_method: %i[credit_card]
 	# enum :status [:ordered, :shipped, :delivered]
-	 enum status: {
+	enum status: {
     ordered: 0,
     shipped: 1,
     delivered: 2

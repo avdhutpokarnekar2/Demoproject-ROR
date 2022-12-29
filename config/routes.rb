@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, :skip => [:registrations]                                          
-    as :user do
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
-      put 'users' => 'devise/registrations#update', :as => 'user_registration'            
-    end
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   post 'shop/index'
   root 'shop#index'
   get 'shop/e404'
@@ -15,7 +11,8 @@ Rails.application.routes.draw do
   get 'shop/order', to: 'shop#order',as: "shop_order"
   get 'shop/success', to: 'shop#success', as: "shop_success"
   get 'products/success', to: 'products#success', as: "checkout_success"
-  get 'shop/track', to: 'shop#track', as: "shop_track"
+  get 'shop/track'
+  post 'shop/track'
   post 'profile/update', to:'profile#update', as: 'profile_update'
   get 'shop/contact'
   post 'shop/contact_us'
