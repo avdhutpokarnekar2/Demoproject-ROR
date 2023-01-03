@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   post 'shop/index'
+  post 'home/mailchimp', to:'home#mailchimp', as: 'mailchimp'
   root 'shop#index'
   get 'shop/e404'
   get 'shop/shopee'

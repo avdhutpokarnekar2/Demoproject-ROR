@@ -30,7 +30,7 @@ class ShopController < ApplicationController
 		order = UserOrder.create(user_id: current_user.id)
 		if order.save
 			products.each do |product|
-				order.order_details.create(product_id: product.id)
+				order.order_details.create(product_id: product.id, amount:product.price, quantity: product.quantity)
 				total = (product.quantity)*(product.price)
 		  	product_price_lists << total
 			end

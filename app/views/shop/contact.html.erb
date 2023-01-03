@@ -164,7 +164,7 @@
 
 			<div>  	
 	    	<h2 class="title text-center">Get In Touch</h2>
-	    	<%= form_with model: @contact_us, url: shop_contact_us_path,method: :post, local: true do |form| %>
+	    	<%= form_with model: @contact, url: shop_contact_us_path,method: :post, local: true do |form| %>
 					<div class="field">
     			<%= form.label :name %>
 					<%= form.text_field :name %>
