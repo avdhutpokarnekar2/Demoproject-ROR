@@ -23,4 +23,8 @@ class UserOrder < ApplicationRecord
 	    }
 	    Payment.create!(params)
 	end
+
+	def task
+		UserMailer.task(self).deliver
+	end
 end

@@ -74,3 +74,4 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'MailchimpTransactional', '~> 1.0.6'
 gem 'MailchimpMarketing', '~> 3.0', '>= 3.0.80'
+gem 'whenever', require: false

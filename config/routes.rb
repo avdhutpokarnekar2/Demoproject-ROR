@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'shop/create'
   get 'checkout/cod', to: "checkout#cod" 
   get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
+  # DELETE 'devise/sessions#destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
