@@ -34,6 +34,8 @@ class ShopController < ApplicationController
 				total = (product.quantity)*(product.price)
 		  	product_price_lists << total
 			end
+			UserMailer.placemail(current_user,order).deliver
+			UserMailer.ordermail(current_user,order).deliver
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i

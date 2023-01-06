@@ -21,9 +21,39 @@ class UserMailer < ApplicationMailer
     @user = User.find_by(email: contact_info.email)
     mail(to: @user.email,subject:'contact_form updated')
   end
-  def task(order)
+  
+  def placemail(user,order)
     @order = order 
-    mail(to: 'apokarnekar@gmail.com',subject:'crone will be created successfully')
+    @user = user
+    mail(to: @user.email, subject: 'Order placed')
+  end
+  
+  def ordermail(user,order)
+    @order = order
+    @user = user
+    mail(to: 'apokarnekar@gmail.com',subject:'send mail to admin of order placed')
   end
 
+  def status_mail(status)
+    @status = status
+    mail(to: 'apokarnekar@gmail.com', subject: 'Order placed status')
+  end
+
+  def cronemail
+    @consolidated = UserOrder.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+    count = []
+    @consolidated.each do |cd|
+      a = cd.id
+      count << a
+    end
+    @asd = count
+    @user = User.find_by(superadmin_role: true)
+    mail(to: @user.email, subject: 'consolidated mail for orders')
+  end
+
+  def wishlistmail
+    @wishlist = UserWishList.all
+    @user = User.find_by(superadmin_role: true)
+    mail(to: @user.email, subject: 'consolidated mail for orders')
+  end
 end

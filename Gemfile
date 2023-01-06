@@ -28,9 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'rails_admin', '~> 3.0'
-
-gem 'devise'
+gem 'rails_admin', '~> 3.1', '>= 3.1.1'
 # gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 
 
@@ -72,6 +70,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
-gem 'MailchimpTransactional', '~> 1.0.6'
 gem 'MailchimpMarketing', '~> 3.0', '>= 3.0.80'
 gem 'whenever', require: false
+gem "net-http"
+gem 'bundler', :require => nil
+gem 'rubygems-update', :require => nil

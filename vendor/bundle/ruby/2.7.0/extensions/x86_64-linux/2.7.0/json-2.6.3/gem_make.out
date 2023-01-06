@@ -1,0 +1,13 @@
+current directory: /home/user/Demoapp/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+/usr/share/rvm/rubies/ruby-2.7.0/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.0/lib/ruby/2.7.0 -r ./siteconf20230105-11107-tkcxwk.rb extconf.rb
+creating Makefile
+
+current directory: /home/user/Demoapp/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/user/Demoapp/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/user/Demoapp/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" install
