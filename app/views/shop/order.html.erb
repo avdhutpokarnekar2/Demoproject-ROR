@@ -1,11 +1,37 @@
-<div>
-<h1>Order details</h1>
-<% @orders.each do |order| %>
-   order_id:-<%= order.id %><br>
-   	<% order.products.each do |product| %>
-   		name:<%= product.name %><br>
-   		price:<%= product.price %><br>
-   		quantity:<%= product.quantity %><br><br>
-   	<% end %><br><br>	
-<% end %>
-</div>
+<section id="cart_items">
+    <div class="container">
+      <div class="breadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">order List</li>
+        </ol>
+      </div>
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Product image</td>
+              <td class=name>Name</td>
+              <td class="price">price</td>
+              <td>qty</td>
+              <td>order_id</td>
+            </tr>
+          </thead>
+          <tbody>
+           <% @orders.each do |order| %>
+               <% order.products.each do |product| %>
+              <tr>
+                <td><%= image_tag(product.product_images.first.image ) %><br> </td>
+                <td><h3 ><%= product.name %></h3></td>
+                <td class="cart_price"><p><%= product.price %></p></td>
+                <td ><p><%= product.quantity %></p></td>
+                <td><%= order.id %></td>
+              </tr>
+            <% end %>
+            <% end %>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </section> 

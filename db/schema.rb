@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_125648) do
+ActiveRecord::Schema.define(version: 2023_01_07_112031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
     t.integer "modify_by"
   end
 
+  create_table "cms", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.text "meta_title"
+    t.text "meta_description"
+    t.text "meta_keyword"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "configurations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -88,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "code", limit: 45
-    t.decimal "percent_off"
+    t.integer "percent_off"
     t.integer "created_by"
     t.date "created_date"
     t.integer "modify_by"
@@ -193,6 +203,11 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
     t.integer "quantity"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -209,8 +224,6 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
     t.string "Country"
     t.string "State"
     t.string "Alternate_mobile_no"
-    t.bigint "user_order_id"
-    t.index ["user_order_id"], name: "index_user_addresses_on_user_order_id"
   end
 
   create_table "user_orders", force: :cascade do |t|
@@ -218,7 +231,10 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "awb_no", limit: 100
     t.string "transaction_id", limit: 100
-    t.bigint "user_id", null: false
+    t.integer "status", default: 0
+    t.bigint "user_address_id"
+    t.bigint "user_id"
+    t.index ["user_address_id"], name: "index_user_orders_on_user_address_id"
     t.index ["user_id"], name: "index_user_orders_on_user_id"
   end
 
@@ -262,7 +278,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_125648) do
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
-  add_foreign_key "user_addresses", "user_orders"
+  add_foreign_key "user_orders", "user_addresses"
   add_foreign_key "user_orders", "users"
   add_foreign_key "user_wish_lists", "products"
   add_foreign_key "user_wish_lists", "users"

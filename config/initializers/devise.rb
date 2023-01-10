@@ -278,7 +278,8 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, '104427578402-pacer8iokq4f62qhkvmpsb6p6j03q3ka.apps.googleusercontent.com', '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'
   config.omniauth :github, 'ca0cf81883d481f15069', '9324001b8839091f88d1006b2aaee3e3237bf0fe', :scope => 'user:email'
 
-
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
+    OmniAuth.config.allowed_request_methods = [:get, :post]
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

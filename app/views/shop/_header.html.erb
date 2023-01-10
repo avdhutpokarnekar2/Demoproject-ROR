@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="<%#= @cms.meta_title %>">
+    <meta name="description" content="<%#= @cms.meta_description %>">
+    <meta name="keywords" content="<%#= @cms.meta_keyword %>">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    
+    <%= stylesheet_link_tag 'css/bootstrap.min.css' %>
+	<%= stylesheet_link_tag 'css/font-awesome.min.css' %>
+	<%= stylesheet_link_tag 'css/prettyPhoto.css' %>
+	<%= stylesheet_link_tag 'css/price-range.css' %>
+	<%= stylesheet_link_tag 'css/animate.css' %>
+	<%= stylesheet_link_tag 'css/main.css' %>
+	<%= stylesheet_link_tag 'css/responsive.css' %>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+
+ 
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+	<header id="header"><!--header-->
+	
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<%= link_to root_path do%><%= image_tag("home/logo.png", alt: "") %><% end %>
+						</div>
+						<div class="btn-group pull-right">
+							<div class="btn-group">
+								<ul class="dropdown-menu">
+									<li><a href="#">Canadian Dollar</a></li>
+									<li><a href="#">Pound</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><%= link_to "Account", shop_account_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Wishlist", products_wishlist_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Checkout", shop_checkout_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Cart", shop_cart_path %><i class="fa fa-lock"></i></li>
+								<% if user_signed_in? %>
+								  <li><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
+								<% else %>
+								<li><%= link_to "Login", users_sign_in_path %><i class="fa fa-lock"></i></li>
+								<% end %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><%= link_to "Home", root_path %></li>
+								<li class="dropdown"><%= link_to "Shop", shop_shopee_path %><i class="fa fa-angle-down"></i>
+                 <ul role="menu" class="sub-menu">
+                  <li class="dropdown"><%= link_to "Products", shop_shopee_path %><i class="fa fa-angle-down"></i>
+									<li><%= link_to "Cart", shop_cart_path %><i class="fa fa-lock"></i></li> 
+										<% if user_signed_in? %>
+								  <li><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
+										<% else %>
+									<li><%= link_to "login", users_sign_in_path %><i class="fa fa-lock"></i></li>
+										<% end %>
+                 </ul>
+                </li> 
+								<li class="dropdown"><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i>
+                 <ul role="menu" class="sub-menu">
+                  <li><a href="blog.html">Blog List</a></li>
+									<li><a href="blog.html">Blog Single</a></li>
+                 </ul>
+                </li>
+								<li><%= link_to "Contact", shop_contact_path %></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->

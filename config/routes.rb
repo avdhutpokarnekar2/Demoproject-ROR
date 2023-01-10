@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'shop/blog'
   get 'users/sign_in'  
   get 'shop/cart'
+  post 'shop/cart'
   get 'shop/checkout'
+  get 'shop/checkout_product'
   get 'shop/order', to: 'shop#order',as: "shop_order"
   get 'shop/success', to: 'shop#success', as: "shop_success"
   get 'products/success', to: 'products#success', as: "checkout_success"
@@ -18,15 +20,13 @@ Rails.application.routes.draw do
   get 'shop/contact'
   post 'shop/contact_us'
   get 'shop/account'
-  get 'checkout/show'
   get 'products/wishlist'
   get 'home/index'  
-  post 'checkout/show'
-  post 'shop/cart'
+  post 'shop/stripe'
+  get 'shop/cart'
   post 'shop/create'
-  get 'checkout/cod', to: "checkout#cod" 
+  get 'shop/cod'
   get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
-  # DELETE 'devise/sessions#destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

@@ -7,13 +7,13 @@ class UserMailer < ApplicationMailer
   end
 
   def admin_mail(user)
-    @user = user
-    mail(to: 'apokarnekar@gmail.com', subject: 'new user registered')
+    @user = User.find_by(superadmin_role: true)
+    mail(to: @user.email, subject: 'new user registered')
   end
 
   def contact_mail(user)
-    @user = user
-    mail(to: 'apokarnekar@gmail.com',subject:'contact_form save successfully')
+    @user = User.find_by(superadmin_role: true)
+    mail(to: @user.email,subject:'contact_form save successfully')
   end
 
   def contact_update_mail(contact_info)
@@ -30,8 +30,8 @@ class UserMailer < ApplicationMailer
   
   def ordermail(user,order)
     @order = order
-    @user = user
-    mail(to: 'apokarnekar@gmail.com',subject:'send mail to admin of order placed')
+    @user = User.find_by(superadmin_role: true) 
+    mail(to: @user.email,subject:'send mail to admin of order placed')
   end
 
   def status_mail(status)

@@ -1,29 +1,15 @@
 class UserOrder < ApplicationRecord
-	belongs_to :user
 	after_update :status_mail
-	has_many :user_addresses, :dependent =>:destroy
+	belongs_to :user, :dependent => :destroy 
+	belongs_to :user_address, :dependent => :destroy 
 	has_many :order_details, :dependent => :destroy 
-	has_many :products, :through => :order_details, :dependent => :destroy
-  	attr_accessor :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv
-	# has_many :payments
-	enum payment_method: %i[credit_card]
+	has_many :products, :through => :order_details,:dependent => :destroy 
+	
 	enum status: {
     ordered: 0,
     shipped: 1,
     delivered: 2
-}
-	
-	def create_payment
-	    params = {
-	      order_id: id,
-	      credit_card_number: credit_card_number,
-	      credit_card_exp_month: credit_card_exp_month,
-	      credit_card_exp_year: credit_card_exp_year,
-	      credit_card_cvv: credit_card_cvv
-	    }
-	    Payment.create!(params)
-	end
-
+	}
 	def status_mail
 		if status == "shipped" or status == "delivered"
 			UserMailer.status_mail(status).deliver

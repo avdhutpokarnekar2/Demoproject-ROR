@@ -883,8 +883,8 @@ h2.title {
 }
 
 .productinfo img{
-  width: 100%;
-}
+    width: 68%;
+    height: 140px;}
 
 .productinfo{
  position:relative;
@@ -2520,4 +2520,10 @@ h2.title {
   color: #FE980F;
 }
 
-
+#flright{
+  float: right !important;
+}
+.mrclass{
+  margin-left: 73px;
+  margin-top: 10px;
+}

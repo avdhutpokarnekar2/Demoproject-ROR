@@ -47,4 +47,14 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+  config.model Report do
+    list do
+      configure :data do
+        :show
+      end
+      field :sales_report 
+      field :customer_registered
+      field :coupons_used
+    end
+  end
 end
