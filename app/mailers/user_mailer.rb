@@ -16,10 +16,10 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email,subject:'contact_form save successfully')
   end
 
-  def contact_update_mail(contact_info)
-    @contact_info = contact_info
-    @user = User.find_by(email: contact_info.email)
-    mail(to: @user.email,subject:'contact_form updated')
+  def contact_update_mail(contact)
+    @contact_info = contact
+    @user = contact.email
+    mail(to: @user,subject:'contact_form updated')
   end
   
   def placemail(user,order)

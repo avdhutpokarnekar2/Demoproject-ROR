@@ -50,10 +50,9 @@
 							<ul class="nav navbar-nav">
 								<li><%= link_to "Account", shop_account_path %><i class="fa fa-lock"></i></li>
 								<li><%= link_to "Wishlist", products_wishlist_path %><i class="fa fa-lock"></i></li>
-								<li><%= link_to "Checkout", shop_checkout_path %><i class="fa fa-lock"></i></li>
-								<li><%= link_to "Cart", shop_cart_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Cart(#{@cart.size})", shop_cart_path %><i class="fa fa-lock"></i></li>
 								<% if user_signed_in? %>
-								  <li><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
+								  <li style="margin-top:8px;"><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
 								<% else %>
 								<li><%= link_to "Login", users_sign_in_path %><i class="fa fa-lock"></i></li>
 								<% end %>
@@ -92,8 +91,7 @@
                 </li> 
 								<li class="dropdown"><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i>
                  <ul role="menu" class="sub-menu">
-                  <li><a href="blog.html">Blog List</a></li>
-									<li><a href="blog.html">Blog Single</a></li>
+                  <li class="dropdown"><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i>
                  </ul>
                 </li>
 								<li><%= link_to "Contact", shop_contact_path %></li>

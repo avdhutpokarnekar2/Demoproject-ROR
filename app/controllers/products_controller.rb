@@ -8,11 +8,7 @@ class ProductsController < ApplicationController
     @item = Product.find(params[:id])
     @item.quantity += 1
     @item.save
-
-    respond_to do |format|
-      format.json { head :no_content }
-      format.js   { render :layout => false }
-    end
+    
   end
 
   def dec_quantity  #decrease the product quanitity in the cart
@@ -22,7 +18,7 @@ class ProductsController < ApplicationController
   end
 
   def wishlist
-    @wishlists = UserWishList.all   #wishlist model
+    @wishlists = current_user.user_wish_lists.all #wishlist model
   end
   
   def add_to_wishlist  
@@ -33,7 +29,7 @@ class ProductsController < ApplicationController
     else
     wishlist = UserWishList.create(user_id: user_id , product_id: product.id) 
     if wishlist.save
-      redirect_to root_path
+      redirect_to root_path,  notice: "item  added successfully in wishlist"
     end
   end
   end
@@ -44,7 +40,7 @@ class ProductsController < ApplicationController
   product = Product.find(params[:id])
   @user_wishlist = UserWishList.find_by(product_id: product.id)
   if @user_wishlist.destroy
-    redirect_to root_path, notice: "item successfully removed from wishlist"
+    redirect_to products_wishlist_path, notice: "item successfully removed from wishlist"
   else
     redirect_to root_path, notice: "failed to remove from wishilst"
   end

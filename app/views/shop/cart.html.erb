@@ -1,12 +1,7 @@
 <body>
 	<section id="cart_items">
 		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
-				</ol>
-			</div>
+			
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -27,9 +22,9 @@
 								<td><%= image_tag(product.product_images.first.image)%></td>
 								<td class="cart_price"><p><%= product.price %></p></td>
 								<td class="quantity">
-									<%= button_to '+',add_quantity_path(product), method: :post, remote: true,class: 'btn primary'%>	
+									<%= button_to '+',add_quantity_path(product), method: :post, remote: true,class: 'btn primary quantity'%>	
 									<input  name="quantity" value="<%= product.quantity %>"size="1">
-									<%= button_to '-',dec_quantity_path(product), method: :post, remote: true, class: 'btn primary' %>
+									<%= button_to '-',dec_quantity_path(product), method: :post,remote: true, class: 'btn primary' %>
 								</td>
 								<td class="cart_total">
 									<p><%= tp = (product.quantity)*(product.price) %></p>
@@ -75,8 +70,8 @@
 								<%= form.submit "Apply", class: "btn btn-primary" %>
 							</div>
 							<% if @mv.present? %>
-                <p style="color: greenyellow;"><%= @msgg %>
-              <% end %>
+               					 <p style="color: greenyellow;"><%= @msgg %>
+           				   <% end %>
 							</li>
 						</ul>
 						<% end %>
@@ -91,10 +86,12 @@
 							<li>Shipping Cost <span><%= @shipping_cost %></span></li>
 							<li>Total<span><%= @f_value %><span></li>
 							
-						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<span class="btn btn-default check_out" href=""><%= link_to "Checkout", shop_checkout_path %> </span>
-							
+							<%if @f_value == 0 %>
+								<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
+							<%else%>
+								<span class="btn btn-default check_out" href=""><%= link_to "Checkout", shop_checkout_path %> </span>
+							<%end%>
+							</ul>
 					</div>
 				</div>
 			</div>

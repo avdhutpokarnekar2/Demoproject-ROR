@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   post 'shop/index'
   post 'home/mailchimp', to:'home#mailchimp', as: 'mailchimp'
+  post 'home/unsubscribe', to:'home#unsubscribe', as: 'unsubscribe'
   root 'shop#index'
   get 'shop/e404'
   get 'shop/shopee'
@@ -23,10 +24,10 @@ Rails.application.routes.draw do
   get 'products/wishlist'
   get 'home/index'  
   post 'shop/stripe'
-  get 'shop/cart'
   post 'shop/create'
   get 'shop/cod'
   get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
+
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

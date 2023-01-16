@@ -1,17 +1,37 @@
 class ShopController < ApplicationController
-	skip_before_action :authenticate_user!
+	before_action :authenticate_user!,except: [:index ,:status]
 	before_action :set_product, only: %i[show edit update destroy]
-	
+	 skip_before_action :verify_authenticity_token
+	require "MailchimpMarketing"  
+  require "digest"
 	require 'stripe'
 
-	def e404
-	end
+  def status
+    mailchimp = MailchimpMarketing::Client.new
+    mailchimp.set_config({
+      :api_key =>  "bb7c4fc91c190c3c0285b16bbfa69a9c",
+      :server => "us21"
+    })
+    list_id = "2f712a62e2"
+
+    email =  current_user.email
+    subscriber_hash = Digest::MD5.hexdigest email.downcase
+
+    begin
+      response = mailchimp.lists.get_list_member list_id, subscriber_hash
+      @@response =response[status]
+    end
+  end
+
+
 	
 	def track
 		@user_order = current_user.user_orders.find_by(id: params[:user_order_id])
-		unless @user_order.present?
-			 @error = ""
+		if @user_order.present?
+			@user_order=@user_order.status
+			flash.now[:notice] = "Please check your status"
 		end
+		
 	end
 
 
@@ -21,7 +41,7 @@ class ShopController < ApplicationController
 	def blog
 	end
 	def order
-		@orders = UserOrder.all
+		@orders = current_user.user_orders.all
 	end
 	
 	def checkout_product
@@ -33,18 +53,18 @@ class ShopController < ApplicationController
 			trans_id = 1
 		else
 			payment_gateway = 'Stripe'		
-			trans_id = @@trans_id
+			trans_id = @@trans
 		end	
 		address = UserAddress.last
-		order = UserOrder.create(user_id: current_user.id,user_address_id: address.id,  transaction_id: trans_id)
+		order = UserOrder.create(user_id: current_user.id,user_address_id: address.id,  transaction_id: trans_id,Total_amount: amount, payment_gateway: payment_gateway )
 		if order.save
 			products.each do |product|
 			  order.order_details.create(product_id: product.id, amount:product.price, quantity: product.quantity)
 				total = (product.quantity)*(product.price)
 		  	product_price_lists << total	
 			end	
-			 # UserMailer.placemail(current_user,order).deliver
-			 # UserMailer.ordermail(current_user,order).deliver
+			 UserMailer.placemail(current_user,order).deliver
+			 UserMailer.ordermail(current_user,order).deliver
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
@@ -53,34 +73,31 @@ class ShopController < ApplicationController
 	def checkout
 		@ship =  @@shipp
 		@value = @@f_value
-		@address = UserAddress.last
+		@user_address = UserAddress.new
+		@address = current_user.user_addresses.last
 	end
 
   def create
-  	# binding.pry
-
-  	@useraddress = UserAddress.create(address_params)
+  	@useraddress = current_user.user_addresses.create(address_params)
     if @useraddress.save
-      flash[:success] = "New adress successfully added!"
-      redirect_to shop_checkout_url
+      redirect_to shop_checkout_url, notice: "New adress change successfully"
     else
-      flash.now[:error] = "adress creation failed"
-       render:new
+      render :checkout
     end
   end
 	
 	def contact
-			@cont = ContactU.last
+		@contact = ContactU.new
+			@cont = current_user.contact_us.last
 	end
 	
 	def contact_us
-			@contact=ContactU.new(contact_params)
+			@user = current_user
+			@contact=@user.contact_us.new(contact_params)
 		if @contact.save
-			@msgg = "New adress successfully added!"
-      redirect_to shop_contact_path
+      redirect_to shop_contact_path, notice: "Your Contact form saved successfully"
       else
-      flash.now[:error] = "adress creation failed"
-       render:new
+       render :contact
      end
 	end
 
@@ -113,27 +130,26 @@ class ShopController < ApplicationController
     	@shipping_cost = 0
     end
     @final_value = @value + @shipping_cost
-    @@shipp = @final_value
+    @@shipp = @shipping_cost
     @user = current_user
     @entered_code = params[:code]
     coopan = Coupon.find_by(code: @entered_code)
     @coupons = Coupon.all
 		@coupons.each do |c|
 			if @user.coupons.include?(coopan) 
-         flash[:message] = "Coupon already applied !"
+         flash.now[:notice] = "Coupon already applied !"
       elsif @entered_code == c.code 
         coopan.no_of_uses += 1  
         @user.coupons << coopan     
         @f_value = @final_value - (@final_value*(coopan.percent_off)/100)
         @mv = @f_value
         @@f_value = @f_value
-        flash[:message] = "Coupon applied successfully!"
+         flash.now[:notice] = 'Coupon applied successfully'  
       else
         @f_value = @final_value
         @@f_value = @final_value
       end
     end
-    @msgg = 'Coupon applied successfully'
   end
 
 	
@@ -143,9 +159,13 @@ class ShopController < ApplicationController
 	def product_details
     @category = Category.find(params[:id])
     @products = @category.products
+    	@category = Category.where(parent_id: nil)
   end
 	
 	def shopee
+		@category = Category.where(parent_id: nil)
+		@products = Product.all
+	 	@prod_images = ProductImage.all
 	end
 
 	def account
@@ -154,13 +174,13 @@ class ShopController < ApplicationController
 	def add_to_cart
     id = params[:id].to_i
     session[:cart] << id unless session[:cart].include?(id)
-    redirect_to root_path
+    redirect_to root_path, notice: "item  added successfully in cart"
   end
 
   def remove_from_cart
     id = params[:id].to_i
     session[:cart].delete(id)
-    redirect_to root_path
+    redirect_to shop_cart_path, notice: "item successfully removed from cart"
   end
 
   def success
@@ -214,8 +234,7 @@ class ShopController < ApplicationController
 	end
 
 	def contact_params
-		params.permit(:name,:email,:contact_no,:message)
-		# params.require(:conversation).permit(:name,:email,:contact_no,:message)
+		params.require(:contact_u).permit(:name,:email,:contact_no,:message)
 	end
 
 end

@@ -1,23 +1,26 @@
-<div class="text-center"class="chose_area">
-	<ul class="user_option">
-	<li >
-		<%= form_with model: @orders, url: shop_track_path, method: :post,local: true,data: { turbo: false } do |form| %></li>
-	<li>
-	<div >
-	<h4><%= form.label :user_order_id %>
-	<%= form.text_field :user_order_id %></h4>
-	</div>
-	
-	</li>
-	<li>
-	<div class="mb-3">
-	<%= form.submit "Submit", class: "btn btn-primary" %>
-	</div>
-	</li>
-	</ul>
-	<% end %>
-	</li>
-	</ul>
+<div class="container-fluid">
+  <div class="row">
+  	<div class="col-md-2">
+  	</div>
+    <div class="col-md-5" style="margin-bottom: 88px;">
+     
+     <%= image_tag("social/track.jpeg", alt: "track order") %>
 
-<br><div><h4>Status:-<%= @user_order.present? ? @user_order.status : @error %></h4></div>
+    </div>
+    <div class="col-md-4">
+			<div class="track_order">
+			<%= form_with model: @orders, url: shop_track_path, method: :post,local: true,data: { turbo: false } do |form| %></li>
+					<div class="mb-3">
+					<h1>Track your order here!</h1>
+					<i>Enter order id:</i><%= form.text_field :user_order_id %>
+					</div>
+					<div class="mb-3 text-center">
+							<%= form.submit "Submit", class: "btn btn-primary" %>
+					</div>
+			<% end %>
+			<i>Order status:<%= @user_order %>
+    </div>
+      
+    </div>
+  </div>
 </div>

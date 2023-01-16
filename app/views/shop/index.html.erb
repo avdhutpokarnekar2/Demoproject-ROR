@@ -1,4 +1,3 @@
-
 <body>
 	<section id="slider"><!--slider-->
 		<div class="container">
@@ -16,9 +15,9 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
+									<h2> Ecommerce Website</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									
 								</div>
 								<div class="col-sm-6">
 									<%= image_tag post.image  %>
@@ -52,43 +51,20 @@
 									<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
 										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
 										<%= @category.each do |category| %>
-										<h2 onclick="document.getElementById('my_id').style.display='block';"><%= category.name  %></h2>
+										<h2 ><%= category.name  %></h2>
 										<h4><% subcatagories = category.subcategories%></h4>
 										<% subcatagories.each do |subcat| %>
-										<h4 id="my_id", style="display: none"><%= link_to subcat.name,product_details_path(subcat) %></h4><br>
+										<h4 class="ma"><%= link_to subcat.name,product_details_path(subcat) %></h4><br>
 										<% end %>
 										<% end %>
 										</a>
 									</h4>
 								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Nike </a></li>
-											<li><a href="#">Under Armour </a></li>
-											<li><a href="#">Adidas </a></li>
-											<li><a href="#">Puma</a></li>
-											<li><a href="#">ASICS </a></li>
-										</ul>
-									</div>
-								</div>
+								
 							</div>
 						</div><!--/category-products-->
 					
-						<div class="brands_products"><!--brands_products-->
-							<h2>Brands</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
+						
 					</div>
 				</div>
 		
@@ -96,11 +72,11 @@
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
 						<% if @products.present? %>
-            			<% @products.each do |prod| %>
+            	<% @products.each do |prod| %>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="productinfo text-center">
-									<%= image_tag(prod.product_images.first.image ) %>
+									<%= image_tag(prod.product_images.first.image) %>
 									<h2>$<%= prod.price %></h2>
 									<p><%= prod.name %></p>
 									<p> <%= prod.short_description %></p>
@@ -117,374 +93,13 @@
 
 							</div>
 						</div>
-						<%end %>
-						<%end %>
-					</div>
-				</div>
-			</div>
-		</div>
-     				<div class="category-tab container"><!--category-tab-->
-						<div class="col-sm-12">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-								<li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-								<li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-								<li><a href="#kids" data-toggle="tab">Kids</a></li>
-								<li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
-							</ul>
-						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade active in" id="tshirt" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery1.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery2.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery3.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery4.jpg", alt: "") %>
-												<!-- <img src="images/home/gallery4.jpg" alt="" /> -->
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tab-pane fade" id="blazers" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery4.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>	
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery3.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery2.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery1.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>	
-									</div>
-								</div>
-							</div>
-							
-							<div class="tab-pane fade" id="sunglass" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery3.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery4.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery1.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery2.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tab-pane fade" id="kids" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery1.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery2.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery3.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery4.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tab-pane fade" id="poloshirt" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery2.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery4.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery3.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<%= image_tag("home/gallery1.jpg", alt: "") %>
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!--/category-tab-->
-					
-					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend1.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend2.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend3.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend1.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend2.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<%= image_tag("home/recommend3.jpg", alt: "") %>
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
-						</div>
+						<% end %>
+						<% end %>
+						<button style="margin-top:250px;background-color: orange;"><%= link_to "For More Products", shop_shopee_path %></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 </body>
 </html>

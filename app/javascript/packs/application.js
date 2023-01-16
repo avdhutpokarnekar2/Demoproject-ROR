@@ -13,3 +13,18 @@ require jquery_ujs
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+ // $(document).ready(function(){
+ // 	$(.quantity).on('click',function(){
+ // 		$.ajax({
+ //       url: '/add_quantity/'+this.parentElementid.id
+ //       type: "POST",
+ //       data: {id: $(this).attr('id'), quantity: $(this).attr('quantity'), cart: $(this).attr('cart_id')} 
+ //    })
+  
+
+ // 	})
+ // })
+  
+ // $.ajax(url: "/add_quantity").done (cart.html.erb)
+ //  $("#results").append html

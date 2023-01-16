@@ -4,39 +4,50 @@
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
 					<h2 class="title text-center">Contact <strong>Us</strong></h2>  
+					<% if @cont.present? %>
 					<ul>
-					<li>Name:<%= @cont.name %></li>
-					<li>Email:<%= @cont.email %></li>
-					<li>Contact_no:<%= @cont.contact_no %></li>
-					<li>Message:<%= @cont.message %></li>
-					<li>Admin_note:<%= @cont.note_admin %>  </li>
+					<div class="row"><li class="col-sm-3" ></li><li class="col-sm-4"><h4>Name:-</h4><%= @cont.name %></li>
+					<li class="col-sm-4"><h4>Email:-</h4><%= @cont.email %></li></div>
+					<div class="row"><li class="col-sm-3"></li><li li class="col-sm-4"><h4>Contact_no:-</h4><%= @cont.contact_no %></li>
+					<li li class="col-sm-4"><h4>Message:-</h4><%= @cont.message %></li></div>
+					<div class="row"><li class="col-sm-4"></li><li class="col-sm-6"><h4>Admin_note:-</h4><h4 style="color: red;"><%= @cont.note_admin %> </h4> </li>
 				</ul>
+				<% end %>
 				</div>			 		
 			</div>  
 
 			<div>  	
 			<div class="col-sm-4">
 	    	<h2 class="title text-center">Get In Touch</h2>
-	    	<%= form_with model: @contact, url: shop_contact_us_path,method: :post, local: true do |form| %>
+	    	<%= form_for  @contact, url: shop_contact_us_path,method: :post,remote: true do |form| %>
+					
+				<% if @contact.errors.any? %>
+					<div class="alert alert-danger">
+						<% @contact.errors.full_messages.each do |msg| %>
+							<div><%= msg %></div>
+						<% end %>
+					</div>	
+				<%end%>
 					<div class="field">
-    			<%= form.label :name %><br>
-					<%= form.text_field :name %><br>
-					<%= form.label :email %><br>
-					<%= form.email_field :email %><br>
-					<%= form.label :contact_no %><br>
-					<%= form.text_field :contact_no %><br>
-					<%= form.label :message %><br>
-					<%= form.text_field :message %><br>
+	    				<%= form.label :name %><br>
+						<%= form.text_field :name %><br>
+						<%= form.label :email %><br>
+						<%= form.email_field :email %><br>
+						<%= form.label :contact_no %><br>
+						<%= form.text_field :contact_no %><br>
+						<%= form.label :message %><br>
+						<%= form.text_field :message %><br>
+					</div>
 					<div class="actions">
-    			<br><%= form.submit %>
-    			<% if @msgg.present? %>
-                <p style="color: greenyellow;"><%= @msgg %>
-              <% end %>
-  				</div>
+	    			<br><%= form.submit %>
+	    			<% if @msgg.present? %>
+	                <p style="color: greenyellow;"><%= @msgg %>
+	              <% end %>
+  					</div>
 				<% end %>
 			</div>
 		</div>
-	    		<div class="col-sm-6">
+	    		<div class="col-sm-8">
 	    			<div class="contact-info">
 	    				<h2 class="title text-center">Contact Info</h2>
 	    				<address>
@@ -51,15 +62,12 @@
 	    					<h2 class="title text-center">Social Networking</h2>
 							<ul>
 								<li>
-									<a href="shop/index"><%= image_tag("social/instagram.png", alt: "") %><i class="fa fa-google-plus"></i></a>
+									<%= link_to root_path do%><%= image_tag("social/instagram.png", alt: "") %><i class="fa fa-google-plus"></i><%end %>
 								</li>
 								<li>
-									<a href="#"><%= image_tag("social/fb.png", alt: "") %><i class="fa fa-twitter"></i></a>
+									
+									<%= link_to root_path do%><%= image_tag("social/fb.png", alt: "") %><i class="fa fa-twitter"></i><%end %>
 								</li>
-						<!-- 		<li>
-									<a href="#"><%= image_tag("social/twitt.png", alt: "")%><i class="fa fa-facebook"></i></a><i class="fa fa-youtube"></i></a>
-								</li>
-								 -->
 							</ul>
 	    				</div>
 	    			</div>

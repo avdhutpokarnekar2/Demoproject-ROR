@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
     t.text "note_admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_contact_us_on_user_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -224,14 +226,18 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
     t.string "Country"
     t.string "State"
     t.string "Alternate_mobile_no"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_user_addresses_on_user_id"
   end
 
   create_table "user_orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "awb_no", limit: 100
-    t.string "transaction_id", limit: 100
     t.integer "status", default: 0
+    t.string "payment_gateway"
+    t.string "transaction_id"
+    t.integer "Total_amount"
+    t.string "Shipping_method", default: "Regular shipping"
     t.bigint "user_address_id"
     t.bigint "user_id"
     t.index ["user_address_id"], name: "index_user_orders_on_user_address_id"
@@ -269,6 +275,7 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contact_us", "users"
   add_foreign_key "coupons_useds", "coupons"
   add_foreign_key "coupons_useds", "users"
   add_foreign_key "order_details", "products"
@@ -278,6 +285,7 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
+  add_foreign_key "user_addresses", "users"
   add_foreign_key "user_orders", "user_addresses"
   add_foreign_key "user_orders", "users"
   add_foreign_key "user_wish_lists", "products"

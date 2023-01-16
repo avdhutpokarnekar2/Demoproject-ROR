@@ -136,15 +136,28 @@
 						<div class="single-widget">
 							<h2>About Shopper</h2>
 							
-								<%= form_with url: mailchimp_path,  local: true do |form| %>
-									<%= form.label :email %>
-									<%= form.email_field :email %>
-									<div class="actions">
-									<%= form.submit %>
-									</div>
+								<%if user_signed_in? %>
+								<%if @response == "subscribed"%>
+									<%= form_with url: unsubscribe_path,  local: true do |form| %>
+									<%= form.hidden_field :email, :value=> current_user.email %>
+										<div class="actions">
+											<div style="margin-left:-48%;">
+												<b><%= form.submit "Unsubscribe" %></b>
+											</div>
+										</div>
 									<% end %>
-								
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
+									<%else%>
+										<%= form_with url: mailchimp_path,  local: true do |form| %>
+										<%= form.hidden_field :email, :value=> current_user.email %>
+										<div class="actions">
+											<div style="margin-left:0px;">
+												<b><%= form.submit "Subscribed" %></b>
+											</div>
+										</div>
+									<% end %>
+									<%end%>
+								<% end %>
+								<br><p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
 						</div>
 					</div>

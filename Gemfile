@@ -58,7 +58,6 @@ group :test do
 end
 
 # #Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cancancan'
 gem 'pry'
@@ -72,6 +71,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'MailchimpMarketing', '~> 3.0', '>= 3.0.80'
 gem 'whenever', require: false
-gem "net-http"
-gem 'bundler', :require => nil
-gem 'rubygems-update', :require => nil
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
