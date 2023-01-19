@@ -1,4 +1,4 @@
-<body><div><input type="radio">
+<body><section class="hey"><div><input type="radio">
 			<% if @address.present? %>
 			<%= @address.Address %>,
 			<%= @address.State %>,
@@ -51,7 +51,7 @@
 				</div>
 				</div>
 					
-				<div class="actions" style="margin-left: 270px;">
+				<div class="actions">
 					<br><%= form.submit %><br><br> 
 				</div>
 				<% end %>
@@ -98,6 +98,7 @@
 	</div>
 </div>
 </section> 
+</section>
 <script>
 function myFunction() {
   var x = document.getElementById("myDIV");
@@ -108,5 +109,6 @@ function myFunction() {
   }
 }
 </script>
+
 </body>
 </html>

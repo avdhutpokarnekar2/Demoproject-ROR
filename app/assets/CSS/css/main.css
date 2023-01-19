@@ -2571,8 +2571,11 @@ h2.title {
   margin-left: 60px;
 }
 .fixx{
-  position:relative;
-  padding: 5px;
+  position:fixed;
+  background-color: white !important;
+  z-index: 9999;
+  width: 100%;
+  
 }
 .emptycart{
   margin-left: 400px;
@@ -2583,4 +2586,11 @@ h2.title {
 }
 .hei{
   height: 1400px;
+}
+.hee{
+  background-color: rgb(102,102,102) !important; 
+  color: white;
+}
+.hey{
+  padding-top: 200px;
 }

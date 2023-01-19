@@ -1,5 +1,5 @@
 <body>	 
-	 <div id="contact-page" class="container">
+	 <div id="contact-page" class="container hey">
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
@@ -39,7 +39,7 @@
 						<%= form.text_field :message %><br>
 					</div>
 					<div class="actions">
-	    			<br><%= form.submit %>
+	    			<br><%= form.submit "save"%>
 	    			<% if @msgg.present? %>
 	                <p style="color: greenyellow;"><%= @msgg %>
 	              <% end %>

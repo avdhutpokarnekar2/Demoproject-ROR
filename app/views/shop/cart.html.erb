@@ -1,7 +1,7 @@
 
 <body>
 	<section id="cart_items">
-		<div class="container">
+		<div class="container hey">
 			<% if @cart.product.present? %>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
@@ -34,7 +34,7 @@
 								<td class="cart_total">
 									<p id="target-for-total-<%= product.id %>">$<%= tp = (product.price)*(product.quantity) %></p>
 								</td>
-								<td class="cart_delete"><br><br>
+								<td class="cart_delete"><br>
 									<%=  button_to "X", remove_from_cart_path(product), method: :delete %>
 								</td>
 							</tr>
@@ -101,7 +101,7 @@
 		</div>
 	</section><!--/#do_action-->
 	<%else%>
-	 <%= image_tag("social/emptywish.png",class:"emptycart")%>  <br>
+	 <%= image_tag("social/emptycart.png",class:"emptycart")%>  <br>
  <div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
 	<%end%></div>
 </body>
