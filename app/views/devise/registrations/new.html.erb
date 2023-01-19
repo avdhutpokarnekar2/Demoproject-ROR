@@ -1,5 +1,4 @@
 
-
 <div class="vh-100 text-center mb-3 backimg" style="background-color:white; "><h2 style="color:orange;">Registration</h2>
 <div>
 
@@ -7,7 +6,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"Email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"Email",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", type: "text" %>
   </div><br>
 
   <div class="field">

@@ -3,12 +3,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable,:omniauth_providers=>[:google_oauth2,:github]
-  has_many :coupons_useds
-  has_many :user_addresses
-  has_many :contact_us
-  has_many :coupons, through: :coupons_useds
+  has_many :coupons_useds, :dependent =>:destroy
+  has_many :user_addresses, :dependent =>:destroy
+  has_many :contact_us, :dependent =>:destroy
+  has_many :coupons, through: :coupons_useds, :dependent =>:destroy
   has_many :user_orders, :dependent =>:destroy
-  has_many :user_wish_lists
+  has_many :user_wish_lists, :dependent =>:destroy
   has_many :products, through: :user_wish_lists
 
   def self.from_omniauth(response)

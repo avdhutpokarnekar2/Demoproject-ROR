@@ -1,7 +1,15 @@
-
-<div class=" backimg" style="background-color:white; "><h2 class="vh-100 text1 ">Checkout Form</h2>
-<body>
-	<div class="container">
+<body><div><input type="radio">
+			<% if @address.present? %>
+			<%= @address.Address %>,
+			<%= @address.State %>,
+			<%= @address.Country %>,
+			<%= @address.pin_code %>,
+			<%= @address.mobile_no %>
+			<%end%>
+		</div>
+ <div><input type="submit" name="change" value="Change Address" onclick="myFunction();" ></div>
+<div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
+	<div class="container" >
 	  	<%= form_with model: @useraddress, url:shop_create_path, method: :post do |form| %>
 				<% if @user_address.errors.any? %>
 					<div class="alert alert-danger">
@@ -23,8 +31,6 @@
 							<%= form.label :Country %>
 						<br><%= form.select :Country, options_for_select( [['SELECT','SELECT'],['INDIA','INDIA'],['BRAZIL','BRAZIL'],['RASSIA','RASSIA'],['AMERICA','AMERICA']])%><br> <br>
 					</div>
-					
-				
 				</div>
 				<div class="col-sm-4">
 					<%= form.label :email %><br> 
@@ -45,13 +51,12 @@
 				</div>
 				</div>
 					
-				<div class="actions wid">
+				<div class="actions" style="margin-left: 270px;">
 					<br><%= form.submit %><br><br> 
 				</div>
 				<% end %>
 			</div>
 		</div>
-
 		</div><br>
 	<div class="container">
 		<div class="row">
@@ -93,16 +98,15 @@
 	</div>
 </div>
 </section> 
-	
-
-
-  <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.scrollUp.min.js"></script>
-  <script src="js/jquery.prettyPhoto.js"></script>
-  <script src="js/main.js"></script>
-
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 </body>
-		<script>Console.log(
-									'Avdhut script linkeddddd')</script>
 </html>

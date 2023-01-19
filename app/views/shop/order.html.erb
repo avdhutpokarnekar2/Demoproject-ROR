@@ -7,20 +7,20 @@
             <tr class="cart_menu">
               <td class="image">Product image</td>
               <td class=name>Name</td>
-              <td class="price">price</td>
-              <td>qty</td>
-              <td>order_id</td>
+              <td class="price">Price</td>
+              <td>Qty</td>
+              <td>Order_id</td>
             </tr>
           </thead>
           <tbody>
            <% @orders.each do |order| %>
                <% order.products.each do |product| %>
               <tr>
-                <td><%= image_tag(product.product_images.first.image ) %><br> </td>
-                <td><h3 ><%= product.name %></h3></td>
-                <td class="cart_price"><p><%= product.price %></p></td>
+                <td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill") %><%end%> </td>
+                <td><h4><%= product.name %></h4></td>
+                <td class="cart_price"><p>$<%= product.price %></p></td>
                 <td ><p><%= product.quantity %></p></td>
-                <td><%= order.id %></td>
+                <td><h5><%= link_to shop_track_path(order)do%><%= order.id %><%end%></h5></td>
               </tr>
             <% end %>
             <% end %>

@@ -1,0 +1,5 @@
+$("#target-for-change-<%= @item.id%>").val("<%= @item.quantity rescue 0 %>");
+$("#target-for-total-<%= @item.id%>").html("<%= @item.quantity * @item.price rescue 0 %>");
+$("#target-for-total-cart").html("<% product_price_lists = []%> <% @cart.each do |product|%> <%total = (product.quantity)*(product.price)%><% product_price_lists << total%> <%end%><%  total_price = product_price_lists.inject {|sum,price| sum + price}%><%= @value = total_price.to_i%>");
+$("#total-product-val").html("<%if @value < 500%><%= @shipping_cost = 50 %><%else%> <%= @shipping_cost = 0%><%end%>")
+$('#finall-vall').html("<%= @f_value = @value+@shipping_cost%>")

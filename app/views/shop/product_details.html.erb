@@ -1,71 +1,66 @@
-<body>	
+
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+						<h2>Categories</h2>
+						<% @category.each do |cat| %>
+						<% subcat = cat.subcategories %>
+						<div class="panel-group category-products" ><!--category-productsr-->
 							<div class="panel panel-default">
-								<div class="panel-heading" style="height: 300px;">
+								<div class="panel-heading">
 									<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										<%= @category.each do |category| %>
-										<h2 ><%= category.name  %></h2>
-										<h4><% subcatagories = category.subcategories%></h4>
-										<% subcatagories.each do |subcat| %>
-										<h4 class="ma"><%= link_to subcat.name,product_details_path(subcat) %></h4><br>
-										<% end %>
-										<% end %>
+										<a data-toggle="collapse" data-parent="#accordian" href="#<%= cat.name %>">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											<h2><%= cat.name %></h2>
 										</a>
 									</h4>
 								</div>
-								
+								<div id="<%= cat.name %>" class="panel-collapse collapse">
+									<div class="panel-body">
+											<% subcat.each do |subc| %>
+										<ul>
+										<li><h4 style="margin-left:60px"><%= link_to subc.name,product_details_path(subc) %></h4></li>
+										</ul>
+										<%end%>
+									</div>
+								</div>
 							</div>
-						</div><!--/category-products-->
-			
+						</div>
+						<% end %>
 					</div>
 				</div>
-				
+					
 				<div class="col-sm-9 padding-right">
-					<div class="product-details"><!--product-details-->
-						<div class="col-sm-5">
-							<% @products.each do|product|%>
-							<div class="view-product">
-						
-								<%= image_tag(product.product_images.first.image ) %>
-							
-							</div>
-							
-						</div>
-						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<%= image_tag("product-details/new.jpg", alt: "") %>
-								<h2><%= product.name %></h2>
-								<p>Web ID: 1089772</p>
-								
-								<span>
-									<span>$<%= product.price %></span>
-									<label>Quantity:</label>
-									<input type="text" value="1" />
-									<button type="button" class="btn btn-fefault cart">
-										<%= button_to "cart", add_to_cart_path(product) %>
-									</button>
-								</span>
-								<p><b>Availability:</b> In Stock</p>
-								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b> E-SHOPPER</p>
-								<button style="margin-top:20px;background-color: orange;"><%= link_to "For More Products", shop_shopee_path %></button>
-						
-							</div><!--/product-information-->
-						</div>
-					</div><!--/product-details-->
-					<% end %>
-						</div>
-					</section>
-				
-	
+					<div>
+						<h2 class="title text-center">Category Items</h2>
+						<% if @products.present? %>
+            			<% @products.each do |prod| %>
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="productinfo text-center">
+									<%= image_tag(prod.product_images.first.image) %>
+									<h2>$<%= prod.price %></h2>
+									<p><%= prod.name %></p>
+									<p> <%= prod.short_description %></p>
+		         				</div>
+		            				<%= link_to add_to_cart_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
+		            				<%= link_to add_to_wishlist_path(prod),method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
+								<div class="choose">
+									
+										<%end%>
+										<% end %>
+								</div>
 
-	
-	</body>
+							</div>
+						</div>
+						<% end %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+	</section>

@@ -25,8 +25,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
-	<header id="header"><!--header-->
+</head  ><!--/head-->
+	<header id="header" class="fixx"><!--header-->
 	
 		
 		<div class="header-middle"><!--header-middle-->
@@ -39,8 +39,7 @@
 						<div class="btn-group pull-right">
 							<div class="btn-group">
 								<ul class="dropdown-menu">
-									<li><a href="#">Canadian Dollar</a></li>
-									<li><a href="#">Pound</a></li>
+									
 								</ul>
 							</div>
 						</div>
@@ -48,14 +47,22 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><%= link_to "Account", shop_account_path %><i class="fa fa-lock"></i></li>
+
+								<li class="dropdown"><%= link_to "Account", shop_account_path %><i class="fa fa-angle-down"></i>
+                 <ul role="menu" class="sub-menu">
+                  <li class="dropdown" style="color:red;"><%= link_to "My order", shop_order_path %><i class="fa fa-angle-down"></i></li>
+                  <li class="dropdown"><%= link_to "Track Order", shop_track_path %><i class="fa fa-angle-down"></i></li>
+                 </ul>
+                </li> 
 								<li><%= link_to "Wishlist", products_wishlist_path %><i class="fa fa-lock"></i></li>
-								<li><%= link_to "Cart(#{@cart.size})", shop_cart_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Cart(#{@cart.size}) ", shop_cart_path %><i class="fa fa-lock"></i></li>
 								<% if user_signed_in? %>
-								  <li style="margin-top:8px;"><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
+								  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
 								<% else %>
 								<li><%= link_to "Login", users_sign_in_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Sign_up", users_sign_up_path %><i class="fa fa-lock"></i></li>
 								<% end %>
+
 							</ul>
 						</div>
 					</div>
@@ -81,19 +88,9 @@
 								<li class="dropdown"><%= link_to "Shop", shop_shopee_path %><i class="fa fa-angle-down"></i>
                  <ul role="menu" class="sub-menu">
                   <li class="dropdown"><%= link_to "Products", shop_shopee_path %><i class="fa fa-angle-down"></i>
-									<li><%= link_to "Cart", shop_cart_path %><i class="fa fa-lock"></i></li> 
-										<% if user_signed_in? %>
-								  <li><%= button_to('Logout', destroy_user_session_path, :method => :delete) %><li>
-										<% else %>
-									<li><%= link_to "login", users_sign_in_path %><i class="fa fa-lock"></i></li>
-										<% end %>
                  </ul>
                 </li> 
-								<li class="dropdown"><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i>
-                 <ul role="menu" class="sub-menu">
-                  <li class="dropdown"><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i>
-                 </ul>
-                </li>
+								<li><%= link_to "Blog", shop_blog_path %><i class="fa fa-angle-down"></i></li>
 								<li><%= link_to "Contact", shop_contact_path %></li>
 							</ul>
 						</div>

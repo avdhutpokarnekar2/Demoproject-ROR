@@ -1,50 +1,33 @@
 class ShopController < ApplicationController
 	before_action :authenticate_user!,except: [:index ,:status]
 	before_action :set_product, only: %i[show edit update destroy]
-	 skip_before_action :verify_authenticity_token
+	skip_before_action :verify_authenticity_token
 	require "MailchimpMarketing"  
   require "digest"
 	require 'stripe'
 
-  def status
-    mailchimp = MailchimpMarketing::Client.new
-    mailchimp.set_config({
-      :api_key =>  "bb7c4fc91c190c3c0285b16bbfa69a9c",
-      :server => "us21"
-    })
-    list_id = "2f712a62e2"
-
-    email =  current_user.email
-    subscriber_hash = Digest::MD5.hexdigest email.downcase
-
-    begin
-      response = mailchimp.lists.get_list_member list_id, subscriber_hash
-      @@response =response[status]
-    end
-  end
-
-
-	
-	def track
-		@user_order = current_user.user_orders.find_by(id: params[:user_order_id])
-		if @user_order.present?
-			@user_order=@user_order.status
-			flash.now[:notice] = "Please check your status"
-		end
-		
+  def track   # track the order
+		# binding.pry
+		# @order = UserOrder.find(params[:id]) 
+		order = current_user.user_orders.all
+    id = params[:user_order_id].to_i
+    # binding.pry    
+		if (order.ids).include?(id)
+ 			@user_order = UserOrder.find_by(id: id)
+ 			@user_order = @user_order.status
+    elsif id != 0 && (order.ids).include?(id) == false  
+      flash[:alert] = "incorrect order id"
+    end		
 	end
 
-
-	def blog_single
-	end
-	
 	def blog
 	end
-	def order
+
+	def order  #orders
 		@orders = current_user.user_orders.all
 	end
 	
-	def checkout_product
+	def checkout_product   #checkout
 		amount = @@f_value
 		product_price_lists = [] 	
 		products = Product.where(id: @cart.map(&:id))
@@ -70,7 +53,7 @@ class ShopController < ApplicationController
 		@value = total_price.to_i
 	end
 	
-	def checkout
+	def checkout   
 		@ship =  @@shipp
 		@value = @@f_value
 		@user_address = UserAddress.new
@@ -88,7 +71,7 @@ class ShopController < ApplicationController
 	
 	def contact
 		@contact = ContactU.new
-			@cont = current_user.contact_us.last
+		@cont = current_user.contact_us.last
 	end
 	
 	def contact_us
@@ -110,6 +93,10 @@ class ShopController < ApplicationController
 	 	@user = User.all
 	 	@cont = ContactU.last
 	 	@cms = Cm.last
+	 	if @cart.size>0
+	 		@cart_size=@cart.size
+	 	else
+	 	end
 	end
 
 	def show
@@ -123,7 +110,6 @@ class ShopController < ApplicationController
 		end
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
-		
 		if @value < 500 && @value > 0
       @shipping_cost = 50
     else
@@ -136,7 +122,7 @@ class ShopController < ApplicationController
     coopan = Coupon.find_by(code: @entered_code)
     @coupons = Coupon.all
 		@coupons.each do |c|
-			if @user.coupons.include?(coopan) 
+			if @user.coupons.include?(coopan) && 
          flash.now[:notice] = "Coupon already applied !"
       elsif @entered_code == c.code 
         coopan.no_of_uses += 1  
@@ -159,7 +145,7 @@ class ShopController < ApplicationController
 	def product_details
     @category = Category.find(params[:id])
     @products = @category.products
-    	@category = Category.where(parent_id: nil)
+    @category = Category.where(parent_id: nil)
   end
 	
 	def shopee
@@ -177,15 +163,8 @@ class ShopController < ApplicationController
     redirect_to root_path, notice: "item  added successfully in cart"
   end
 
-  def remove_from_cart
-    id = params[:id].to_i
-    session[:cart].delete(id)
-    redirect_to shop_cart_path, notice: "item successfully removed from cart"
-  end
-
   def success
-  	
-    Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'
+  	Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'
 		response = Stripe::Checkout::Session.retrieve(
     id: params[:session_id])
  		@pay_id=response[:payment_intent]
@@ -201,11 +180,7 @@ class ShopController < ApplicationController
 
   def stripe
     product=Stripe::Product.create({name: 'Order 1'})
-    Stripe::Price.create({
-    unit_amount: @@f_value*100,
-    currency: 'usd',
-    product: product.id,})
-    @session = Stripe::Checkout::Session.create({
+ 		@session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [
       price_data: {

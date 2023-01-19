@@ -137,7 +137,7 @@
 							<h2>About Shopper</h2>
 							
 								<%if user_signed_in? %>
-								<%if @response == "subscribed"%>
+								<%if @response == "subscribe"%>
 									<%= form_with url: unsubscribe_path,  local: true do |form| %>
 									<%= form.hidden_field :email, :value=> current_user.email %>
 										<div class="actions">

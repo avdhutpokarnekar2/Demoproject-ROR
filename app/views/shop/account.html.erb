@@ -10,10 +10,10 @@
 	  <%= form_with model: @user, url: profile_update_path,method: :post, local: true do |form|  %>
     <% if user_signed_in? %>
     <% user = current_user %>
-		<h3>First name</h3><%= form.text_field :first_name, required: true, class: 'form-control', value:user.first_name %>
+	<h3>First name</h3><%= form.text_field :first_name, required: true, class: 'form-control', value:user.first_name %>
     <h3>Last name</h3><%= form.text_field :last_name, required: true, class: 'form-control', value:user.last_name %>
-    <h3>Mobile no</h3><%= form.text_field :mobile_no, required: true, class: 'form-control', value:user.mobile_no %>
-    <h3>Email</h3><%= form.text_field :email, required: true, class: 'form-control', value:user.email %>
+    <h3>Mobile no</h3><%= form.text_field :mobile_no, required: true, class: 'form-control', pattern:"[0-9]{10}",value:user.mobile_no %>
+    <h3>Email</h3><%= form.text_field :email, required: true, class: 'form-control', value:user.email,pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", type: "text" ,require:true%>
 	<% end %>
 	<br>
 	<div class="actions" >

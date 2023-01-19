@@ -1,7 +1,8 @@
+
 <body>
 	<section id="cart_items">
 		<div class="container">
-			
+			<% if @cart.product.present? %>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -11,28 +12,30 @@
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
-							<td class="total"> remove</td>
+							<td ></td>
 						</tr>
 					</thead>
+
 					<tbody>
 						<% @product_price_lists = [] %>
 						<% @cart.each do |product| %>
 							<tr>
-								<td><h3><%= product.name %></h3> </td>
-								<td><%= image_tag(product.product_images.first.image)%></td>
-								<td class="cart_price"><p><%= product.price %></p></td>
+								<td><h4 style="margin-left:20px"><%= product.name %></h4> </td>
+								<td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill")%><%end%></td>
+								<td class="cart_price"><p>$<%= product.price %></p></td>
 								<td class="quantity">
-									<%= button_to '+',add_quantity_path(product), method: :post, remote: true,class: 'btn primary quantity'%>	
-									<input  name="quantity" value="<%= product.quantity %>"size="1">
-									<%= button_to '-',dec_quantity_path(product), method: :post,remote: true, class: 'btn primary' %>
+									<div class="cart_quantity_button">
+									<%= link_to '+',add_quantity_path(product), method: :post, :remote => true,class: 'btn primary quantity cart_quantity_up'%>	
+									<input id="target-for-change-<%= product.id %>"class="cart_quantity_input", name="quantity" value="<%= product.quantity %>"size="1">
+									<%= link_to '-',dec_quantity_path(product), method: :post,remote: true, class: 'btn primary cart_quantity_up' %>
+
+									</div>
 								</td>
 								<td class="cart_total">
-									<p><%= tp = (product.quantity)*(product.price) %></p>
-									<% @product_price_lists << tp %>
-									<% @@total_price = @product_price_lists.inject {|sum,price| sum + price} %>
+									<p id="target-for-total-<%= product.id %>">$<%= tp = (product.price)*(product.quantity) %></p>
 								</td>
-								<td class="cart_delete"><br><br><br><br><br>
-									<%= button_to "X", remove_from_cart_path(product), method: 	:delete %>
+								<td class="cart_delete"><br><br>
+									<%=  button_to "X", remove_from_cart_path(product), method: :delete %>
 								</td>
 							</tr>
 						<% end %>
@@ -82,11 +85,11 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li> Cart Total Price <span>  <%= @value %> </span></li>
-							<li>Shipping Cost <span><%= @shipping_cost %></span></li>
-							<li>Total<span><%= @f_value %><span></li>
+							<li> Cart Total Price <span id="target-for-total-cart">$<%= @value %> </span></li>
+							<li>Shipping Cost <span id="total-product-val">$<%= @shipping_cost %></span></li>
+							<li>Total<span id="finall-vall">$<%= @f_value %><span></li>
 							
-							<%if @f_value == 0 %>
+							<% if @f_value == 0 %>
 								<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
 							<%else%>
 								<span class="btn btn-default check_out" href=""><%= link_to "Checkout", shop_checkout_path %> </span>
@@ -97,5 +100,9 @@
 			</div>
 		</div>
 	</section><!--/#do_action-->
+	<%else%>
+	 <%= image_tag("social/emptywish.png",class:"emptycart")%>  <br>
+ <div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
+	<%end%></div>
 </body>
 </html>

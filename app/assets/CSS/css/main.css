@@ -295,7 +295,7 @@ ul.sub-menu {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	width: 220px;
+	width: 150px;
 	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 	display: none;
@@ -2546,4 +2546,41 @@ h2.title {
 }
 .width{
   
+}
+
+.iconss{
+  height: 30px;
+  width: 30px;
+  margin-left: 60px;
+}
+.thumbnaill{
+  height: 70px;
+  width: 70px;
+  margin-left: 25px;
+}
+.banner{
+  height: 300px;
+}
+.thumb{
+  height: 100px;
+  width: 100px;
+}
+.icons{
+  height: 24px;
+  width: 28px;
+  margin-left: 60px;
+}
+.fixx{
+  position:relative;
+  padding: 5px;
+}
+.emptycart{
+  margin-left: 400px;
+
+}
+.shopclass{
+  margin-left: 500px;
+}
+.hei{
+  height: 1400px;
 }
