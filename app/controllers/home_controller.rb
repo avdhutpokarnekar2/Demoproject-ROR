@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   require "digest"
   def index
   end
-  def mailchimp              # for subscribe the user
+  def mailchimp              #for subscribe the user
     mailchimp = MailchimpMarketing::Client.new
     mailchimp.set_config({
       :api_key => "bb7c4fc91c190c3c0285b16bbfa69a9c",
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
      redirect_to root_url
   end
 
-  def unsubscribe             # for unsubscribe the user
+  def unsubscribe             #for unsubscribe the user
     mailchimp = MailchimpMarketing::Client.new
     mailchimp.set_config({
       :api_key => "bb7c4fc91c190c3c0285b16bbfa69a9c",
