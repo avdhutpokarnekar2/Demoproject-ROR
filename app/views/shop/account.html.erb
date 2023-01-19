@@ -7,7 +7,7 @@
 <button id="flright"><%= link_to "Track Order", shop_track_path %><i class="fa fa-lock"></i></button>
 <br>
 <div>
-	  <%= form_with model: @user, url: profile_update_path,method: :post, local: true do |form|  %>
+	  <%= form_with model: @user, url: profile_index_path,method: :post, local: true do |form|  %>
     <% if user_signed_in? %>
     <% user = current_user %>
 	<h3>First name</h3><%= form.text_field :first_name, required: true, class: 'form-control', value:user.first_name %>

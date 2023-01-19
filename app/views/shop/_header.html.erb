@@ -8,18 +8,15 @@
     <meta name="keywords" content="<%#= @cms.meta_keyword %>">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
-    
     <%= stylesheet_link_tag 'css/bootstrap.min.css' %>
-	<%= stylesheet_link_tag 'css/font-awesome.min.css' %>
-	<%= stylesheet_link_tag 'css/prettyPhoto.css' %>
-	<%= stylesheet_link_tag 'css/price-range.css' %>
-	<%= stylesheet_link_tag 'css/animate.css' %>
-	<%= stylesheet_link_tag 'css/main.css' %>
-	<%= stylesheet_link_tag 'css/responsive.css' %>
+		<%= stylesheet_link_tag 'css/font-awesome.min.css' %>
+		<%= stylesheet_link_tag 'css/prettyPhoto.css' %>
+		<%= stylesheet_link_tag 'css/price-range.css' %>
+		<%= stylesheet_link_tag 'css/animate.css' %>
+		<%= stylesheet_link_tag 'css/main.css' %>
+		<%= stylesheet_link_tag 'css/responsive.css' %>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-
- 
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -27,8 +24,6 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head  ><!--/head-->
 	<header id="header" class="fixx"><!--header-->
-	
-		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -39,7 +34,6 @@
 						<div class="btn-group pull-right">
 							<div class="btn-group">
 								<ul class="dropdown-menu">
-									
 								</ul>
 							</div>
 						</div>
@@ -53,7 +47,7 @@
                   <li ><%= link_to "Track Order", shop_track_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
                  </ul>
                 </li> 
-								<li><%= link_to "Wishlist", products_wishlist_path %><i class="fa fa-lock"></i></li>
+								<li><%= link_to "Wishlist",products_wishlist_path %><i class="fa fa-lock"></i></li>
 								<li><%= link_to "Cart(#{@cart.size}) ", shop_cart_path %><i class="fa fa-lock"></i></li>
 								<% if user_signed_in? %>
 								  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
@@ -61,14 +55,12 @@
 								<li><%= link_to "Login", users_sign_in_path %><i class="fa fa-lock"></i></li>
 								<li><%= link_to "Sign_up", users_sign_up_path %><i class="fa fa-lock"></i></li>
 								<% end %>
-
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -90,11 +82,10 @@
                  </ul>
                 </li> 
 								<li><%= link_to "Blog",blogs_path %><i class="fa fa-angle-down"></i></li>
-								<li><%= link_to "Contact", shop_contact_path %></li>
+								<li><%= link_to "Contact",contacts_path %></li>
 							</ul>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div><!--/header-bottom-->

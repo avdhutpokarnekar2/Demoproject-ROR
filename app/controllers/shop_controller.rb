@@ -20,8 +20,7 @@ class ShopController < ApplicationController
     end		
 	end
 
-	def blog
-	end
+
 
 	def order  #orders
 		@orders = current_user.user_orders.all
@@ -69,20 +68,6 @@ class ShopController < ApplicationController
     end
   end
 	
-	def contact
-		@contact = ContactU.new
-		@cont = current_user.contact_us.last
-	end
-	
-	def contact_us
-			@user = current_user
-			@contact=@user.contact_us.new(contact_params)
-		if @contact.save
-      redirect_to shop_contact_path, notice: "Your Contact form saved successfully"
-      else
-       render :contact
-     end
-	end
 
 	def index
 	 	@banners = BannerManagement.all
@@ -208,8 +193,6 @@ class ShopController < ApplicationController
   	params.permit(:Address,:pin_code, :mobile_no, :Country, :State, :Alternate_mobile_no)
 	end
 
-	def contact_params
-		params.require(:contact_u).permit(:name,:email,:contact_no,:message)
-	end
+
 
 end

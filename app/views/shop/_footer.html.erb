@@ -147,7 +147,7 @@
 										</div>
 									<% end %>
 									<%else%>
-										<%= form_with url: mailchimp_path,  local: true do |form| %>
+										<%= form_with url: mailchimp_home_index_path,  local: true do |form| %>
 										<%= form.hidden_field :email, :value=> current_user.email %>
 										<div class="actions">
 											<div style="margin-left:0px;">
