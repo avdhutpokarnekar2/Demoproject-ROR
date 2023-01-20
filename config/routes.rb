@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resource :user, only: [:edit] do
     collection do
       patch 'update_password'
@@ -53,15 +54,8 @@ Rails.application.routes.draw do
   get 'users/sign_up'  
   get 'products/wishlist'
  
-
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
-  #add & remove product from cart
-  
   post "shop/add_to_cart/:id", to: "shop#add_to_cart", as: "add_to_cart"
   delete"products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
-
-  #Add & minus quantity from cart
   
   post 'products/:id/add' => "products#add_quantity", as: "add_quantity"
   post 'products/:id/minus' => "products#dec_quantity", as: "dec_quantity"

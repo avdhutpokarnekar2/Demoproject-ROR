@@ -7,26 +7,19 @@
 			<%= @address.mobile_no %>
 			<%end%>
 		</div>
- <div><input type="submit" name="change" value="Change Address" onclick="myFunction();" ></div>
+ <div><input type="submit" name="change" value="Update Address" onclick="myFunction();" ></div>
 <div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
 	<div class="container" >
 	  	<%= form_with model: @useraddress, url:shop_create_path, method: :post do |form| %>
-				<% if @user_address.errors.any? %>
-					<div class="alert alert-danger">
-						<% @user_address.errors.full_messages.each do |msg| %>
-							<div><%= msg %></div>
-						<% end %>
-					</div>	
-				<%end%>
 					<div class="row">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-4">
 					<%= form.label :first_Name %><br>
-					<%= form.text_field :first_name ,required: true%><br>
+					<%= form.text_field :first_name ,type: "text",title: "only letters are allowed", pattern: "[A-Za-z]{1,32}", required: true%><br>
 					<%= form.label :Last_Name %><br> 
-					<%= form.text_field :Last_name, required:true%><br>
+					<%= form.text_field :Last_name,type: "text",title: "only letters are allowed", pattern: "[A-Za-z]{1,32}", required: true %><br>
 						<%= form.label :mobile_no %><br> 
-					<%= form.number_field :mobile_no, required:true%><br> 
+					<%= form.number_field :mobile_no, type: "text",pattern: "[1-9]{1}[0-9]{9}",title: "mobile no should be of 10 digits"%><br> 
 					<div class="select_class" style="width: 187px;">
 							<%= form.label :Country %>
 						<br><%= form.select :Country, options_for_select( [['SELECT','SELECT'],['INDIA','INDIA'],['BRAZIL','BRAZIL'],['RASSIA','RASSIA'],['AMERICA','AMERICA']])%><br> <br>
@@ -34,11 +27,11 @@
 				</div>
 				<div class="col-sm-4">
 					<%= form.label :email %><br> 
-					<%= form.email_field :email, required:true%><br>
+					<%= form.email_field :email,pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", type: "text" ,require:true%><br>
 					<%= form.label :Pin_code %><br> 
-					<%= form.number_field :pin_code, required:true%><br> 
+					<%= form.number_field :pin_code, pattern: "[0-9]{6}", type: "text", title: "should be 6 of digits"%><br> 
 					<%= form.label :Alternate_mobile_no%><br> 
-					<%= form.number_field :Alternate_mobile_no, required:true%><br>
+					<%= form.number_field :Alternate_mobile_no, type: "text",pattern: "[1-9]{1}[0-9]{9}",title: "mobile no should be of 10 digits"%><br>
 					<div class="select_class" style="width: 187px;">
 						<%= form.label :State %>
 						<br><%= form.select :State, options_for_select( [['SELECT','SELECT'],['MAHARASHTRA','MAHARASHTRA'],['GOA','GOA'],['DELHI','DELHI'],['PANJAB','PANJAB']])%><br>  
