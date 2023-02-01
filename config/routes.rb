@@ -6,22 +6,16 @@ Rails.application.routes.draw do
       patch 'update_password'
     end
   end
-  resources :blogs do
-    collection do
-     get 'blog'
-    end
-  end
+  resources :blogs
 
   resources :contacts do
     collection do
-     get 'contacts'
      post 'contact_us'
     end
   end
 
   resources :home do
     collection do
-     get 'home'
      post 'mailchimp'
      post 'unsubscribe'
     end
@@ -63,7 +57,7 @@ Rails.application.routes.draw do
   post 'products/add_to_wishlist/:id', to: "products#add_to_wishlist", as: "add_to_wishlist"
   delete "products/remove_from_wishlist/:id", to: "products#remove_from_wishlist", as: "remove_from_wishlist"
 
-   resources :products
+  resources :products
   resources :shops
 end
  

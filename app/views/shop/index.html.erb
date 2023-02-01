@@ -1,5 +1,4 @@
 <body>
-
 	<section id="slider "><!--slider-->
 		<div class="container hey">
 			<div class="row">
@@ -12,7 +11,7 @@
 						</ol>
 						<% if @banners.any? %>
    						<% @banners.each do |post| %>
-						<div class="carousel-inner">
+						<div >
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
@@ -33,7 +32,7 @@
 						</a>
 						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
 							<i class="fa fa-angle-right"></i>
-						</a>
+						</a> 
 					</div>
 				</div>
 			</div>
@@ -86,6 +85,7 @@
 									<p> <%= prod.short_description %></p>
 		         			</div>
 									<%= link_to add_to_cart_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
+									
 									<%= link_to add_to_wishlist_path(prod),method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
 									<div class="choose">
 								

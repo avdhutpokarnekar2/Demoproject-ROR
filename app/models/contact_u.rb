@@ -14,3 +14,4 @@ class ContactU < ApplicationRecord
   		UserMailer.contact_update_mail(self).deliver
   	end
 end
+

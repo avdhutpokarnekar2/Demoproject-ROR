@@ -1,6 +1,6 @@
 class ShopController < ApplicationController
 	before_action :authenticate_user!,except: [:index ,:status]
-	before_action :set_product, only: %i[show edit update destroy]
+	# before_action :set_product, only: %i[show edit update destroy]
 	skip_before_action :verify_authenticity_token
 	require "MailchimpMarketing"  
   require "digest"
@@ -93,6 +93,7 @@ class ShopController < ApplicationController
 			total = (product.quantity)*(product.price)
 			product_price_lists << total 
 		end
+
 		total_price = product_price_lists.inject {|sum,price| sum + price}
 		@value = total_price.to_i
 		if @value < 500 && @value > 0

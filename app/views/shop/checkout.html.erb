@@ -10,7 +10,7 @@
  <div><input type="submit" name="change" value="Update Address" onclick="myFunction();" ></div>
 <div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
 	<div class="container" >
-	  	<%= form_with model: @useraddress, url:shop_create_path, method: :post do |form| %>
+	  	<%= form_with model: @useraddress, url:shop_create_path,remote: true, method: :post do |form| %>
 					<div class="row">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-4">

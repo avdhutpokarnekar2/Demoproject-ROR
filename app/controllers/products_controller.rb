@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show
+def show
     @product = Product.find(params[:id]) 
   end
 
@@ -69,7 +69,6 @@ class ProductsController < ApplicationController
 
  def remove_from_wishlist
   user_id =  current_user.id
-  product_id = params[:id]
   product = Product.find(params[:id])
   @user_wishlist = UserWishList.find_by(product_id: product.id)
   if @user_wishlist.destroy
