@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
 		@cont = current_user.contact_us.last
 	end
 	
-	def contact_us
+	def create
 			@user = current_user
 			@contact=@user.contact_us.new(contact_params)
 		if @contact.save

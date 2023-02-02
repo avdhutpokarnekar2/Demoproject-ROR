@@ -19,7 +19,7 @@
 			<div>  	
 			<div class="col-sm-4">
 	    	<h2 class="title text-center">Get In Touch</h2>
-	    	<%= form_for  @contact, url: shop_contact_us_path,method: :post,remote: true do |form| %>
+	    	<%= form_for  @contact, url: contacts_path,method: :post,remote: true do |form| %>
 					
 				<% if @contact.errors.any? %>
 					<div class="alert alert-danger">

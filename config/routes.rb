@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   end
   resources :blogs
 
-  resources :contacts do
-    collection do
-     post 'contact_us'
-    end
-  end
+  resources :contacts
+
+  resources :profile
+
+  resources :wishlist
+
+  resources :categories
+
+  resources :carts
 
   resources :home do
     collection do
@@ -21,15 +25,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profile do
-    collection do
-     post 'update'
-    end
-  end
-  
   root 'shop#index'
-  get 'shop/shopee'
-  get 'shop/cart'
+  # get 'shop/cart'
   post 'shop/cart'
   get 'shop/checkout'
   get 'shop/track'
@@ -43,10 +40,8 @@ Rails.application.routes.draw do
   post 'shop/track/:id', to: 'shop#track',as:'shop_tracks'
   get 'shop/order', to: 'shop#order',as: "shop_order"
   get 'shop/success', to: 'shop#success', as: "shop_success"
-  get 'shop/product_details/:id', to: 'shop#product_details', as: 'product_details'
   get 'users/sign_in'
   get 'users/sign_up'  
-  get 'products/wishlist'
  
   post "shop/add_to_cart/:id", to: "shop#add_to_cart", as: "add_to_cart"
   delete"products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
@@ -54,8 +49,6 @@ Rails.application.routes.draw do
   post 'products/:id/add' => "products#add_quantity", as: "add_quantity"
   post 'products/:id/minus' => "products#dec_quantity", as: "dec_quantity"
 
-  post 'products/add_to_wishlist/:id', to: "products#add_to_wishlist", as: "add_to_wishlist"
-  delete "products/remove_from_wishlist/:id", to: "products#remove_from_wishlist", as: "remove_from_wishlist"
 
   resources :products
   resources :shops

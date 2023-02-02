@@ -1,6 +1,9 @@
 class ProfileController < ApplicationController
 		before_action :set_user, only: %i[ show edit update destroy ]
-	def update
+
+	def index
+	end
+	def create
 	    respond_to do |format|
 	    @user = User.all
 	      if @user.update(user_params)

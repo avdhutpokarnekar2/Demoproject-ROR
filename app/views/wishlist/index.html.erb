@@ -20,7 +20,7 @@
                 <td><h4><%= prod.name %></h4></td>
                 <td><p><%= prod.price %></p></td>
                 <td class="adddd"><%= link_to add_to_cart_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "ADD TO CART")%><%end%></td>
-                <td class="aaa"><%= button_to "X", remove_from_wishlist_path(prod), method: :delete %></td>
+                <td class="aaa"><%= button_to "X", wishlist_path(prod), method: :delete %></td>
               </tr>
             <% end %>
           </tbody>

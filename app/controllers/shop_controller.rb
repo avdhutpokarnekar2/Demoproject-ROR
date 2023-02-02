@@ -7,7 +7,6 @@ class ShopController < ApplicationController
 	require 'stripe'
 
   def track   # track the order
-		# binding.pry
 		# @order = UserOrder.find(params[:id]) 
 		order = current_user.user_orders.all
     id = params[:user_order_id].to_i
@@ -78,10 +77,7 @@ class ShopController < ApplicationController
 	 	@user = User.all
 	 	@cont = ContactU.last
 	 	@cms = Cm.last
-	 	if @cart.size>0
-	 		@cart_size=@cart.size
-	 	else
-	 	end
+	 		
 	end
 
 	def show
@@ -128,26 +124,13 @@ class ShopController < ApplicationController
 	def login
 	end
 	
-	def product_details
-    @category = Category.find(params[:id])
-    @products = @category.products
-    @category = Category.where(parent_id: nil)
-  end
-	
 	def shopee
 		@category = Category.where(parent_id: nil)
 		@products = Product.all
 	 	@prod_images = ProductImage.all
 	end
 
-	def account
-	end
 
-	def add_to_cart
-    id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
-    redirect_to root_path, notice: "item  added successfully in cart"
-  end
 
   def success
   	Stripe.api_key = 'sk_test_51MD3qeSA33xedoIC2YAMsbM8jTPXNscjdxlbwAbWbtaApaRe3F6ZFXF5MR2uRaOlkvKva3Am0ev7AYSZHbMP5u8v00kK6dGWkg'

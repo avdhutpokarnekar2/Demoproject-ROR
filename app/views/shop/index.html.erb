@@ -60,7 +60,7 @@
 									<div class="panel-body">
 											<% subcat.each do |subc| %>
 										<ul>
-										<li><h4 style="margin-left:60px"><%= link_to subc.name,product_details_path(subc) %></h4></li>
+										<li><h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4></li>
 										</ul>
 										<%end%>
 									</div>
@@ -84,9 +84,9 @@
 									<p><%= prod.name %></p>
 									<p> <%= prod.short_description %></p>
 		         			</div>
-									<%= link_to add_to_cart_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
+									<%= link_to carts_path(id: prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
 									
-									<%= link_to add_to_wishlist_path(prod),method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
+									<%= link_to wishlist_index_path(id: prod),method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
 									<div class="choose">
 								
 									<!-- <ul class="nav nav-pills nav-justified icon" >  -->
@@ -99,7 +99,7 @@
 						</div>
 						<% end %>
 						<% end %>
-						<button style="margin-top:600px;background-color: orange;position: absolute;"><%= link_to ">>", shop_shopee_path %></button>
+						<button style="margin-top:600px;background-color: orange;position: absolute;"><%= link_to ">>", products_path %></button>
 					</div>
 				</div>
 			</div>
