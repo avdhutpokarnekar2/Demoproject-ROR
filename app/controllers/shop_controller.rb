@@ -2,27 +2,19 @@ class ShopController < ApplicationController
 	before_action :authenticate_user!,except: [:index ,:status]
 	# before_action :set_product, only: %i[show edit update destroy]
 	skip_before_action :verify_authenticity_token
-	require "MailchimpMarketing"  
   require "digest"
 	require 'stripe'
 
-  def track   # track the order
+  def track   
 		# @order = UserOrder.find(params[:id]) 
 		order = current_user.user_orders.all
     id = params[:user_order_id].to_i
-    # binding.pry    
 		if (order.ids).include?(id)
  			@user_order = UserOrder.find_by(id: id)
  			@user_order = @user_order.status
     elsif id != 0 && (order.ids).include?(id) == false  
       flash[:alert] = "incorrect order id"
     end		
-	end
-
-
-
-	def order  #orders
-		@orders = current_user.user_orders.all
 	end
 	
 	def checkout_product   #checkout
@@ -124,11 +116,6 @@ class ShopController < ApplicationController
 	def login
 	end
 	
-	def shopee
-		@category = Category.where(parent_id: nil)
-		@products = Product.all
-	 	@prod_images = ProductImage.all
-	end
 
 
 
@@ -180,3 +167,8 @@ class ShopController < ApplicationController
 
 
 end
+	# def shopee
+	# 	@category = Category.where(parent_id: nil)
+	# 	@products = Product.all
+	#  	@prod_images = ProductImage.all
+	# end

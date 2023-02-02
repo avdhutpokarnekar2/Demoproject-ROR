@@ -1,0 +1,26 @@
+<div class="container-fluid hey">
+  <div class="row">
+  	<div class="col-md-2">
+  	</div>
+    <div class="col-md-5" style="margin-bottom: 88px;">
+     
+     <%= image_tag("social/track.jpeg", alt: "track order") %>
+
+    </div>
+    <div class="col-md-4">
+			<div class="track_order">
+			<%= form_with model: @orders, url: order_path, method: :post,local: true,data: { turbo: false } do |form| %></li>
+					<div class="mb-3">
+					<h1>Track your order here!</h1>
+					<i>Enter order id:</i><%= form.text_field :user_order_id %>
+					</div>
+					<div class="mb-3 text-center">
+							<%= form.submit "Submit", class: "btn btn-primary" %>
+					</div>
+			<% end %>
+			<i>Order status:<%= @user_order %>
+    </div>
+      
+    </div>
+  </div>
+</div>

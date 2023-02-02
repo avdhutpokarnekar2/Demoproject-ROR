@@ -72,4 +72,4 @@ gem 'omniauth-github'
 gem 'MailchimpMarketing', '~> 3.0', '>= 3.0.80'
 gem 'whenever', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'robocop', '~> 0.1.1'

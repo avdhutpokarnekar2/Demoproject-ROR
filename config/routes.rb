@@ -10,13 +10,16 @@ Rails.application.routes.draw do
 
   resources :contacts
 
-  resources :profile
+  resources :profile, only: [:index]
+
 
   resources :wishlist
 
   resources :categories
 
   resources :carts
+
+  resources :orders
 
   resources :home do
     collection do
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'profile/update_profile'
   root 'shop#index'
   # get 'shop/cart'
   post 'shop/cart'
