@@ -7,14 +7,14 @@ class ShopController < ApplicationController
 
   def track   
 		# @order = UserOrder.find(params[:id]) 
-		order = current_user.user_orders.all
-    id = params[:user_order_id].to_i
-		if (order.ids).include?(id)
- 			@user_order = UserOrder.find_by(id: id)
- 			@user_order = @user_order.status
-    elsif id != 0 && (order.ids).include?(id) == false  
-      flash[:alert] = "incorrect order id"
-    end		
+		# order = current_user.user_orders.all
+    # id = params[:user_order_id].to_i
+		# if (order.ids).include?(id)
+ 		# 	@user_order = UserOrder.find_by(id: id)
+ 		# 	@user_order = @user_order.status
+    # elsif id != 0 && (order.ids).include?(id) == false  
+    #   flash[:alert] = "incorrect order id"
+    # end		
 	end
 	
 	def checkout_product   #checkout
@@ -76,40 +76,7 @@ class ShopController < ApplicationController
   end
 
 	def cart
-		product_price_lists = [] 
-		@cart.each do |product| 
-			total = (product.quantity)*(product.price)
-			product_price_lists << total 
-		end
-
-		total_price = product_price_lists.inject {|sum,price| sum + price}
-		@value = total_price.to_i
-		if @value < 500 && @value > 0
-      @shipping_cost = 50
-    else
-    	@shipping_cost = 0
-    end
-    @final_value = @value + @shipping_cost
-    @@shipp = @shipping_cost
-    @user = current_user
-    @entered_code = params[:code]
-    coopan = Coupon.find_by(code: @entered_code)
-    @coupons = Coupon.all
-		@coupons.each do |c|
-			if @user.coupons.include?(coopan) && 
-         flash.now[:notice] = "Coupon already applied !"
-      elsif @entered_code == c.code 
-        coopan.no_of_uses += 1  
-        @user.coupons << coopan     
-        @f_value = @final_value - (@final_value*(coopan.percent_off)/100)
-        @mv = @f_value
-        @@f_value = @f_value
-         flash.now[:notice] = 'Coupon applied successfully'  
-      else
-        @f_value = @final_value
-        @@f_value = @final_value
-      end
-    end
+	
   end
 
 	

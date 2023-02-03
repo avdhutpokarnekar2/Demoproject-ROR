@@ -3,18 +3,18 @@ class OrdersController < ApplicationController
 		@orders = current_user.user_orders.all
 	end
 
-	def create
+	def create  
 		amount = @@f_value
 		product_price_lists = [] 	
 		products = Product.where(id: @cart.map(&:id))
-		if @@trans == 1
-			payment_gateway = 'COD'
-			trans_id = 1
-		else
-			payment_gateway = 'Stripe'		
-			trans_id = @@trans
-		end	
-		address = UserAddress.last
+		# if @@trans == 1
+		# 	payment_gateway = 'COD'
+		# 	trans_id = 1
+		# else
+		# 	payment_gateway = 'Stripe'		
+		# 	trans_id = @@trans
+		# end	
+		address = current_user.user_addresses.last
 		order = UserOrder.create(user_id: current_user.id,user_address_id: address.id,  transaction_id: trans_id,Total_amount: amount, payment_gateway: payment_gateway )
 		if order.save
 			products.each do |product|
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 		@value = total_price.to_i
 	end
 
-	def show
+	def show #track order
 		order = current_user.user_orders.all
 	    id = params[:user_order_id].to_i
 		if (order.ids).include?(id)
@@ -40,3 +40,23 @@ class OrdersController < ApplicationController
 	    end		
 	end
 end
+
+
+	# def new
+    # @user = current_user
+    # entered_code = params[:code]
+    # coopan = Coupon.find_by(code: entered_code)
+    # coupons = Coupon.all
+	# 	coupons.each do |c|
+	# 		if @user.coupons.include?(coopan) && 
+    #      flash.now[:notice] = "Coupon already applied !"
+    #   elsif entered_code == c.code 
+    #     coopan.no_of_uses += 1  
+    #     @user.coupons << coopan     
+    #     @f_value = @final_value - (@final_value*(coopan.percent_off)/100)
+    #     flash.now[:notice] = 'Coupon applied successfully'  
+    #   else
+    #     @f_value = @final_value
+    #   end
+    # end
+	# end

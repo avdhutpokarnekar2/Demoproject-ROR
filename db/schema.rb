@@ -140,30 +140,16 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
   create_table "product_attribute_assocs", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "product_id", null: false
-    t.index ["product_id"], name: "index_product_attribute_assocs_on_product_id"
   end
 
   create_table "product_attribute_values", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "attribute_value", limit: 45
-    t.integer "created_by"
-    t.date "created_date"
-    t.integer "modify_by"
-    t.date "modify_date"
-    t.bigint "product_attributes_id", null: false
-    t.index ["product_attributes_id"], name: "index_product_attribute_values_on_product_attributes_id"
   end
 
   create_table "product_attributes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", limit: 45
-    t.integer "created_by"
-    t.date "created_date"
-    t.integer "modify_by"
-    t.date "modify_date"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -280,8 +266,6 @@ ActiveRecord::Schema.define(version: 2023_01_07_112031) do
   add_foreign_key "coupons_useds", "users"
   add_foreign_key "order_details", "products"
   add_foreign_key "order_details", "user_orders"
-  add_foreign_key "product_attribute_assocs", "products"
-  add_foreign_key "product_attribute_values", "product_attributes", column: "product_attributes_id"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
