@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :contacts
 
+  resources :checkout
+
   resources :profile, only: [:index]
   post 'profile/update_profile'
 
@@ -27,30 +29,27 @@ Rails.application.routes.draw do
 
   resources :home do
     collection do
-     post 'mailchimp'
-     post 'unsubscribe'
+      post 'mailchimp'
     end
   end
-
-  root 'shop#index'
-  get 'shop/checkout'
-  get 'shop/track'
-  post 'shop/track'
+  
+  root 'home#home'
+  
+  get 'orders/track'
+  post 'orders/track'
+  
   get 'shop/checkout_product'
-  post 'shop/create'
   get 'shop/cod'
   post 'shop/stripe'
-  post 'shop/index'
-  post 'shop/track/:id', to: 'shop#track',as:'shop_tracks'
-  get 'shop/order', to: 'shop#order',as: "shop_order"
-  get 'shop/success', to: 'shop#success', as: "shop_success"
+  get 'shop/success'
+
   get 'users/sign_in'
-  get 'users/sign_up'  
+  get 'users/sign_up'
  
   post 'carts/:id/add' => "carts#add_quantity", as: "add_quantity"
   post 'carts/:id/minus' => "carts#dec_quantity", as: "dec_quantity"
 
   resources :products
-  resources :shops
+  resources :shop
 end
  

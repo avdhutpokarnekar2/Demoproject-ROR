@@ -1,0 +1,28 @@
+		<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+						<li>
+							<%= form_with model: @coupon,local:true  do |form| %>
+						<ul class="user_option">
+							<li>
+							<div class="mb-3">
+								<%= form.label :coupon_code %>
+								<%= form.text_field :code, class: "form-control" , placeholder: "enter coupon code" %>
+							</div>
+							</li>
+							<li>
+							<div class="mb-3">
+								<%= form.submit "Apply", class: "btn btn-primary" %>
+							</div>
+							<% if @mv.present? %>
+               	<p style="color: greenyellow;"><%= @msgg %>
+           		<% end %>
+							</li>
+						</ul>
+						<% end %>
+						</li>
+					</ul>
+			</div>
+		</div>
+			

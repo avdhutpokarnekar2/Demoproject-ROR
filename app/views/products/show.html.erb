@@ -19,13 +19,13 @@
 								<span>
 									<span>$<%= @product.price %></span>
 									<button type="button" class="btn btn-fefault cart">
-										<%= button_to "cart", add_to_cart_path(@product) %>
+										<%= button_to "cart", carts_path(@product) %>
 									</button>
 								</span>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>
 								<p><b>Brand:</b> E-SHOPPER</p>
-								<button style="margin-top:20px;background-color: orange;"><%= link_to "For More products", shop_shopee_path %></button>
+								<button style="margin-top:20px;background-color: orange;"><%= link_to "For More products", products_path %></button>
 								
 							</div><!--/product-information-->
 						</div>

@@ -1,16 +1,4 @@
-<body><section class="hey"><div><input type="radio">
-			<% if @address.present? %>
-			<%= @address.Address %>,
-			<%= @address.State %>,
-			<%= @address.Country %>,
-			<%= @address.pin_code %>,
-			<%= @address.mobile_no %>
-			<%end%>
-		</div>
- <div><input type="submit" name="change" value="Update Address" onclick="myFunction();" ></div>
-<div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
-	<div class="container" >
-	  	<%= form_with model: @useraddress, url:shop_create_path,remote: true, method: :post do |form| %>
+	  	<%= form_with model: @useraddress, url: addresses_path,remote: true, method: :post do |form| %>
 					<div class="row">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-4">
@@ -50,58 +38,3 @@
 				<% end %>
 			</div>
 		</div>
-		</div><br>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
-			<h2 class="text-center mb-3">Review</h2>
-				<tbody>
-						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Cart Sub Total</td>
-										<td>$<%= @value %></td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>-</td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>$<%= @ship %></td>										
-									</tr>
-									<tr>
-										<td>Total</td>
-										<td><span>$<%= @value %></span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-			</div>
-		<div class="col-sm-6 text-center mb-3">
-			<h2 class="text-center mb-3">Payment</h2><br><br>
-		<div class="width">
-			<%= button_to "Stripe",shop_stripe_path %><br></div>
-			<div>
-			<%= button_to "COD",shop_cod_path ,method: :get %>
-		</div>
-	</div>
-</div>
-</section> 
-</section>
-<script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
-
-</body>
-</html>

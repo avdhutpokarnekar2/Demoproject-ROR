@@ -1,5 +1,4 @@
-
-    <div class="container hey">
+ <div class="container hey">
 <% if @orders.present?%>
 <section id="cart_items ">
      
@@ -22,7 +21,7 @@
                 <td><h4><%= product.name %></h4></td>
                 <td class="cart_price"><p>$<%= product.price %></p></td>
                 <td ><p><%= product.quantity %></p></td>
-                <td><h5><%= link_to shop_track_path(order)do%><%= order.id %><%end%></h5></td>
+                <td><h5><%= link_to orders_track_path(order)do%><%= order.id %><%end%></h5></td>
               </tr>
             <% end %>
             <% end %>
