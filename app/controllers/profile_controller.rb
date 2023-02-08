@@ -7,13 +7,14 @@ class ProfileController < ApplicationController
         format.html { redirect_to profile_index_path(@user), notice:"User successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to profile_index_path(@user), alert:"User not updated" }
+        format.json { render :show, @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
 private
+
   def set_user
     @user = current_user
   end

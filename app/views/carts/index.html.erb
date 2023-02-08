@@ -40,7 +40,7 @@
 				</table>
 			</div>
 		</div>
-	</section> <!--/#cart_items-->
+	</section>
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
@@ -51,13 +51,13 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li> Cart Total Price <span id="target-for-total-cart">$<%= @cart_total[:total_price] %> </span></li>
-							<li>Shipping Cost <span id="total-product-val">$<%= @cart_total[:shipping_total] %></span></li>
+							<li> Cart Total Price<span id="target-for-total-cart">$<%= @cart_total[:total_price] %> </span></li>
+							<li>Shipping Cost<span id="total-product-val">$<%= @cart_total[:shipping_total] %></span></li>
 							<li>Total<span id="finall-vall">$<%= @cart_total[:order_total] %><span></li>
 							<% if @f_value == 0 %>
 								<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
 							<%else%>
-								<span class="btn btn-default check_out" href=""><%= link_to "Checkout",  checkout_index_path%></span>
+								<span class="btn btn-default check_out" href=""><%= link_to "Checkout",checkout_index_path%></span>
 							<%end%>
 						</ul>
 					</div>

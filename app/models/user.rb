@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   after_create :welcome_send
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

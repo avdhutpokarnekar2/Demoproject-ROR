@@ -4,3 +4,4 @@ class CheckoutController < ApplicationController
     @address = current_user.user_addresses.last
   end
 end
+

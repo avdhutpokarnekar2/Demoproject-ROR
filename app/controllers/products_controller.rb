@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   end
 
   #Show perticuler product details
-  def show                
-    @product = Product.find(params[:id])             
+  def shows
+    @product = Product.find(params[:id])
   end
 end

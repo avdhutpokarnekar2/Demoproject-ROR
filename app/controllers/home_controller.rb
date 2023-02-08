@@ -18,12 +18,13 @@ class HomeController < ApplicationController
       :server => "us21"
       })
     list_id = "2f712a62e2"
-    response = mailchimp.lists.add_list_member list_id,{
-      email_address: params[:email],
-      status: "subscribed"
-      }
+    response = mailchimp.lists.add_list_member list_id,
+                { email_address: params[:email],
+                  status: "subscribed"
+                }
     redirect_to root_url,notice:"subscribed"
     rescue MailchimpMarketing::ApiError => e
       redirect_to root_url,alert: "This email is already in mailchimp list"
-    end
   end
+end
+

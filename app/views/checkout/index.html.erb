@@ -33,7 +33,7 @@
 		<div class="col-sm-6 text-center mb-3">
 			<h2 class="text-center mb-3">Payment</h2><br><br>
 		<div class="width">
-			<%= button_to "Stripe",shop_stripe_path %><br></div>
+			<%= button_to "Stripe",shop_stripe_path(final_amount: @value ) %><br></div>
 			<div>
 			<%= button_to "COD",shop_cod_path ,method: :get %>
 		</div>

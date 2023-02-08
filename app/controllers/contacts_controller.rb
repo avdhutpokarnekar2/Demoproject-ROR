@@ -19,3 +19,4 @@ private
     params.require(:contact_u).permit(:name,:email,:contact_no,:message)
   end
 end
+

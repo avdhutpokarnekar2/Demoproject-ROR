@@ -30,10 +30,13 @@ class CartsController < ApplicationController
     total_price = product_price_lists.inject {|sum,price| sum + price}
     shipping_total = shipping_charge(total_price)
     order_total = total_price + shipping_total rescue 0
+    coupon = params[:coupon_off].to_i
+    percentage_off  = order_total*coupon/100
+    coupon > 0 ? order_total = (order_total) - (percentage_off) : order_total = order_total  rescue 0 if coupon.present?
     session[:totals] = order_total
     @cart_total = { total_price: total_price.to_i, 
                     shipping_total: shipping_total.to_i,
-                    order_total: order_total.to_i }
+                    order_total: order_total }
   end
 
   def shipping_charge(value)

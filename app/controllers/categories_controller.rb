@@ -9,3 +9,4 @@ class CategoriesController < ApplicationController
     @category = Category.where(parent_id: nil)
   end
 end
+
