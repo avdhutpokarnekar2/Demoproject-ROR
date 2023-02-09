@@ -1,7 +1,9 @@
 class CheckoutController < ApplicationController
+  
   def index
-    @value = session[:totals]   
+    @checkout_total = session[:totals] if session[:totals].present?
     @address = current_user.user_addresses.last
   end
+
 end
 

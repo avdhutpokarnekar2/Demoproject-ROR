@@ -1,40 +1,40 @@
-	<section>
-		<div class="container hey">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Categories</h2>
-						<% @category.each do |cat| %>
-						<% subcat = cat.subcategories %>
-						<div class="panel-group category-products" ><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#<%= cat.name %>">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											<h2><%= cat.name %></h2>
-										</a>
-									</h4>
-								</div>
-								<div id="<%= cat.name %>" class="panel-collapse collapse">
-									<div class="panel-body">
-											<% subcat.each do |subc| %>
-										<ul>
-										<li><h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4></li>
-										</ul>
-										<%end%>
-									</div>
+<section>
+	<div class="container hey">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="left-sidebar">
+					<h2>Categories</h2>
+					<% @category.each do |cat| %>
+					<% subcat = cat.subcategories %>
+					<div class="panel-group category-products" ><!--category-productsr-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#<%= cat.name %>">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										<h2><%= cat.name %></h2>
+									</a>
+								</h4>
+							</div>
+							<div id="<%= cat.name %>" class="panel-collapse collapse">
+								<div class="panel-body">
+									<% subcat.each do |subc| %>
+									<ul>
+									<li><h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4></li>
+									</ul>
+									<%end%>
 								</div>
 							</div>
 						</div>
-						<% end %>
 					</div>
+					<% end %>
 				</div>
-				<div class="col-sm-9 padding-right">
-					<div>
-						<h2 class="title text-center">Category Items</h2>
-						<% if @products.present? %>
-            			<% @products.each do |prod| %>
+			</div>
+			<div class="col-sm-9 padding-right">
+				<div>
+					<h2 class="title text-center">Category Items</h2>
+					<% if @products.present? %>
+          	<% @products.each do |prod| %>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="productinfo text-center">
@@ -42,21 +42,21 @@
 									<h2>$<%= prod.price %></h2>
 									<p><%= prod.name %></p>
 									<p> <%= prod.short_description %></p>
-		         				</div>
-		            				<%= link_to carts_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
-		            				<%= link_to wishlist_index_path(id: prod),method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
-								<div class="choose">
-										<%end%>
-										<% end %>
-								</div>
-							</div>
-						</div>
-						<% end %>
-						<% end %>
-					</div>
-				</div>
-			</div>
-			</div>
-			</div>
-		</div>
-	</section>
+		         		</div>
+          				<%= link_to carts_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
+          				<%= link_to wishlist_index_path(id: prod), method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
+							  <div class="choose">
+  							<%end%>
+  							<% end %>
+							  </div>
+						  </div>
+					 </div>
+				  <% end %>
+			   <% end %>
+		    </div>
+	   </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>

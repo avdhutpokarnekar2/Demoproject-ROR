@@ -1,38 +1,36 @@
  <div class="container hey">
 <% if @orders.present?%>
 <section id="cart_items ">
-     
-      <div class="table-responsive cart_info">
-        <table class="table table-condensed">
-          <thead>
-            <tr class="cart_menu">
-              <td class="image">Product image</td>
-              <td class=name>Name</td>
-              <td class="price">Price</td>
-              <td>Qty</td>
-              <td>Order_id</td>
-            </tr>
-          </thead>
-          <tbody>
-           <% @orders.each do |order| %>
-               <% order.products.each do |product| %>
-              <tr>
-                <td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill") %><%end%> </td>
-                <td><h4><%= product.name %></h4></td>
-                <td class="cart_price"><p>$<%= product.price %></p></td>
-                <td ><p><%= product.quantity %></p></td>
-                <td><h5><%= link_to orders_track_path(order)do%><%= order.id %><%end%></h5></td>
-              </tr>
-            <% end %>
-            <% end %>
-          </tbody>
-          
-        </table>
-      </div>
-      <% else %>
+  <div class="table-responsive cart_info">
+    <table class="table table-condensed">
+      <thead>
+        <tr class="cart_menu">
+          <td class="image">Product image</td>
+          <td class=name>Name</td>
+          <td class="price">Price</td>
+          <td>Qty</td>
+          <td>Order_id</td>
+        </tr>
+      </thead>
+      <tbody>
+       <% @orders.each do |order| %>
+           <% order.products.each do |product| %>
+          <tr>
+            <td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill") %><%end%> </td>
+            <td><h4><%= product.name %></h4></td>
+            <td class="cart_price"><p>$<%= product.price %></p></td>
+            <td ><p><%= product.quantity %></p></td>
+            <td><h5><%= link_to orders_track_path(order)do%><%= order.id %><%end%></h5></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+      
+    </table>
+  </div>
+<% else %>
   <%= image_tag("social/order.jpeg",class:"emptycart")%>  <br>
- <div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
-  <%end%>
-    </div>
-
-  </section> 
+  <div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
+<%end%>
+</div>
+</section> 

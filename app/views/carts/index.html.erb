@@ -29,10 +29,10 @@
 									</div>
 								</td>
 								<td class="cart_total">
-									<p id="target-for-total-<%= product.id%>">$<%= tp = (product.price)*(product.quantity) %><p>
+								<p id="target-for-total-<%= product.id%>">$<%= tp = (product.price)*(product.quantity) %><p>
 								</td>
 								<td class="cart_delete"><br>
-									<%=  button_to "X", cart_path(product), method: :delete %>
+									<%=  button_to "X", cart_path(product), method: :delete,data: { confirm: "Are you sure?" }%>
 								</td>
 							</tr>
 						<% end %>
@@ -47,27 +47,27 @@
 				<h3>What would you like to do next?</h3>
 				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
 			</div>
-				<%= render :partial => 'coupons/form' %>
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li> Cart Total Price<span id="target-for-total-cart">$<%= @cart_total[:total_price] %> </span></li>
-							<li>Shipping Cost<span id="total-product-val">$<%= @cart_total[:shipping_total] %></span></li>
-							<li>Total<span id="finall-vall">$<%= @cart_total[:order_total] %><span></li>
-							<% if @f_value == 0 %>
-								<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
-							<%else%>
-								<span class="btn btn-default check_out" href=""><%= link_to "Checkout",checkout_index_path%></span>
-							<%end%>
-						</ul>
-					</div>
+			<%= render :partial => 'coupons/form' %>
+			<div class="col-sm-6">
+				<div class="total_area">
+					<ul>
+						<li> Cart Total Price<span id="target-for-total-cart">$<%= @cart_total[:total_price] %> </span></li>
+						<li>Shipping Cost<span id="total-product-val">$<%= @cart_total[:shipping_total] %></span></li>
+						<li>Total<span id="finall-vall">$<%= @cart_total[:order_total] %><span></li>
+						<% if @f_value == 0 %>
+							<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
+						<%else%>
+							<span class="btn btn-default check_out" href=""><%= link_to "Checkout",checkout_index_path%></span>
+						<%end%>
+					</ul>
+				</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<%else%>
-	<%= image_tag("social/emptycart.png",class:"emptycart")%>  <br>
- 	<div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
+		<%= image_tag("social/emptycart.png",class:"emptycart")%>  <br>
+ 		<div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
 	<%end%></div>
 </body>
 </html>

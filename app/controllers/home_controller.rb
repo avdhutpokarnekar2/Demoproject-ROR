@@ -22,9 +22,10 @@ class HomeController < ApplicationController
                 { email_address: params[:email],
                   status: "subscribed"
                 }
-    redirect_to root_url,notice:"subscribed"
+    redirect_to root_url, notice: "Subscribed"
     rescue MailchimpMarketing::ApiError => e
-      redirect_to root_url,alert: "This email is already in mailchimp list"
+      redirect_to root_url, alert: "This email is already in mailchimp list."
   end
+  
 end
 

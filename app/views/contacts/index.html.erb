@@ -3,24 +3,22 @@
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>  
-					<% if @cont.present? %>
-					<ul>
-					<div class="row"><li class="col-sm-3" ></li><li class="col-sm-4"><h4>Name:-</h4><%= @cont.name %></li>
-					<li class="col-sm-4"><h4>Email:-</h4><%= @cont.email %></li></div>
-					<div class="row"><li class="col-sm-3"></li><li li class="col-sm-4"><h4>Contact_no:-</h4><%= @cont.contact_no %></li>
-					<li li class="col-sm-4"><h4>Message:-</h4><%= @cont.message %></li></div>
-					<div class="row"><li class="col-sm-4"></li><li class="col-sm-6"><h4>Admin_note:-</h4><h4 style="color: red;"><%= @cont.note_admin %> </h4> </li>
-				</ul>
-				<% end %>
-				</div>			 		
-			</div>  
-
+						<h2 class="title text-center">Contact <strong>Us</strong></h2>  
+						<% if @user_contact.present? %>
+							<ul>
+							<div class="row"><li class="col-sm-3" ></li><li class="col-sm-4"><h4>Name:-</h4><%= @user_contact.name %></li>
+							<li class="col-sm-4"><h4>Email:-</h4><%= @user_contact.email %></li></div>
+							<div class="row"><li class="col-sm-3"></li><li li class="col-sm-4"><h4>Contact_no:-</h4><%= @user_contact.contact_no %></li>
+							<li li class="col-sm-4"><h4>Message:-</h4><%= @user_contact.message %></li></div>
+							<div class="row"><li class="col-sm-4"></li><li class="col-sm-6"><h4>Admin_note:-</h4><h4 style="color: red;"><%= @user_contact.note_admin %> </h4> </li>
+							</ul>
+						<% end %>
+					</div>			 		
+				</div>  
 			<div>  	
-			<div class="col-sm-4">
+			 <div class="col-sm-4">
 	    	<h2 class="title text-center">Get In Touch</h2>
 	    	<%= form_for  @contact, url:contacts_path,method: :post,remote: true do |form| %>
-					
 				<% if @contact.errors.any? %>
 					<div class="alert alert-danger">
 						<% @contact.errors.full_messages.each do |msg| %>
@@ -28,56 +26,50 @@
 						<% end %>
 					</div>	
 				<%end%>
-					<div class="field">
-	    				<%= form.label :name %><br>
-						<%= form.text_field :name %><br>
-						<%= form.label :email %><br>
-						<%= form.email_field :email %><br>
-						<%= form.label :contact_no %><br>
-						<%= form.text_field :contact_no %><br>
-						<%= form.label :message %><br>
-						<%= form.text_field :message %><br>
-					</div>
-					<div class="actions">
-	    			<br><%= form.submit "save"%>
-	    			<% if @msgg.present? %>
-	                <p style="color: greenyellow;"><%= @msgg %>
-	              <% end %>
-  					</div>
-				<% end %>
-			</div>
+				<div class="field">
+    			<%= form.label :name %><br>
+					<%= form.text_field :name %><br>
+					<%= form.label :email %><br>
+					<%= form.email_field :email %><br>
+					<%= form.label :contact_no %><br>
+					<%= form.text_field :contact_no %><br>
+					<%= form.label :message %><br>
+					<%= form.text_field :message %><br>
+				</div>
+				<div class="actions">
+    			<br><%= form.submit "save"%>
+				</div>
+			<% end %>
 		</div>
-	    		<div class="col-sm-8">
-	    			<div class="contact-info">
-	    				<h2 class="title text-center">Contact Info</h2>
-	    				<address>
-	    					<p>E-Shopper Inc.</p>
-							<p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-							<p>Newyork USA</p>
-							<p>Mobile: +2346 17 38 93</p>
-							<p>Fax: 1-714-252-0026</p>
-							<p>Email: info@e-shopper.com</p>
-	    				</address>
-	    				<div class="social-networks">
-	    					<h2 class="title text-center">Social Networking</h2>
-							<ul>
-								<li>
-									<%= link_to root_path do%><%= image_tag("social/instagram.png", alt: "") %><i class="fa fa-google-plus"></i><%end %>
-								</li>
-								<li>
-									
-									<%= link_to root_path do%><%= image_tag("social/fb.png", alt: "") %><i class="fa fa-twitter"></i><%end %>
-								</li>
-							</ul>
-	    				</div>
-	    			</div>
-    			</div>    			
-	    	</div>  
-    	</div>	
-    </div>
+	</div>
+	<div class="col-sm-8">
+		<div class="contact-info">
+			<h2 class="title text-center">Contact Info</h2>
+			<address>
+				<p>E-Shopper Inc.</p>
+				<p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
+				<p>Newyork USA</p>
+				<p>Mobile: +2346 17 38 93</p>
+				<p>Fax: 1-714-252-0026</p>
+				<p>Email: info@e-shopper.com</p>
+			</address>
+			<div class="social-networks">
+				<h2 class="title text-center">Social Networking</h2>
+				<ul>
+					<li>
+						<%= link_to root_path do%><%= image_tag("social/instagram.png", alt: "") %><i class="fa fa-google-plus"></i><%end %>
+					</li>
+					<li>
+						<%= link_to root_path do%><%= image_tag("social/fb.png", alt: "") %><i class="fa fa-twitter"></i><%end %>
+					</li>
+				</ul>
+    		</div>
+	    </div>
+    </div>    			
+	 </div>  
+  </div>	
+ </div>
 </div>
-    </div><!--/#contact-page-->
-	
-	
+</div><!--/#contact-page-->
 </body>
 </html>

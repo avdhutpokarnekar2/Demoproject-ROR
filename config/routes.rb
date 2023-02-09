@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   resource :user, only: [:edit] do
@@ -37,13 +38,12 @@ Rails.application.routes.draw do
   
   root 'home#home'
   
-  get 'orders/track'
   post 'orders/track'
   
-  get 'shop/checkout_product'
-  get 'shop/cod'
-  post 'shop/stripe'
-  get 'shop/success'
+  get 'payment/create_payment_order'
+  get 'payment/cod'
+  post 'payment/stripe_payment'
+  get 'payment/stripe_paymet_success'
 
   get 'users/sign_in'
   get 'users/sign_up'
@@ -53,5 +53,6 @@ Rails.application.routes.draw do
 
   resources :products
   resources :shop
+
 end
  

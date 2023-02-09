@@ -1,25 +1,18 @@
 class ProfileController < ApplicationController
   
   def update_profile
-    respond_to do |format|
     @user = current_user
-      if @user.update( user_params )
-        format.html { redirect_to profile_index_path(@user), notice:"User successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { redirect_to profile_index_path(@user), alert:"User not updated" }
-        format.json { render :show, @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update( user_params )
+      redirect_to profile_index_path(@user), notice: "User successfully updated." 
+    else
+      redirect_to profile_index_path(@user.errors), alert: @user.errors.full_messages
     end
   end
 
 private
 
-  def set_user
-    @user = current_user
-  end
-
   def user_params
     params.permit( :first_name, :last_name, :mobile_no, :email )
   end
+
 end
