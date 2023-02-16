@@ -1,8 +1,10 @@
-<div class=" backimg" style="background-color:white; "><h2 style="color:black;" class="vh-100 text-center mb-3 hey">My Account</h2>
+<div class="container account-container">
+  <div class="backimg" ><h2 style="color:black;" class="vh-100 text-center mb-3 hey">My Account</h2>
+    <div>
+      <button class="bc"><%= link_to "My order", orders_path %><i class="fa fa-lock"></i></button>
+      <button id="flright"><%= link_to "Track Order", orders_track_path %><i class="fa fa-lock"></i></button><br>
+      <%= render :partial => 'edit' %>
+      <button class="bc"><%= link_to "Change password", edit_user_registration_path %></button>
+    </div>
+  </div><br>
 <div>
-<div class="container">
-<button class="bc"><%= link_to "My order", orders_path %><i class="fa fa-lock"></i></button>
-<button id="flright"><%= link_to "Track Order", orders_track_path %><i class="fa fa-lock"></i></button><br>
-  <%= render :partial => 'edit' %>
-<button class="bc"><%= link_to "Change password", edit_user_registration_path %></button></div>
-</div></div><br>

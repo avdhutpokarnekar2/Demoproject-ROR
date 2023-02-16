@@ -141,8 +141,8 @@ a#scrollUp i{
   border-bottom: 1px solid #f5f5f5;
   margin-left: 0;
   margin-right: 0;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .header-middle .container .row .col-sm-4{
@@ -222,8 +222,8 @@ a#scrollUp i{
 
 
 .header-bottom {
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 0px;
+  padding-top: 0px;
 }
 
 .navbar-collapse.collapse{
@@ -2592,5 +2592,16 @@ h2.title {
   color: white;
 }
 .hey{
-  padding-top: 200px;
+  padding-top: 108px;
+}
+
+.alrt{
+  height: 25px;
+  padding: 3px;
+  margin: 0px;
+  text-align: center;
+}
+
+.account-container{
+  width: 100% !important;
 }

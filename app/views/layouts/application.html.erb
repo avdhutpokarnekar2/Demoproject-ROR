@@ -11,12 +11,6 @@
     <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %> 
   </head>
   <body>
-    <% if notice %> 
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
     <%= render :partial => 'home/header' %>
     <%= yield %>
     <%= render :partial => 'home/footer' %>

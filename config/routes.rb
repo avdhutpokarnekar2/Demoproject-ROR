@@ -9,16 +9,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :blogs
-
   resources :coupons
 
   resources :contacts
 
   resources :checkout
 
-  resources :profile, only: [:index]
-  post 'profile/update_profile'
+  resources :profile
 
   resources :wishlist
 
@@ -37,7 +34,6 @@ Rails.application.routes.draw do
   end
   
   root 'home#home'
-  
   post 'orders/track'
   
   get 'payment/create_payment_order'

@@ -66,7 +66,11 @@ Rails.application.configure do
 
   # config.stripe.secret_key = Rails.application.credentials.stripe[:development][:secret_key]
   # config.stripe.publishable_key = Rails.application.credentials.stripe[:development][:publishable_key]
+ 
 
+  # To ignore the unpermitted parameters
+  config.action_controller.action_on_unpermitted_parameters = false
+    
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
