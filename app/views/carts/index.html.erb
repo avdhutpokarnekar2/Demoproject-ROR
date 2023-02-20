@@ -23,9 +23,9 @@
 								<td class="cart_price"><p>$<%= product.price %></p></td>
 								<td class="quantity">
 									<div class="cart_quantity_button">
-									<%= link_to '+',add_quantity_path(product), method: :post, :remote => true,class: 'btn primary quantity cart_quantity_up'%>	
+									<%= link_to '+',add_quantity_cart_path(product), method: :post, :remote => true,class: 'btn primary quantity cart_quantity_up'%>	
 									<input id="target-for-change-<%= product.id %>"class="cart_quantity_input", name="quantity"  value="<%= product.quantity %>"size="1">
-									<%= link_to '-',dec_quantity_path(product), method: :post,remote: true, class: 'btn primary cart_quantity_up' %>
+									<%= link_to '-',dec_quantity_cart_path(product), method: :post,remote: true, class: 'btn primary cart_quantity_up' %>
 									</div>
 								</td>
 								<td class="cart_total">

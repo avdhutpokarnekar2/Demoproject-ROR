@@ -52,7 +52,7 @@
                 <li class="dropdown"><%= link_to "Account", profile_index_path %><i class="fa fa-angle-down"></i>
                  <ul role="menu" class="sub-menu">
                   <li  style="color:red;"><%= link_to "My order", orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
-                  <li ><%= link_to "Track Order", orders_track_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
+                  <li ><%= link_to "Track Order", track_orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
                  </ul>
                 </li> 
                 <li><%= link_to "Wishlist",wishlist_index_path %><i class="fa fa-lock"></i></li>
@@ -60,8 +60,8 @@
                 <% if user_signed_in? %>
                   <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
                 <% else %>
-                <li><%= link_to "Login", users_sign_in_path %><i class="fa fa-lock"></i></li>
-                <li><%= link_to "Sign_up", users_sign_up_path %><i class="fa fa-lock"></i></li>
+                <li><%= link_to "Login", new_user_session_path %><i class="fa fa-lock"></i></li>
+                <li><%= link_to "Sign_up", new_user_registration_path %><i class="fa fa-lock"></i></li>
                 <% end %>
               </ul>
             </div>

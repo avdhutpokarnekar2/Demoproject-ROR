@@ -122,7 +122,7 @@
 						<div class="single-widget">
 							 <h2>About Shopper</h2>
 								<%if user_signed_in? %>
-									<%= form_with url: mailchimp_home_index_path,  local: true do |form| %>
+									<%= form_with url: mailchimp_profile_index_path,  local: true do |form| %>
 									<%= form.hidden_field :email, :value=> current_user.email %>
 									<div class="actions">
 										<div style="margin-left:0px;">

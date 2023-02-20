@@ -40,7 +40,7 @@ class PaymentController < ApplicationController
                currency: 'usd' },
                quantity: 1, ],
                mode: 'payment',
-               success_url: request.base_url + '/payment/stripe_paymet_success?true&session_id={CHECKOUT_SESSION_ID}',
+               success_url:  request.base_url + '/payment/stripe_paymet_success?true&session_id={CHECKOUT_SESSION_ID}',
                cancel_url: root_url
               })    
   end

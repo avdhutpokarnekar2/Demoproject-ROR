@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#show'
+  
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -11,43 +13,49 @@ Rails.application.routes.draw do
   
   resources :coupons
 
+  resources :blogs
+
   resources :contacts
 
   resources :checkout
 
-  resources :profile
+  resources :profile do
+    collection do
+      post 'mailchimp'
+    end
+  end
 
   resources :wishlist
 
   resources :categories
 
-  resources :carts
+   resources :carts do
+    member do
+      post 'add' => "carts#add_quantity", as: "add_quantity"
+      post 'minus' => "carts#dec_quantity", as: "dec_quantity"
+    end
+  end
 
   resources :addresses
 
-  resources :orders
-
-  resources :home do
+  resources :orders do
     collection do
-      post 'mailchimp'
+      post 'track'
     end
   end
-  
-  root 'home#home'
-  post 'orders/track'
-  
-  get 'payment/create_payment_order'
-  get 'payment/cod'
-  post 'payment/stripe_payment'
-  get 'payment/stripe_paymet_success'
 
-  get 'users/sign_in'
-  get 'users/sign_up'
- 
-  post 'carts/:id/add' => "carts#add_quantity", as: "add_quantity"
-  post 'carts/:id/minus' => "carts#dec_quantity", as: "dec_quantity"
+  resources :home 
+  
+  resources :payment do
+    collection do
+      post 'stripe_payment'
+      get 'stripe_paymet_success'
+      get 'cod'
+    end
+  end
 
   resources :products
+  
   resources :shop
 
 end

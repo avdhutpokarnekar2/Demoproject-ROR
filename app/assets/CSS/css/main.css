@@ -2596,9 +2596,11 @@ h2.title {
 }
 
 .alrt{
+  width: 1285px;
   height: 25px;
-  padding: 3px;
-  margin: 0px;
+  padding: 0px;
+  margin-top: 3px;
+  margin-left: -75px;
   text-align: center;
 }
 

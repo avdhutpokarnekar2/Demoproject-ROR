@@ -11,7 +11,7 @@
 			<%end%>
 		</div>
  		<div>
- 			<input type="submit" name="change" value="Update Address" onclick="myFunction();" ></div>
+ 			<input type="submit" name="change" value="Change Address" onclick="myFunction();" ></div>
 			<div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
 			<div class="container" >
 			<%= render :partial => 'form.html.erb'%>
@@ -37,9 +37,9 @@
 		<div class="col-sm-6 text-center mb-3">
 			<h2 class="text-center mb-3">Payment</h2><br><br>
 		<div class="width">
-			<%= button_to "Stripe",payment_stripe_payment_path(final_amount: @checkout_total ) %><br></div>
+			<%= button_to "Stripe",stripe_payment_payment_index_path(final_amount: @checkout_total ) %><br></div>
 			<div>
-			<%= button_to "COD",payment_cod_path ,method: :get %>
+			<%= button_to "COD",cod_payment_index_path, method: :get %>
 			</div>
 		</div>
 	</div>
