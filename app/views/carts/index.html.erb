@@ -20,7 +20,7 @@
 							<tr>
 								<td><h4 style="margin-left:20px"><%= product.name %></h4> </td>
 								<td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill")%><%end%></td>
-								<td class="cart_price"><p>$<%= product.price %></p></td>
+								<td class="cart_price"><p>₹<%= product.price.to_i %></p></td>
 								<td class="quantity">
 									<div class="cart_quantity_button">
 									<%= link_to '+',add_quantity_cart_path(product), method: :post, :remote => true,class: 'btn primary quantity cart_quantity_up'%>	
@@ -29,7 +29,7 @@
 									</div>
 								</td>
 								<td class="cart_total">
-								<p id="target-for-total-<%= product.id%>">$<%= tp = (product.price)*(product.quantity) %><p>
+								<p id="target-for-total-<%= product.id%>">₹<%= tp = (product.price).to_i*(product.quantity).to_i %><p>
 								</td>
 								<td class="cart_delete"><br>
 									<%=  button_to "X", cart_path(product), method: :delete,data: { confirm: "Are you sure?" }%>
@@ -51,9 +51,9 @@
 			<div class="col-sm-6">
 				<div class="total_area">
 					<ul>
-						<li> Cart Total Price<span id="target-for-total-cart">$<%= @cart_total[:total_price] %> </span></li>
-						<li>Shipping Cost<span id="total-product-val">$<%= @cart_total[:shipping_total] %></span></li>
-						<li>Total<span id="finall-vall">$<%= @cart_total[:order_total] %><span></li>
+						<li> Cart Total Price<span id="target-for-total-cart">₹<%= @cart_total[:total_price] %> </span></li>
+						<li>Shipping Cost<span id="total-product-val">₹<%= @cart_total[:shipping_total] %></span></li>
+						<li>Total<span id="finall-vall">₹<%= @cart_total[:order_total].to_i %><span></li>
 						<% if @f_value == 0 %>
 							<br><h6 style="color:red"><%= "please add the product in cart" %></h6>
 						<%else%>

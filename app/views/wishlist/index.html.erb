@@ -1,4 +1,4 @@
-    <div class="container hey">
+<div class="container hey">
 <% if @wishlists.present?%>
 <section id="cart_items">
       <div class="table-responsive cart_info">
@@ -18,9 +18,9 @@
               <tr>
                 <td><%= link_to product_path(prod) do%><%= image_tag(prod.product_images.first.image,class:"thumbnaill" ) %><%end%></td>
                 <td><h4><%= prod.name %></h4></td>
-                <td><p><%= prod.price %></p></td>
+                <td><p><%= prod.price.to_i %></p></td>
                 <td class="adddd"><%= link_to carts_path(id: prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "ADD TO CART")%><%end%></td>
-                <td class="aaa"><%= button_to "X", wishlist_path(id: prod), method: :delete %></td>
+                <td class="aaa"><%= button_to "X", wishlist_path(id: prod), method: :delete,data: { confirm: "Are you sure?" } %></td>
               </tr>
             <% end %>
           </tbody>

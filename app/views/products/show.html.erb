@@ -14,7 +14,7 @@
 								<%= image_tag("product-details/new.jpg", alt: "") %>
 								<h2><%= @product.name %></h2>
 								<span>
-									<span>$<%= @product.price %></span>
+									<span>₹<%= @product.price.to_i %></span>
 									<button type="button" class="btn btn-fefault cart">
 										<%= button_to "cart", carts_path(@product) %>
 									</button>

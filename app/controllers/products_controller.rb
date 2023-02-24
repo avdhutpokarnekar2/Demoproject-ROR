@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
   #Show perticuler product details
   def show
-    @product = Product.find(params[:id]) if params[:id].present?
+    @product = Product.find(params[:id])
   end
   
 end

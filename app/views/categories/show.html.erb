@@ -1,62 +1,60 @@
-<section>
-	<div class="container hey">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="left-sidebar">
-					<h2>Categories</h2>
-					<% @category.each do |cat| %>
+ <div class="container hey"><!--please change class name -->
+	<div class="row category-margin">
+		<div class="col-sm-3">
+			<div class="left-sidebar">
+				<h2>Categories</h2>
+				<% @category.each do |cat| %><!-- #category should be plurals -->
 					<% subcat = cat.subcategories %>
 					<div class="panel-group category-products" ><!--category-productsr-->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordian" href="#<%= cat.name %>">
+									<a data-toggle="collapse panel-collapse"  href="#<%= cat.id %>">
 										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										<h2><%= cat.name %></h2>
+										<h2><%= cat.name %><span><%= image_tag("social/drop.png", class:"sidebar-dropdown") %> </span></h2>
 									</a>
 								</h4>
 							</div>
-							<div id="<%= cat.name %>" class="panel-collapse collapse">
-								<div class="panel-body">
+							<div id="<%= cat.id %>" class="panel-collapse <%= subcat.map(&:id).include?(@parent_category.id)? "panel-collapse" : "collapse" %>">
+								<div class="panel-body panel-bdy">
 									<% subcat.each do |subc| %>
-									<ul>
-									<li><h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4></li>
-									</ul>
+										<ul>
+											<li>
+												<h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4>
+											</li>
+										</ul>
 									<%end%>
 								</div>
 							</div>
 						</div>
 					</div>
-					<% end %>
-				</div>
+				<% end %>
 			</div>
-			<div class="col-sm-9 padding-right">
-				<div>
-					<h2 class="title text-center">Category Items</h2>
-					<% if @products.present? %>
-          	<% @products.each do |prod| %>
+		</div>
+		<div class="col-sm-9 padding-right">
+			<div>
+				<h2 class="title text-center">Category Items</h2>
+				<% if @products.present? %>
+        	<% @products.each do |prod| %>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="productinfo text-center">
 									<%= image_tag(prod.product_images.first.image) %>
-									<h2>$<%= prod.price %></h2>
+									<h2>₹<%= prod.price.to_i %></h2>
 									<p><%= prod.name %></p>
 									<p> <%= prod.short_description %></p>
 		         		</div>
-          				<%= link_to carts_path(prod),method: :post do%><%= image_tag("social/cart.png",class:"iconss", alt: "")%>
-          				<%= link_to wishlist_index_path(id: prod), method: :post do%><%= image_tag("social/wishh.png",class:"icons", alt: "") %>
-							  <div class="choose">
-  							<%end%>
-  							<% end %>
-							  </div>
+        				<%= link_to carts_path(prod),method: :post do%>
+        					<%= image_tag("social/cart.png",class:"iconss", alt: "")%>
+        				<%end%>
+        				<%= link_to wishlist_index_path(id: prod), method: :post do%>
+        					<%= image_tag("social/wishh.png",class:"icons", alt: "") %>
+								<% end %>
 						  </div>
-					 </div>
-				  <% end %>
-			   <% end %>
-		    </div>
-	   </div>
-    </div>
+					 	</div>
+			  	<% end %>
+		   	<% end %>
+	    </div>
+   	</div>
   </div>
 </div>
-</div>
-</section>

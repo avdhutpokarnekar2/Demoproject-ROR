@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,15 +26,15 @@
       <div class="container">
         <span >
         <% if notice %> 
-      <p class="alert alert-success alrt"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-  </span>
+          <p class="alert alert-success alrt"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+        </span>
         <div class="row">
           <div class="col-sm-4">
-            <div class="logo pull-left">
+            <div class="logo pull-left website-icon">
               <%= link_to root_path do%><%= image_tag("home/logo.png", alt: "") %><% end %>
             </div>
             <div class="btn-group pull-right">
@@ -46,22 +44,26 @@
               </div>
             </div>
           </div>
+
           <div class="col-sm-8">
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
-                <li class="dropdown"><%= link_to "Account", profile_index_path %><i class="fa fa-angle-down"></i>
+                <li class="dropdown" style="margin-top: -10px"><%= link_to profile_index_path do%><%= image_tag("social/account.jpeg",class:"account-icon", alt: "Account")%><span>Account</span><%end%><i class="fa fa-angle-down"></i>
                  <ul role="menu" class="sub-menu">
                   <li  style="color:red;"><%= link_to "My order", orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
                   <li ><%= link_to "Track Order", track_orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
                  </ul>
                 </li> 
-                <li><%= link_to "Wishlist",wishlist_index_path %><i class="fa fa-lock"></i></li>
-                <li><%= link_to "Cart (#{@cart_products.size})",carts_path %><i class="fa fa-lock"></i></li>
+                <li><%= link_to wishlist_index_path do%><%= image_tag("social/wishh.png",class:"wishlist-icon", alt: "Wishlist") %>Wishlist<%end%><i class="fa fa-lock"></i></li>
+                <% if user_signed_in? && @cart_products.size != 0 %>
+                <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart(<%=@cart_products.size%>)<i class="fa fa-lock"></i></li><% end %>
+                <% else %>
+                <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart<i class="fa fa-lock"></i></li><%end%>
+                <%end%>
                 <% if user_signed_in? %>
                   <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
                 <% else %>
                 <li><%= link_to "Login", new_user_session_path %><i class="fa fa-lock"></i></li>
-                <li><%= link_to "Sign_up", new_user_registration_path %><i class="fa fa-lock"></i></li>
                 <% end %>
               </ul>
             </div>
@@ -69,6 +71,7 @@
         </div>
       </div>
     </div>
+
     <div class="header-bottom"><!--header-bottom-->
       <div class="container">
         <div class="row">
@@ -81,8 +84,8 @@
                 <span class="icon-bar"></span>
               </button>
             </div>
-            <div class="mainmenu pull-left">
-              <ul class="nav navbar-nav collapse navbar-collapse">
+            <div class="mainmenu pull-left nav-padding">
+              <ul class="navbar-nav">
                 <li><%= link_to "Home", root_path %></li>
                 <li class="dropdown"><%= link_to "Shop", products_path %><i class="fa fa-angle-down"></i>
                 </li> 
@@ -95,4 +98,3 @@
       </div>
     </div><!--/header-bottom-->
   </header><!--/header-->
-  

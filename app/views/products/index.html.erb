@@ -17,7 +17,7 @@
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordian" href="#<%= cat.name %>">
                     <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                    <h2><%= cat.name %></h2>
+                    <h2><%= cat.name %>+</h2>
                   </a>
                 </h4> 
             </div>
@@ -44,7 +44,7 @@
               <div class="product-image-wrapper">
                 <div class="productinfo text-center">
                   <%= link_to product_path(prod) do%><%= image_tag(prod.product_images.first.image) %><%end%>
-                  <h2>$<%= prod.price %></h2>
+                  <h2>₹<%= prod.price.to_i %></h2>
                   <p><%= prod.name %></p>
                   <p> <%= prod.short_description %></p>
                 </div>
