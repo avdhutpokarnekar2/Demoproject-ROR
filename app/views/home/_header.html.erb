@@ -1,5 +1,5 @@
-<header id="header" class="fixx"><!--header-->  
-  <span >
+ <header id="header" class="fixx"><!--header-->
+   <span >
     <% if notice %> 
       <p class="alert alert-success alrt"><%= notice %></p>
     <% end %>``
@@ -8,58 +8,49 @@
     <% end %>
   </span>
   <div class="header-middle"><!--header-middle-->
-    <div class="">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="logo pull-left website-icon">
-            <%= link_to root_path do%><%= image_tag("home/logo.png", alt: "") %><% end %>
-          </div>
+    <div class="row row-margin">
+      <div class="col-sm-4">
+        <div class="logo pull-left">
+          <%= link_to root_path do%><%= image_tag("home/logo.png", alt: "") %><% end %>
         </div>
-        <div class="col-md-8">
-          <div class="shop-menu pull-right">
-            <ul class="nav navbar-nav">
-              <li class="dropdown header" ><%= link_to profile_index_path do%><%=image_tag("social/account.jpeg",class:"account-icon", alt: "Account")%><span>Account</span><%end%><i class="fa fa-angle-down"></i>
-                <ul role="menu" class="sub-menu">
-                  <li  style="color:red;"><%= link_to "My order", orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
-                  <li ><%= link_to "Track Order", track_orders_path,:class=>"hee" %><i class="fa fa-angle-down"></i></li>
-                </ul>
-              </li> 
-              <li><%= link_to wishlist_index_path do%><%= image_tag("social/wishh.png",class:"wishlist-icon", alt: "Wishlist") %>Wishlist<%end%><i class="fa fa-lock"></i></li>
+      </div>
+      <div class="col-sm-8">
+        <div class="shop-menu pull-right">
+          <ul class="nav navbar-nav navbar-collapse">
+            <li><%= link_to profile_index_path do%><%=image_tag("social/account.jpeg",class:"account-icon")%><span>Account</span><%end%>
+              <ul role="menu" class="sub-menu">
+                <li><%= link_to "Track Order", track_orders_path,:class=>"hee" %></li>
+                <li><%= link_to "My order", orders_path,:class=>"hee" %></li>
+              </ul>
+            </li>
+            <li><%= link_to wishlist_index_path do%><%= image_tag("social/wishh.png",class:"wishlist-icon", alt: "Wishlist") %>Wishlist<%end%></li>
               <% if user_signed_in? && @cart_products.size != 0 %>
-                <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart(<%=@cart_products.size%>)<i class="fa fa-lock"></i></li><% end %>
-              <% else %>
-                <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart<i class="fa fa-lock"></i></li><%end%>
-              <%end%>
-              <% if user_signed_in? %>
-                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
-              <% else %>
-                <li><%= link_to "Login", new_user_session_path %><i class="fa fa-lock"></i></li>
-              <% end %>
-            </ul>
-          </div>
+            <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart(<%=@cart_products.size%>)</li><% end %>
+            <% else %>
+            <li><%= link_to carts_path do%><%= image_tag("social/cart.png",class:"cart-icon", alt: "")%>Cart</li><%end%>
+            <%end%>
+            <% if user_signed_in? %>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %><li>
+            <% else %>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
+  </div><!--/header-middle-->
   <div class="header-bottom"><!--header-bottom-->
     <div class="row">
       <div class="col-sm-9">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="mainmenu pull-left nav-padding">
-          <ul class="navbar-nav">
+        <div class="mainmenu pull-left">
+          <ul class="nav navbar-nav navbar-collapse">
             <li><%= link_to "Home", root_path %></li>
-            <li class="dropdown"><%= link_to "Shop", products_path %><i class="fa fa-angle-down"></i></li> 
-            <li><%= link_to "Blog",blogs_path %><i class="fa fa-angle-down"></i></li>
+            <li class="dropdown"><%= link_to "Shop", products_path %></li> 
+            <li><%= link_to "Blog",blogs_path %></li>
             <li><%= link_to "Contact",contacts_path %></li>
           </ul>
         </div>
       </div>
     </div>
-</div><!--/header-bottom-->
+  </div><!--/header-bottom-->
 </header><!--/header-->

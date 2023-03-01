@@ -150,7 +150,7 @@ a#scrollUp i{
 }
 
 .header-middle .container .row .col-sm-8 {
-padding-top:12px;
+padding-top:0px;
 }
 
 .usa {
@@ -188,13 +188,8 @@ padding-top:12px;
 
 
 .shop-menu ul li {
-	display:inline-block;
   padding-left: 15px;
-  padding-right: 15px;
-}
-
-.shop-menu ul li:last-child {
-  padding-right: 0;
+  padding-right: 15px !important;
 }
 
 
@@ -245,7 +240,7 @@ padding-top:12px;
 	font-size: 17px;
 	font-weight: 300;
 	padding: 0;
-	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
@@ -448,7 +443,7 @@ ul.sub-menu {
 
 
 .address {
-  margin-top: 0px;
+  padding-top: 5px;
   position: relative;
   overflow: hidden;
 }
@@ -547,7 +542,7 @@ ul.sub-menu {
 
 .footer-bottom {
   background: #D6D6D0;
-  padding-top: 5px;
+  padding-top: 1px;
 }
 
 .footer-bottom p {
@@ -555,6 +550,8 @@ ul.sub-menu {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin-left: 15px;
+  margin-right: 15px;
+
 }
 
 .footer-bottom p span a {
@@ -2573,11 +2570,11 @@ h2.title {
 }
 .fixx{
   position:fixed;
-  background-color: white !important;
   z-index: 9999;
+  background-color: white;
   width: 90%;
-  
-}
+
+  }
 .emptycart{
   margin-left: 400px;
 
@@ -2610,10 +2607,10 @@ h2.title {
 }
 
 .account-icon{
-  height: 35px;
+  height: 25px;
   width: 35px;
-  padding-bottom:7px ;
-  margin-top: 0px;
+  padding-bottom:0px ;
+  margin-top: -10px !important;
 }
 .wishlist-icon{
   height: 15px;
@@ -2788,4 +2785,23 @@ h2.title {
 .social-icon-padding{
     height: 135px;
     margin-left: 100px;
+}
+
+.row-margin{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+.row-padding{
+  padding: 10px;
+}
+
+.page-position{
+  position: relative;
+  z-index: 9999;
+}
+
+@media screen and (min-width: 970px) {
+  body {
+    background-color: lightgreen;
+  }
 }
