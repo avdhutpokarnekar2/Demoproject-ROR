@@ -1093,7 +1093,7 @@ h2.title {
 }
 
 #advertisement img {
-  width: 100%;
+  width: 99%;
 }
 
 .pagination {
@@ -2575,7 +2575,7 @@ h2.title {
   position:fixed;
   background-color: white !important;
   z-index: 9999;
-  width: 100%;
+  width: 90%;
   
 }
 .emptycart{
@@ -2592,7 +2592,7 @@ h2.title {
   background-color: rgb(102,102,102) !important; 
   color: white;
 }
-.hey{
+.main-page-padding{
   padding-top: 115px;
 }
 
@@ -2657,8 +2657,7 @@ h2.title {
 .omniauth-icons{
    height: 30px;
   width: 30px;
-  margin-right: 20px;
-  margin-left: 15px;
+  margin-right: 90px;
 }
 .sidebar-dropdown{
   height: 17px;
@@ -2668,4 +2667,125 @@ h2.title {
 .rupees{
   height: 3px !important;
   width: 3px !important;
+}
+
+.signinbar{
+  text-align: center;
+  background-color: #c6e9f7;
+  width: 100%;
+}
+.signbtn{
+  margin-left: 140px;
+}
+.remember-btn{
+  padding-right: 140px;
+}
+.email-margin{
+  margin-right: 22px;
+}
+
+.signup-email{
+  margin-right: 50px;
+}
+
+.signup-btn{
+  margin-right: 60px;
+}
+.signup-margin{
+  margin-right: 75px;
+}
+.signupbtn{
+  margin-right: 160px;
+}
+.outhbtn{
+  margin-left: 50px;
+}
+.left-mrgn{
+  margin-right: -80px;
+}
+
+.cartbtn{
+  margin-left:520px;
+}
+.category-spacing{
+  margin-left:60px;
+}
+.checkout-spacing{
+  width: 187px;
+}
+.form-alignment{
+  text-align: center;
+}
+.header{
+  margin-top: -10px;
+}
+.productbtn{
+  margin-left:60px
+}
+.more-prod-btn{
+  margin-top:590px;
+  background-color: orange;
+  position: absolute;
+}
+.order-btn{
+  margin-bottom: 88px;
+}
+
+.ord {
+    text-align: center;
+    padding: 40px 0;
+    background: #EBF0F5;
+  }
+.h11 {
+    color: #88B04B;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+.ii {
+    color: #9ABC66;
+    font-size: 100px;
+    line-height: 200px;
+    margin-left:-15px;
+  }
+.card {
+    background: white;
+    padding: 60px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #C8D0D8;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+.payment-success{
+  border-radius:200px;
+  height:200px;
+  width:200px; 
+  background: #F8FAF5;
+  margin:0 auto;"
+}
+.sucess-bodyy {
+  text-align: center;
+  padding: 0px 0;
+  background: #EBF0F5;
+}
+
+.more-product{
+  margin-top:20px;
+  background-color: orange;
+}
+
+.price-symbol{
+  top: -0.50em;
+  position: relative;
+  font-size: 13px;
+}
+.btn-signup{
+  float: right;
+}
+
+.social-icon-padding{
+    height: 135px;
+    margin-left: 100px;
 }

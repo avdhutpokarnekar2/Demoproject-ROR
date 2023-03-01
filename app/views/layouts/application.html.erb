@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Demoapp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://js.stripe.com/v3/"></script>
@@ -11,7 +10,27 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <%= render :partial => 'home/header' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="<%#= @cms.meta_title %>">
+  <meta name="description" content="<%#= @cms.meta_description %>">
+  <meta name="keywords" content="<%#= @cms.meta_keyword %>">
+  <meta name="author" content="">
+  <%= stylesheet_link_tag 'css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag 'css/font-awesome.min.css' %>
+  <%= stylesheet_link_tag 'css/prettyPhoto.css' %>
+  <%= stylesheet_link_tag 'css/price-range.css' %>
+  <%= stylesheet_link_tag 'css/animate.css' %>
+  <%= stylesheet_link_tag 'css/main.css' %>
+  <%= stylesheet_link_tag 'css/responsive.css' %>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <link rel="shortcut icon" href="images/ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
   </head>
   <script type="text/javascript">
     $('document').ready(function() {
@@ -20,11 +39,11 @@
       },2000);
     });
   </script>
-  
-  <body>
-    <%= yield %>
+  <body class="container">
+      <%= render :partial => 'home/header' %>
+      <%= yield %>
+      <%= render :partial => 'home/footer' %>
   </body>
-  <%= render :partial => 'home/footer' %>
 </html>
 
 

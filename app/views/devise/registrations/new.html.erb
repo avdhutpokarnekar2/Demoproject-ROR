@@ -1,29 +1,38 @@
-<section class="hey">
-<div class="vh-100 text-center mb-3 backimg" style="background-color:white; "><h2 style="color:orange;">Registration</h2>
-<div>
-
+<section class="container main-page-padding">
+  <div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+<h2 class="text-center m-5">Sign up</h2>
+<section class="col-8 offset-2 col-sm-12 offset-sm-3">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"Email",pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", type: "text" %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control m-2'  %>
   </div><br>
 
   <div class="field">
+    <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em></em>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control m-2'  %>
   </div><br>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" ,placeholder:"password_confirmation"%>
-  </div><br>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control m-2'  %>
+  </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-primary m-2'  %>
   </div>
 <% end %>
-
+<hr>
 <%= render "devise/shared/links" %>
+</section>
+</div>
+</div>
 </section>

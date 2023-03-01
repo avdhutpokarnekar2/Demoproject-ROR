@@ -1,4 +1,4 @@
- <div class="container hey"><!--please change class name -->
+ <div class="container main-page-padding"><!--please change class name -->
 	<div class="row category-margin">
 		<div class="col-sm-3">
 			<div class="left-sidebar">
@@ -20,7 +20,7 @@
 									<% subcat.each do |subc| %>
 										<ul>
 											<li>
-												<h4 style="margin-left:60px"><%= link_to subc.name,category_path(subc) %></h4>
+												<h4 class="category-spacing"><%= link_to subc.name,category_path(subc) %></h4>
 											</li>
 										</ul>
 									<%end%>
@@ -40,7 +40,7 @@
 							<div class="product-image-wrapper">
 								<div class="productinfo text-center">
 									<%= image_tag(prod.product_images.first.image) %>
-									<h2>₹<%= prod.price.to_i %></h2>
+									<h2><span class="price-symbol">₹</span><%= prod.price.to_i %></h2>
 									<p><%= prod.name %></p>
 									<p> <%= prod.short_description %></p>
 		         		</div>

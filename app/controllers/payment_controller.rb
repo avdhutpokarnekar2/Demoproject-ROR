@@ -37,7 +37,7 @@ class PaymentController < ApplicationController
                price_data: {
                product: product.id,
                unit_amount: @final_value*100,
-               currency: 'usd' },
+               currency: 'inr' },
                quantity: 1, ],
                mode: 'payment',
                success_url:  request.base_url + '/payment/stripe_paymet_success?true&session_id={CHECKOUT_SESSION_ID}',

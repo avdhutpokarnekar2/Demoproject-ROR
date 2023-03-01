@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <%= form_with  model: @user, method: :patch, url: profile_path(current_user.id), authenticity_token: false  do |form| %>
     <% if user_signed_in? %>
       <% user = current_user %>

@@ -1,4 +1,4 @@
- <div class="container hey">
+ <div class="container main-page-padding">
 <% if @orders.present?%>
 <section id="cart_items ">
   <div class="table-responsive cart_info">
@@ -18,9 +18,9 @@
           <tr>
             <td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill") %><%end%> </td>
             <td><h4><%= product.name %></h4></td>
-            <td class="cart_price"><p>$<%= product.price %></p></td>
+            <td class="cart_price"><p><span class="price-symbol">₹</span><%= product.price %></p></td>
             <td ><p><%= product.quantity %></p></td>
-            <td><h5><%= link_to orders_track_path(order)do%><%= order.id %><%end%></h5></td>
+            <td><h5><%= link_to orders_path(order)do%><%= order.id %><%end%></h5></td>
           </tr>
         <% end %>
         <% end %>
@@ -30,7 +30,7 @@
   </div>
 <% else %>
   <%= image_tag("social/order.jpeg",class:"emptycart")%>  <br>
-  <div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
+  <div class="cartbtn"><button><%= link_to"shop",root_path%></button>
 <%end%>
 </div>
 </section> 

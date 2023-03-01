@@ -1,6 +1,6 @@
 <body>
 	<section id="cart_items">
-		<div class="container hey">
+		<div class="container main-page-padding">
 			<% if @cart_products.product.present? %>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
@@ -18,7 +18,7 @@
 						<% @product_price_lists = [] %>
 						<% @cart_products.each do |product| %>
 							<tr>
-								<td><h4 style="margin-left:20px"><%= product.name %></h4> </td>
+								<td><h4 ><%= product.name %></h4> </td>
 								<td><%= link_to product_path(product) do%><%= image_tag(product.product_images.first.image,class:"thumbnaill")%><%end%></td>
 								<td class="cart_price"><p>₹<%= product.price.to_i %></p></td>
 								<td class="quantity">
@@ -67,7 +67,7 @@
 	</section>
 	<%else%>
 		<%= image_tag("social/emptycart.png",class:"emptycart")%>  <br>
- 		<div style="margin-left:520px;"><button><%= link_to"shop",root_path%></button>
+ 		<div class="cartbtn"><button><%= link_to"shop",root_path%></button>
 	<%end%></div>
 </body>
 </html>

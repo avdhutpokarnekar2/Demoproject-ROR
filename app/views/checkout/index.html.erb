@@ -1,6 +1,6 @@
 <body>
-	<section class="hey">
-		<div>
+	<section class="main-page-padding">
+		<br><div>
 			<input type="radio">
 			<% if @address.present? %>
 				<%= @address.Address %>,
@@ -9,11 +9,9 @@
 				<%= @address.pin_code %>,
 				<%= @address.mobile_no %>
 			<%end%>
-		</div>
- 		<div>
- 			<input type="submit" name="change" value="Change Address" onclick="myFunction();" ></div>
-			<div class=" backimg" id="myDIV" style="background-color:white;display: none;"><h2 class="vh-100 text1 ">Checkout Form</h2>
-			<div class="container" >
+		</div><br>
+ 		<div><input type="submit" name="change" value="Change Address" onclick="myFunction();" ></div><br>
+			<div class=" backimg " id="myDIV"><h2 class="vh-100 form-alignment">Checkout Form</h2>
 			<%= render :partial => 'form.html.erb'%>
 			</div><br>
 			<div class="container">
@@ -27,7 +25,7 @@
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Total</td>
-										<td><span>₹<%= @checkout_total.to_i %></span></td>
+										<td><span class="price-symbol">₹</span><%= @checkout_total.to_i %></td>
 									</tr>
 								</table>
 							</td>
@@ -35,12 +33,10 @@
 				</tbody>
 			</div>
 		<div class="col-sm-6 text-center mb-3">
-			<h2 class="text-center mb-3">Payment</h2><br><br>
+			<h2 class="text-center mb-3">Payment</h2><br>
 		<div class="width">
-			<%= button_to "Stripe",stripe_payment_payment_index_path(final_amount: @checkout_total ) %><br></div>
-			<div>
-			<%= button_to "COD",cod_payment_index_path, method: :get %>
-			</div>
+			<%= button_to "COD",cod_payment_index_path, method: :get %><br>
+			<%= button_to "Stripe",stripe_payment_payment_index_path(final_amount: @checkout_total ) %></div>
 		</div>
 	</div>
 	</section> 

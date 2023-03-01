@@ -1,6 +1,6 @@
 <footer id="footer"><!--Footer-->
 	<div class="footer-top">
-		<div class="container">
+		<div class="">
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="companyinfo">
@@ -120,7 +120,7 @@
 									<%= form_with url: mailchimp_profile_index_path,  local: true do |form| %>
 									<%= form.hidden_field :email, :value=> current_user.email %>
 									<div class="actions">
-										<div style="margin-left:0px;">
+										<div>
 											<b><%= form.submit "Subscribed" %></b>
 										</div>
 									</div>
@@ -135,12 +135,10 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.avdhut.com">Avdhut</a></span></p>
+					<p class="col-md-6">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="col-md-2  pull-right">Designed by <span><a target="_blank" href="http://www.avdhut.com">Avdhut</a></span></p>
 				</div>
-			</div>
 		</div>
 	</footer><!--/Footer-->
   <%= javascript_include_tag"js/main.js" %>
