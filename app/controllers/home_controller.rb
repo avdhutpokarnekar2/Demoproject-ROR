@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!,only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
 
-  
   def show
     @banners = BannerManagement.all
     @category = Category.where(parent_id: nil)
@@ -10,4 +9,3 @@ class HomeController < ApplicationController
     @cms = Cm.last
   end
 end
-

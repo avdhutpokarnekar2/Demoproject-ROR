@@ -2549,7 +2549,7 @@ h2.title {
 .iconss{
   height: 20px;
   width: 20px;
-  margin-left: 205px;
+  margin-left: 155px;
 }
 .thumbnaill{
   height: 70px;
@@ -2705,7 +2705,7 @@ h2.title {
   margin-left:520px;
 }
 .category-spacing{
-  margin-left:60px;
+  margin-left:20px;
 }
 .checkout-spacing{
   width: 187px;
@@ -2717,7 +2717,7 @@ h2.title {
   margin-top: -10px;
 }
 .productbtn{
-  margin-left:60px
+  margin-left:28px
 }
 .more-prod-btn{
   margin-top:590px;
@@ -2802,6 +2802,6 @@ h2.title {
 
 @media screen and (min-width: 970px) {
   body {
-    background-color: lightgreen;
+    background-color: ;
   }
 }

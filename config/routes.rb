@@ -19,9 +19,12 @@ Rails.application.routes.draw do
 
   resources :checkout
 
-  resources :profile do
+  resources :profile 
+
+
+  resources :users do
     collection do
-      post 'mailchimp'
+      post 'subscribe'
     end
   end
 

@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  validates :email, format: { with: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,message: "Please enter valid email" }
+  validates :email, format: { with: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Please enter valid email' }
   after_create :welcome_send
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :omniauth_providers => [:google_oauth2,:github]
+         :omniauthable, omniauth_providers: %i[google_oauth2 github]
   has_many :coupons_useds, dependent: :destroy
   has_many :user_addresses, dependent: :destroy
   has_many :contact_us, dependent: :destroy
@@ -14,14 +14,13 @@ class User < ApplicationRecord
 
   def self.from_omniauth(response)
     User.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |u|
-    u.email = response[:info][:email]
-    u.password = Devise.friendly_token[0, 20]
+      u.email = response[:info][:email]
+      u.password = Devise.friendly_token[0, 20]
     end
   end
 
   def welcome_send
     UserMailer.welcome_send(self).deliver
     UserMailer.admin_mail(self).deliver
-  end  
-
+  end
 end

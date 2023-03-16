@@ -117,9 +117,9 @@
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
-							<h2>Mailchimp</h2>
+							<h2>Mailchimp Subscription</h2><br>
 							<%if user_signed_in? %>
-									<%= form_with url: mailchimp_profile_index_path,  local: true do |form| %>
+									<%= form_with url:subscribe_users_path, local: true do |form| %>
 									<%= form.hidden_field :email, :value=> current_user.email %>
 									<div class="actions">
 											<b><%= form.submit "Subscribe" %></b>
