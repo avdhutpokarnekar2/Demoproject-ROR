@@ -1,6 +1,7 @@
 class PaymentController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'stripe'
+  Stripe.api_key = ENV['stripe_secret_key']
 
   def create_payment_order(value, mode)
     amount = session[:totals] if session[:totals].present?

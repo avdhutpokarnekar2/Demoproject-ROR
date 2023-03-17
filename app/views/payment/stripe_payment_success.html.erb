@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  </head>
+      <body class="sucess-bodyy">
+      <section class="main-page-padding">
+      <div class="card">
+      <div class="payment-success">
+        <i class="checkmark ii">✓</i>
+      </div>
+      <div><h1 class="h11"><span class="price-symbol">₹</span><%= @total %></h1></div>
+      <div><%= @pay_id %></div>
+      <div><%  @user = current_user %></disv>
+      <div><%= @user.email %>
+        <h1>Success</h1> 
+        <p class="pp">payment successfully Done</p>
+         <h4><%= button_to "okay", root_path, method: :get%></h4>
+      </div>
+    </div>
+  </section>
+    </body>
+</html>
+
+
+  
